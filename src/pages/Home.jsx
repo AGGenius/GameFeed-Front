@@ -1,9 +1,11 @@
+import GamesList from "../modules/gamesList"
+
 function Home() {
 
   return (
     <>
-    <h1>Home</h1>
-    <h2>Posts</h2>
+    <h1>GAME</h1>
+    <GamesList />
     </>
   )
 }
