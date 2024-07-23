@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Nav from './modules/Nav';
 import { GamesProvider } from './context/useGamesContext';
 import { UserProvider } from './context/useUserContext';
+import Register from './modules/Register';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
           <UserProvider>
             {<Nav />}
             <Routes>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Home />} />   
+              <Route path='/register' element={<Register />} />
             </Routes>
           </UserProvider>
         </GamesProvider>
