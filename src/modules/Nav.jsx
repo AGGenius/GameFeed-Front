@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Login from "./Login"
 
 function Nav() {
 
@@ -8,12 +9,7 @@ function Nav() {
             <h1>Game Rest</h1>    
             <Link to="/">Home</Link>
             <div>
-                <form>
-                    <label htmlFor="userName">Usuario</label>
-                    <input id="userName" type="text"></input>
-                    <label htmlFor="userPass">Contraseña</label>
-                    <input id="userPass" type="password"></input>
-                </form>
+                <Login />
             </div>
         </nav>
       </>
