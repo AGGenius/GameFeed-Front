@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useUserContext } from "../context/useUserContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,21 +11,7 @@ const Login = () => {
     const loginURL = "http://localhost:3000/api/users/login/"
 
 
-    useEffect(() => {
-        if(localStorage.getItem("token")){
-            const token = localStorage.getItem("token");
-            
-            const userId = jwtDecode(token).id;
-
-            const getUserData = async () => {
-                const userResponse = await axios.get(`http://localhost:3000/api/users/${userId}/`);
-                const newUser = userResponse.data;
-                setUser(newUser);
-            };
-
-            getUserData();
-        }
-    }, [])
+    
 
     useEffect(() => {
 
@@ -76,9 +61,33 @@ const Login = () => {
         </>
     )
 
+    const baseUser = (
+        <>
+            <Link  to="/addGame">Añadir Juego</Link>
+            <Link  to="/profile">Perfil</Link>
+        </>
+    )
+
+    //WIP
+    const admin = (
+        <>
+            <Link  to="/addGame">Añadir Juego</Link>
+            <Link  to="/profile">Perfil</Link>
+        </>
+    )
+
+    //WIP
+    const adminUser = (
+        <>
+            <Link  to="/addGame">Añadir Juego</Link>
+            <Link  to="/profile">Perfil</Link>
+        </>
+    )
+
     return (
         <>
             {localStorage.getItem("token") ? logoutPage : logPage}
+            {baseUser}
         </>)
 }
 

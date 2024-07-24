@@ -52,8 +52,8 @@ const Register = () => {
                 :
                 <p>{registerState}</p>}
 
-        </>)
-
+        </>
+    )
 }
 
 export default Register;

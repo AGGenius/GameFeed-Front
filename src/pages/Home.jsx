@@ -4,7 +4,7 @@ function Home() {
 
   return (
     <>
-    <h1>GAME</h1>
+    <h1>GAMES</h1>
     <GamesList />
     </>
   )
