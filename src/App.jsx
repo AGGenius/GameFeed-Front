@@ -5,6 +5,7 @@ import Nav from './modules/Nav';
 import Register from './modules/Register';
 import AddGame from './modules/AddGame';
 import Profile from './modules/Profile';
+import Posts from './modules/Posts';
 import axios from 'axios';
 import { GamesProvider } from './context/useGamesContext';
 import { UserProvider } from "./context/useUserContext";
@@ -21,6 +22,7 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/addGame' element={<AddGame />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/posts' element={<Posts game/>} />
             </Routes>
           </UserProvider>
         </GamesProvider>

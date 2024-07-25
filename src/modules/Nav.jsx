@@ -9,7 +9,6 @@ function Nav() {
   const { setUser } = useUserContext();
 
   useEffect(() => {
-    //Puedo meter una comprobación para que solo haga la comprobación si el Object.key de user (contexto) esta vacio, me puedo ahorrar peticiones.
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
 

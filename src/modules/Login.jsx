@@ -10,9 +10,6 @@ const Login = () => {
     const navigate = useNavigate();
     const loginURL = "http://localhost:3000/api/users/login/"
 
-
-    
-
     useEffect(() => {
 
     }, [user])
