@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUserContext } from "../context/useUserContext";
+import { useUserContext } from "../../context/useUserContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -9,7 +9,12 @@ const AddGame = () => {
     const [developer, setDeveloper] = useState("");
     const [release, setRelease] = useState("");
     const {user} = useUserContext();
+    const navigate = useNavigate();
     const addGameURL = "http://localhost:3000/api/games/create/";
+
+    useEffect(() => {
+        if (!localStorage.getItem("token")) { navigate("/"); }
+    }, [])
 
     const createGame = async (e) => {
         e.preventDefault();
@@ -23,9 +28,8 @@ const AddGame = () => {
                 user_id: user.id
             }
 
-            const response = await axios.post(addGameURL, payload);
-            const registerStatus = response.data.estado;
-            console.log(registerStatus)
+            await axios.post(addGameURL, payload);            
+            navigate("/");
         }
     }
 

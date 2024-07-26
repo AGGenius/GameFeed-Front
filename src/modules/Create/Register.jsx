@@ -30,7 +30,6 @@ const Register = () => {
 
             const response = await axios.post(registerURL, payload);
             const registerStatus = response.data.estado;
-            console.log(registerStatus)
             setRegisterState(registerStatus);
         }
     }

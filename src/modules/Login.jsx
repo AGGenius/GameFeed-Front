@@ -37,6 +37,7 @@ const Login = () => {
     const logOut =  () => {
         localStorage.removeItem("token");
         setUser({});
+        navigate("/");
     }
 
     const logPage = (
@@ -60,31 +61,14 @@ const Login = () => {
 
     const baseUser = (
         <>
-            <Link  to="/addGame">Añadir Juego</Link>
-            <Link  to="/profile">Perfil</Link>
-        </>
-    )
-
-    //WIP
-    const admin = (
-        <>
-            <Link  to="/addGame">Añadir Juego</Link>
-            <Link  to="/profile">Perfil</Link>
-        </>
-    )
-
-    //WIP
-    const adminUser = (
-        <>
-            <Link  to="/addGame">Añadir Juego</Link>
-            <Link  to="/profile">Perfil</Link>
+            <Link  to="/profile"><p>Perfil</p></Link>
         </>
     )
 
     return (
         <>
-            {localStorage.getItem("token") ? logoutPage : logPage}
-            {baseUser}
+            {user.id ? logoutPage : logPage}
+            {user.id > 0 && baseUser}
         </>)
 }
 

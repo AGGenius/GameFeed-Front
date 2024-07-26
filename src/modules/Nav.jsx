@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import Login from "./Login"
 
 function Nav() {
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -24,6 +24,20 @@ function Nav() {
     }
   }, [])
 
+  const modUser = (
+    <>
+      <Link to="/"><p>Modo moderador</p></Link>
+    </>
+  )
+
+  const admin = (
+    <>
+      <Link to="/adminPage"><p>Modo administrador</p></Link>
+    </>
+  )
+
+  
+
   return (
     <>
       <nav>
@@ -31,6 +45,8 @@ function Nav() {
         <Link to="/">Home</Link>
         <div>
           <Login />
+          {user.type === "mod" && modUser}
+          {user.type === "admin" && admin}
         </div>
       </nav>
     </>
