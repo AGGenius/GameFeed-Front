@@ -26,7 +26,7 @@ function Nav() {
 
   const modUser = (
     <>
-      <Link to="/"><p>Modo moderador</p></Link>
+      <Link to="/modPage"><p>Modo moderador</p></Link>
     </>
   )
 

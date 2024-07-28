@@ -5,9 +5,10 @@ import { useUserContext } from "../context/useUserContext";
 
 function Posts() {
     const { user } = useUserContext();
+    const [ token, setToken ] = useState("");
     const [posts, setPosts] = useState([]);
     const [likes, setLikes] = useState([]);
-    const [ game, setGame ] = useState({});
+    const [game, setGame] = useState({});
     const navigate = useNavigate();
     const { id } = useParams();
     const postByGameURL = "http://localhost:3000/api/posts/game/";
@@ -23,7 +24,7 @@ function Posts() {
 
     useEffect(() => {
         const getGame = async () => {
-            const response = await axios.get(getGameUrl+id);
+            const response = await axios.get(getGameUrl + id);
             const newGame = response.data;
             setGame(newGame);
         }
@@ -35,6 +36,7 @@ function Posts() {
             setPosts(newPosts);
         }
 
+        setToken(localStorage.getItem("token"));
         getGame();
         getPosts();
         getLikes();
@@ -60,7 +62,7 @@ function Posts() {
 
     //Igual
     const sendLike = async (e) => {
-        if(!user.id) { return };
+        if (!user.id) { return };
 
         const user_id = user.id;
         const likes_id = e.target.value;
@@ -81,29 +83,85 @@ function Posts() {
     //Adaptable con condicional
     const generateLikeButton = (post) => {
         const actualLike = likes.find((like) => like.post_id === post.id);
+
+        if (token) {
+            return (
+                <>
+                    {actualLike && <button value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                </>)
+        }
+
         return (
             <>
-                {actualLike && <button key={actualLike.id} value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                {actualLike && <button disabled={true}>Likes: {actualLike.value} </button>}
             </>)
-
     }
-    
-    const createPost = (game) => {        
-        if(!user.id) { return };
+
+    //Adaptable con condicional
+    const generateEditButton = (post) => {
+        if (user.type === "admin") {
+
+            return (
+                <>
+                    <button key={game.id} onClick={() => navigate(`/adminPage/editPost/${post.id}`)}>Edit</button>
+                </>)
+        } else if (user.type === "mod") {
+
+            return (
+                <>
+                    <button key={game.id} onClick={() => navigate(`/modPage/editPost/${post.id}`)}>Edit</button>
+                </>)
+        }
+    }
+
+    const generateUserButton = (post) => {
+        if (user.type === "admin") {
+
+            return (
+                <>
+                    <button key={post.id} onClick={() => navigate(`/adminPage/editUser/${post.user_id}`)}>{post.nick}</button>
+                </>)
+        } else {
+            return (
+                <>
+                    <p>Por: {post.nick}</p>
+                </>)
+        }
+    }
+
+    const generateCreateButton = () => {
+        if (user.type === "admin") {
+
+            return (
+                <>
+                    <button onClick={() => (createPost(game[0]))}>Crear entrada</button>
+                </>)
+        } else {
+            return (
+                <>
+                    <button disabled={true}>Crear entrada</button>
+                </>)
+        }
+    }
+
+    const createPost = (game) => {
+        if (!token) { return };
         navigate(`/addPost/${game.id}`);
     }
 
     return (
         <>
             <h2>POSTS FOR {game[0] && game[0].tittle}</h2>
-            <button onClick={() => (createPost(game[0]))}>Crear entrada</button>
+            {generateCreateButton()}
             {posts && posts.map((post) =>
             (
                 <div key={post.id}>
                     <p>{post.type}</p>
                     <p>{post.content}</p>
                     <p>{getFormattedDate(post.date)}</p>
+                    {generateUserButton(post)}
                     {likes && generateLikeButton(post)}
+                    {generateEditButton(post)}
                 </div>
             ))}
         </>)

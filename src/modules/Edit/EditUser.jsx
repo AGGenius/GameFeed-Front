@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../context/useUserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 function EditUser() {
+    //Direct Link
+    const { id } = useParams()
     //Search
     const [userId, setUserId] = useState("");
     const [userEdit, setUserEdit] = useState("");
@@ -19,19 +21,34 @@ function EditUser() {
     const navigate = useNavigate();
     const editUserUrl = "http://localhost:3000/api/users/";
 
-    useEffect(() => {
-        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
-    }, [user])
-
-    
-    useEffect(() => {
+    function setUserData() {
         setEmail(userEdit.email);
         setName(userEdit.name);
         setNick(userEdit.nick)
         setType(userEdit.type)
         setActive(userEdit.active)
-    }, [userEdit])
+    }
+
+    useEffect(() => {
+        if (id) {
+            setUserId(id);
+        }
+    }, []);
     
+    useEffect(() => {
+        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
+    }, [user]);
+    
+    useEffect(() => {
+        setUserData();
+    }, [userEdit]);
+
+    useEffect(() => {
+        if(userId) {
+            checkUser();
+            setUserData();
+        }   
+    }, [userId])
 
     const editUser = async (e) => {
         e.preventDefault();
@@ -62,7 +79,7 @@ function EditUser() {
     }
 
     const checkUser = async (e) => {
-        e.preventDefault();
+        if(e) {e.preventDefault();}
 
         const response = await axios.get(editUserUrl + userId);
 
@@ -80,8 +97,8 @@ function EditUser() {
         <>
             <div>
                 <form onSubmit={checkUser}>
-                    <label htmlFor="searchGame">ID del usuario</label>
-                    <input id="searchGame" type="number" value={userId} onChange={(e) => setUserId(e.target.value)}></input>
+                    <label htmlFor="searchUser">ID del usuario</label>
+                    <input id="searchUser" type="number" value={userId} onChange={(e) => setUserId(e.target.value)}></input>
                     <button type="submit">Traer usuario</button>
                 </form>
             </div>

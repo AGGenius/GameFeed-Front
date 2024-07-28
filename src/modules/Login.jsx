@@ -1,18 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from "../context/useUserContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { user, setUser } = useUserContext();
     const navigate = useNavigate();
+    const location = useLocation();
     const loginURL = "http://localhost:3000/api/users/login/"
-
-    useEffect(() => {
-
-    }, [user])
 
     const sendLogin = async (e) => {
         e.preventDefault();
@@ -30,14 +27,26 @@ const Login = () => {
             const userResponse = await axios.get(`http://localhost:3000/api/users/${data.userId}/`);
             const newUser = userResponse.data;
             setUser(newUser);
-            navigate("/");
+
+            if(location.pathname === "/") {
+                navigate("/");
+                //window.location.reload();
+            } else {
+                navigate("/");
+            }
         }
     }
 
     const logOut =  () => {
         localStorage.removeItem("token");
         setUser({});
-        navigate("/");
+
+        if(location.pathname === "/") {
+            navigate("/");
+            //window.location.reload();
+        } else {
+            navigate("/");
+        }
     }
 
     const logPage = (

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../context/useUserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 function EditPost() {
+    //Direct Link
+    const { id } = useParams()
     //Search
     const [postId, setPostId] = useState("");
     const [post, setPost] = useState("");
@@ -18,18 +20,35 @@ function EditPost() {
     const { user } = useUserContext();
     const navigate = useNavigate();
     const editPostUrl = "http://localhost:3000/api/posts/";
-
-    useEffect(() => {
-        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
-    }, [user])
-
-    useEffect(() => {
+    
+    const setPostData = () => {
         setType(post.type);
         setContent(post.content);
         setGameId(post.game_id);
         setUserId(post.user_id)
         setActive(post.active)
+    }
+
+    useEffect(() => {
+        if (id) {
+            setPostId(id);
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!localStorage.getItem("token") || (user.type !== "admin" && user.type !== "mod")) { navigate("/"); }
+    }, [user])
+
+    useEffect(() => {
+        setPostData();
     }, [post])
+
+    useEffect(() => {
+        if(postId) {
+            checkPost();
+            setPostData();
+        }
+    }, [postId])
 
     const editPost = async (e) => {
         e.preventDefault();
@@ -60,7 +79,7 @@ function EditPost() {
     }
 
     const checkPost = async (e) => {
-        e.preventDefault();
+        if(e) { e.preventDefault(); }  
 
         const response = await axios.get(editPostUrl + postId);
 
@@ -78,8 +97,8 @@ function EditPost() {
         <>
             <div>
                 <form onSubmit={checkPost}>
-                    <label htmlFor="searchGame">ID del post</label>
-                    <input id="searchGame" type="number" value={postId} onChange={(e) => setPostId(e.target.value)}></input>
+                    <label htmlFor="searchPost">ID del post</label>
+                    <input id="searchPost" type="number" value={postId} onChange={(e) => setPostId(e.target.value)}></input>
                     <button type="submit">Traer post</button>
                 </form>
             </div>

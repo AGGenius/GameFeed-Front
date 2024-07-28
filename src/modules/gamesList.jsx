@@ -6,6 +6,7 @@ import { useUserContext } from "../context/useUserContext";
 
 const GamesList = () => {
     const { games, setGames } = useGamesContext();
+    const [token, setToken] = useState("");
     const { user } = useUserContext();
     const [likes, setLikes] = useState([]);
     const navigate = useNavigate();
@@ -27,9 +28,14 @@ const GamesList = () => {
             }
         }
 
+        setToken(localStorage.getItem("token"));
         getGames();
         getLikes();
     }, []);
+
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, [user]);
 
 
     const getFormattedDate = (queryDate) => {
@@ -50,7 +56,7 @@ const GamesList = () => {
     };
 
     const sendLike = async (e) => {
-        if (!user.id) { return };
+        if (!token) { return };
 
         const user_id = user.id;
         const likes_id = e.target.value;
@@ -69,20 +75,31 @@ const GamesList = () => {
     }
 
     const generateLikeButton = (game) => {
-        const actualLike = likes.find((like) => like.game_id === game.id && like.post_id === 0);
+        const actualLike = likes.find((like) => like.id === game.id);
+
+        if (token) {
+            return (
+                <>
+                    {actualLike && <button value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                </>)
+        }
+
         return (
             <>
-                {actualLike && <button key={actualLike.id} value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                {actualLike && <button disabled={true}>Likes: {actualLike.value} </button>}
             </>)
-
     }
 
     const generateEditButton = (game) => {
         if (user.type === "admin") {
-
             return (
                 <>
                     <button key={game.id} onClick={() => navigate(`/adminPage/editGame/${game.id}`)}>Edit</button>
+                </>)
+        } else if (user.type === "mod") {
+            return (
+                <>
+                    <button key={game.id} onClick={() => navigate(`/modPage/editGame/${game.id}`)}>Edit</button>
                 </>)
         }
     }

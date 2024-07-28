@@ -22,7 +22,7 @@ function EditGame() {
     const navigate = useNavigate();
     const editGameUrl = "http://localhost:3000/api/games/";
 
-    function getGameData() {
+    function setGameData() {
         const getFormattedDate = (queryDate) => {
             const date = new Date(queryDate);
             const year = date.getFullYear();
@@ -55,17 +55,17 @@ function EditGame() {
     }, [])
 
     useEffect(() => {
-        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
+        if (!localStorage.getItem("token") || (user.type !== "admin" && user.type !== "mod")) { navigate("/"); }
     }, [user])
 
     useEffect(() => {
-        getGameData();
+        setGameData();
     }, [game])
 
     useEffect(() => {
         if(gameId) {
             checkGame();
-            getGameData();
+            setGameData();
         }   
     }, [gameId])
 
@@ -99,7 +99,8 @@ function EditGame() {
     }
 
     const checkGame = async (e) => {
-        if(e) { e.preventDefault(); }     
+        if(e) { e.preventDefault(); }   
+
         const response = await axios.get(editGameUrl + gameId);
 
         if (response.data.estado) {
