@@ -50,8 +50,8 @@ const GamesList = () => {
     };
 
     const sendLike = async (e) => {
-        if(!user.id) { return };
-        
+        if (!user.id) { return };
+
         const user_id = user.id;
         const likes_id = e.target.value;
         const likesUrl = `http://localhost:3000/api/likes/`;
@@ -69,7 +69,7 @@ const GamesList = () => {
     }
 
     const generateLikeButton = (game) => {
-        const actualLike = likes.find((like) => like.game_id === game.id && like.post_id === 0 );
+        const actualLike = likes.find((like) => like.game_id === game.id && like.post_id === 0);
         return (
             <>
                 {actualLike && <button key={actualLike.id} value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
@@ -77,7 +77,17 @@ const GamesList = () => {
 
     }
 
-    const goToPost = (game) => {     
+    const generateEditButton = (game) => {
+        if (user.type === "admin") {
+
+            return (
+                <>
+                    <button key={game.id} onClick={() => navigate(`/adminPage/editGame/${game.id}`)}>Edit</button>
+                </>)
+        }
+    }
+
+    const goToPost = (game) => {
         navigate(`/posts/${game.id}`);
     }
 
@@ -85,13 +95,14 @@ const GamesList = () => {
         <>
             {games && games.map((game) =>
             (
-                 <div key={game.id}>
+                <div key={game.id}>
                     <p>{game.tittle}</p>
                     <p>{game.genre}</p>
                     <p>{game.developer}</p>
                     <p>{getFormattedDate(game.release)}</p>
                     <button onClick={() => goToPost(game)}>Ver posts</button>
                     {likes && generateLikeButton(game)}
+                    {generateEditButton(game)}
                 </div>
             ))}
         </>)

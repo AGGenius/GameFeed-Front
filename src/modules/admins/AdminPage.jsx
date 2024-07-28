@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate, Outlet } from 'react-router-dom'
-import EditGame from "../Edit/EditGame";
 import { useUserContext } from "../../context/useUserContext";
 
 function AdminPage() {

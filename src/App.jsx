@@ -29,6 +29,7 @@ function App() {
               <Route path='/addPost/:id' element={<AddPost />} />
               <Route path='/adminPage' element={<AdminPage />} >
                 <Route path='/adminPage/editGame' element={<EditGame />} />
+                <Route path='/adminPage/editGame/:id' element={<EditGame />} />
                 <Route path='/adminPage/editPost' element={<EditPost />} />
                 <Route path='/adminPage/editUser' element={<EditUser />} />
               </Route>

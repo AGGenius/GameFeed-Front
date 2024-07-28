@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../context/useUserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 function EditGame() {
+    //Direct Link
+    const { id } = useParams()
     //Search
     const [gameId, setGameId] = useState("");
     const [game, setGame] = useState("");
@@ -20,11 +22,7 @@ function EditGame() {
     const navigate = useNavigate();
     const editGameUrl = "http://localhost:3000/api/games/";
 
-    useEffect(() => {
-        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
-    }, [user])
-
-    useEffect(() => {
+    function getGameData() {
         const getFormattedDate = (queryDate) => {
             const date = new Date(queryDate);
             const year = date.getFullYear();
@@ -48,7 +46,28 @@ function EditGame() {
         setRelease(getFormattedDate(game.release));
         setUserId(game.user_id)
         setActive(game.active)
+    }
+
+    useEffect(() => {
+        if (id) {
+            setGameId(id);
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
+    }, [user])
+
+    useEffect(() => {
+        getGameData();
     }, [game])
+
+    useEffect(() => {
+        if(gameId) {
+            checkGame();
+            getGameData();
+        }   
+    }, [gameId])
 
     const editGame = async (e) => {
         e.preventDefault();
@@ -71,8 +90,8 @@ function EditGame() {
 
     const deleteGame = async () => {
         const confirmation = await confirm("Confirma para borrar la entrada del juego");
-        
-        if(confirmation) {
+
+        if (confirmation) {
             const response = await axios.delete(editGameUrl + gameId);
             setGame("");
             setUpadteStatus(response.data.estado);
@@ -80,8 +99,7 @@ function EditGame() {
     }
 
     const checkGame = async (e) => {
-        e.preventDefault();
-
+        if(e) { e.preventDefault(); }     
         const response = await axios.get(editGameUrl + gameId);
 
         if (response.data.estado) {
@@ -89,7 +107,6 @@ function EditGame() {
             setGame("");
         } else {
             const newGame = response.data;
-            console.log(response.data)
             setGame(newGame[0]);
             setUpadteStatus("");
         }
