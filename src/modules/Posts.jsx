@@ -10,7 +10,7 @@ function Posts() {
     const [ game, setGame ] = useState({});
     const navigate = useNavigate();
     const { id } = useParams();
-    const postByGameURL = "http://localhost:3000/api/posts/";
+    const postByGameURL = "http://localhost:3000/api/posts/game/";
     const getGameUrl = "http://localhost:3000/api/games/";
 
     //Igual
