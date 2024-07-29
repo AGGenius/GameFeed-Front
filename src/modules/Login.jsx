@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from "../context/useUserContext";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { user, setUser } = useUserContext();
+    const [updateStatus, setUpadteStatus] = useState("");
     const navigate = useNavigate();
-    const location = useLocation();
     const loginURL = "http://localhost:3000/api/users/login/"
 
     const sendLogin = async (e) => {
@@ -20,33 +20,28 @@ const Login = () => {
                 password
             }
 
-            const response = await axios.post(loginURL, payload);
-            const data = response.data;
-            localStorage.setItem("token", data.token);
+            //Token & ID
+            try {
+                const response = await axios.post(loginURL, payload);
+                const userData = response.data;
 
-            const userResponse = await axios.get(`http://localhost:3000/api/users/${data.userId}/`);
-            const newUser = userResponse.data;
-            setUser(newUser);
+                localStorage.setItem("token", userData.token);
 
-            if(location.pathname === "/") {
+                //User Data 
+                const userResponse = await axios.get(`http://localhost:3000/api/users/${userData.userId}/`);
+                const newUser = userResponse.data;
+                setUser(newUser);
                 navigate("/");
-                //window.location.reload();
-            } else {
-                navigate("/");
+            } catch (err) {
+                setUpadteStatus(err.response.data.estado);
             }
         }
     }
 
-    const logOut =  () => {
+    const logOut = () => {
         localStorage.removeItem("token");
         setUser({});
-
-        if(location.pathname === "/") {
-            navigate("/");
-            //window.location.reload();
-        } else {
-            navigate("/");
-        }
+        navigate("/");
     }
 
     const logPage = (
@@ -59,6 +54,7 @@ const Login = () => {
                 <button type="submit">Iniciar sesion</button>
                 <Link to="/register">Register</Link>
             </form>
+            {updateStatus && <p>{updateStatus}</p>}
         </>)
 
     const logoutPage = (
@@ -70,7 +66,7 @@ const Login = () => {
 
     const baseUser = (
         <>
-            <Link  to="/profile"><p>Perfil</p></Link>
+            <Link to="/profile"><p>Perfil</p></Link>
         </>
     )
 

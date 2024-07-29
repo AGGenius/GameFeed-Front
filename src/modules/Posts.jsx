@@ -9,9 +9,13 @@ function Posts() {
     const [posts, setPosts] = useState([]);
     const [likes, setLikes] = useState([]);
     const [game, setGame] = useState({});
+
+    //Pagination
+    const [page, setPage] = useState(1);
+
     const navigate = useNavigate();
     const { id } = useParams();
-    const postByGameURL = "http://localhost:3000/api/posts/game/";
+    const postByGameURL = "http://localhost:3000/api/posts/page/";
     const getGameUrl = "http://localhost:3000/api/games/";
 
     //Igual
@@ -22,25 +26,33 @@ function Posts() {
         setLikes(data);
     }
 
-    useEffect(() => {
-        const getGame = async () => {
-            const response = await axios.get(getGameUrl + id);
-            const newGame = response.data;
-            setGame(newGame);
-        }
+    const getGame = async () => {
+        const response = await axios.get(getGameUrl + id);
+        const newGame = response.data;
+        setGame(newGame);
+    }
 
-        const getPosts = async () => {
+    const getPosts = async () => {
 
-            const response = await axios.get(postByGameURL + id);
-            const newPosts = response.data;
+        const response = await axios.get(postByGameURL + page + '/'+ id);
+        const newPosts = response.data;
+
+        if(newPosts.length > 0) {
             setPosts(newPosts);
         }
+    }
 
+    useEffect(() => {
         setToken(localStorage.getItem("token"));
         getGame();
         getPosts();
         getLikes();
     }, []);
+
+    useEffect(() => {
+        getPosts();
+        getLikes();
+    }, [page]);
 
     //Igual
     const getFormattedDate = (queryDate) => {
@@ -149,10 +161,43 @@ function Posts() {
         navigate(`/addPost/${game.id}`);
     }
 
+    const nextPage = () => {
+        if(posts.length <= 4) {return;}
+
+        const newPage = page + 1;
+        setPage(newPage);
+    }
+
+    const prevPage = () => {
+        if(page - 1 <= 0) { return }
+
+        let newPage = page - 1;
+        setPage(newPage);
+    }
+
+    const firstPage = () => {
+        if(page === 1) { return }
+
+        const newPage = 1;
+        setPage(newPage);
+    }
+
+    const postNav = () => {
+        return (
+            <>
+                <button onClick={() => prevPage()}>Atras</button>
+                <button onClick={() => firstPage()}>Primera</button>
+                <button onClick={() => nextPage()}>Siguiente</button>
+            </>
+        )     
+    }
+
     return (
         <>
             <h2>POSTS FOR {game[0] && game[0].tittle}</h2>
             {generateCreateButton()}
+            {posts && postNav()}
+            {posts && <p>Pagina: {page}</p>}
             {posts && posts.map((post) =>
             (
                 <div key={post.id}>
@@ -164,6 +209,8 @@ function Posts() {
                     {generateEditButton(post)}
                 </div>
             ))}
+            {posts.length <= 4 && <p>Fin de las entradas de posts</p>}
+            {posts && postNav()}
         </>)
 
 }
