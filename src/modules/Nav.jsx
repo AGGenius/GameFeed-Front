@@ -41,7 +41,7 @@ function Nav() {
   return (
     <>
       <nav>
-        <h1>Game Rest</h1>
+        <h1>Gamer Rest</h1>
         <Link to="/">Home</Link>
         <div>
           <Login />

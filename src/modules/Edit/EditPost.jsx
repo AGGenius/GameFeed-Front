@@ -10,8 +10,8 @@ function EditPost() {
     const [postId, setPostId] = useState("");
     const [post, setPost] = useState("");
     const [updateStatus, setUpadteStatus] = useState("");
-    //Game values
-    const [type, setType] = useState("");
+    //Post values
+    const [postType, setPostType] = useState("");
     const [content, setContent] = useState("");
     const [gameId, setGameId] = useState("");
     const [userId, setUserId] = useState("");
@@ -22,7 +22,7 @@ function EditPost() {
     const editPostUrl = "http://localhost:3000/api/posts/";
     
     const setPostData = () => {
-        setType(post.type);
+        setPostType(post.post_type);
         setContent(post.content);
         setGameId(post.game_id);
         setUserId(post.user_id)
@@ -53,9 +53,9 @@ function EditPost() {
     const editPost = async (e) => {
         e.preventDefault();
 
-        if (type && content && gameId && userId) {
+        if (postType && content && gameId && userId) {
             const payload = {
-                type,
+                post_type: postType,
                 content,
                 game_id: gameId,
                 user_id: userId,
@@ -106,7 +106,7 @@ function EditPost() {
                 <div>
                     <form onSubmit={editPost}>
                         <label htmlFor="editPostType">Tipo</label>
-                        <input id="editPostType" type="text" value={type ? type : ""} onChange={(e) => setType(e.target.value)}></input>
+                        <input id="editPostType" type="text" value={postType ? postType : ""} onChange={(e) => setPostType(e.target.value)}></input>
                         <label htmlFor="editPostContent">Contenido</label>
                         <textarea id="editPostContent" type="text" value={content ? content : ""} onChange={(e) => setContent(e.target.value)}></textarea>
                         <label htmlFor="editPostGameId">ID del juego</label>

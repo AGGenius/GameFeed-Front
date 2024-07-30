@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import GamesList from "./modules/gamesList";
 import Nav from './modules/Nav';
 import Register from './modules/Create/Register';
 import AddGame from './modules/Create/AddGame';
@@ -25,7 +25,7 @@ function App() {
           <UserProvider>
             {<Nav />}
             <Routes>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<GamesList />} />
               <Route path='/register' element={<Register />} />
               <Route path='/addGame' element={<AddGame />} />
               <Route path='/profile' element={<Profile />} />

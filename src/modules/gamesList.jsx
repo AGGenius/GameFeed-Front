@@ -15,6 +15,8 @@ const GamesList = () => {
     const [searchState, setSearchState] = useState("");
     //Filter
     const [genreFilter, setGenreFilter] = useState("");
+    const [rowFilter, setRowFilter] = useState("id");
+    const [orderFilter, setOrderFilter] = useState("ASC");
 
     const { user } = useUserContext();
     const [likes, setLikes] = useState([]);
@@ -32,19 +34,19 @@ const GamesList = () => {
         }
     }
 
-    const getGamesPaged = async () => {
+    const getGamesFiltered = async () => {
         try {
-            let complexUrl;
-
-            if(genreFilter) {        
-                complexUrl = getGamesUrl + "page/" + page + "/" + genreFilter;
-            } else {
-                complexUrl = getGamesUrl + "page/" + page;
+            const payload = {
+                page,
+                genreFilter,
+                rowFilter,
+                orderFilter
             }
-            
-            const response = await axios.get(complexUrl);
-            const newGames = response.data;
 
+            const complexUrl = getGamesUrl + "filter/";
+
+            const response = await axios.post(complexUrl, payload);
+            const newGames = response.data;
             setGames(newGames);
         } catch (error) {
             console.log(error)
@@ -65,7 +67,7 @@ const GamesList = () => {
                     setGames([]);
                 }
             } else if (searchTittle.length === 0) {
-                getGamesPaged();
+                getGamesFiltered();
             }
         } catch (error) {
             console.log(error)
@@ -73,15 +75,18 @@ const GamesList = () => {
     }
 
     useEffect(() => {
-        getGamesPaged();
+        getGamesFiltered();
         getLikes();
-    }, [ ,page]);
+    }, []);
 
     useEffect(() => {
+        getGamesFiltered();
+    }, [page]);
+    
+    useEffect(() => {
+        if(page === 1) { getGamesFiltered(); }
         setPage(1);
-        getGamesPaged();
-        getLikes();
-    }, [genreFilter]);
+    }, [orderFilter, rowFilter, genreFilter]);
 
     useEffect(() => {
         getGamesByTittle();
@@ -199,20 +204,34 @@ const GamesList = () => {
         setSearchTittle("");
     }
 
+
     return (
         <>
+            <h2>JUEGOS</h2>
+            <p>Filtros</p>
+            <label htmlFor="filterGenre">Por genero</label>
+            <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
+                <option value=""></option>
+                <option value="Aventura">Aventura</option>
+                <option value="JRPG">JRPG</option>
+                <option value="Accion">Accion</option>
+                <option value="Terror">Terror</option>
+                <option value="Plataformas">Plataformas</option>
+            </select>
+            <label htmlFor="orderBy">Ordenar por</label>
+            <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
+                <option value="id">ID</option>
+                <option value="tittle">Titulo</option>
+                <option value="developer">Desarrolladora</option>
+                <option value="release">Salida</option>
+            </select>
             <div>
-                <p>Filtros</p>
-                <label htmlFor="filterGenre">Por genero</label>
-                <select id="filterGenre" onChange={(e) => setGenreFilter(e.target.value)}>
-                    <option value=""></option>
-                    <option value="Aventura">Aventura</option>
-                    <option value="JRPG">JRPG</option>
-                    <option value="Accion">Accion</option>
-                    <option value="Terror">Terror</option>
-                    <option value="Plataformas">Plataformas</option>
-                </select>
+                <label htmlFor="option1">Ascendente</label>
+                <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                <label htmlFor="option2">Descendente</label>
+                <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
             </div>
+            <button onClick={() => console.log("1")}>Filtrar</button>
             {games && gameNav()}
             {games && <p>Pagina: {page}</p>}
             <input value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>

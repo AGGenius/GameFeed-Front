@@ -12,10 +12,14 @@ function Posts() {
 
     //Pagination
     const [page, setPage] = useState(1);
+    //Filter
+    const [typeFilter, setTypeFilter] = useState("");
+    const [rowFilter, setRowFilter] = useState("id");
+    const [orderFilter, setOrderFilter] = useState("ASC");
 
     const navigate = useNavigate();
     const { id } = useParams();
-    const postByGameURL = "http://localhost:3000/api/posts/page/";
+    const postURL = "http://localhost:3000/api/posts/";
     const getGameUrl = "http://localhost:3000/api/games/";
 
     //Igual
@@ -42,17 +46,45 @@ function Posts() {
         }
     }
 
+    const getPostsFiltered = async () => {
+        try {
+            const payload = {
+                id,
+                page,
+                typeFilter,
+                rowFilter,
+                orderFilter
+            }
+
+            const complexUrl = postURL + "filter/";
+
+            const response = await axios.post(complexUrl, payload);
+            const newGames = response.data;
+            setPosts(newGames);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
-        setToken(localStorage.getItem("token"));
         getGame();
-        getPosts();
+        getPostsFiltered();
         getLikes();
     }, []);
 
     useEffect(() => {
-        getPosts();
-        getLikes();
+        getPostsFiltered()
+        //getLikes();
     }, [page]);
+
+    useEffect(() => {
+        if(page === 1) { getPostsFiltered(); }
+        setPage(1);
+    }, [orderFilter, rowFilter, typeFilter]);
+
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, [user]);
 
     //Igual
     const getFormattedDate = (queryDate) => {
@@ -195,13 +227,34 @@ function Posts() {
     return (
         <>
             <h2>POSTS FOR {game[0] && game[0].tittle}</h2>
+            <p>Filtros</p>
+            <label htmlFor="filterType">Por tipo</label>
+            <select id="filterType" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+                <option value=""></option>
+                <option value="Opinion">Opinion</option>
+                <option value="Analisis">Analisis</option>
+                <option value="Critica">Critica</option>
+                <option value="Spoiler">Spoiler</option>
+                <option value="Teoria">Teoria</option>
+            </select>
+            <label htmlFor="orderBy">Ordenar por</label>
+            <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
+                <option value="id">ID</option>
+                <option value="date">Publicacion</option>
+            </select>
+            <div>
+                <label htmlFor="option1">Ascendente</label>
+                <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                <label htmlFor="option2">Descendente</label>
+                <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+            </div>
             {generateCreateButton()}
             {posts && postNav()}
             {posts && <p>Pagina: {page}</p>}
             {posts && posts.map((post) =>
             (
                 <div key={post.id}>
-                    <p>{post.type}</p>
+                    <p>{post.post_type}</p>
                     <p>{post.content}</p>
                     <p>{getFormattedDate(post.date)}</p>
                     {generateUserButton(post)}
