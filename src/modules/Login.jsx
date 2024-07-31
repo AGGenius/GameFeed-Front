@@ -1,33 +1,29 @@
 import { useState } from "react";
 import axios from "axios";
+import { useForm} from "react-hook-form";
 import { useUserContext } from "../context/useUserContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     const [updateStatus, setUpadteStatus] = useState("");
-    const navigate = useNavigate();
     const loginURL = "http://localhost:3000/api/users/login/"
 
-    const sendLogin = async (e) => {
-        e.preventDefault();
-
-        if (email && password) {
+    const sendLogin = async (data) => {
+        if (data) {
             const payload = {
-                email,
-                password
+                email: data.email,
+                password: data.password
             }
 
-            //Token & ID
             try {
                 const response = await axios.post(loginURL, payload);
                 const userData = response.data;
 
                 localStorage.setItem("token", userData.token);
 
-                //User Data 
                 const userResponse = await axios.get(`http://localhost:3000/api/users/${userData.userId}/`);
                 const newUser = userResponse.data;
                 setUser(newUser);
@@ -46,11 +42,13 @@ const Login = () => {
 
     const logPage = (
         <>
-            <form onSubmit={sendLogin}>
+            <form onSubmit={handleSubmit((data) => sendLogin(data))}>
                 <label htmlFor="userEmail">Email</label>
-                <input id="userEmail" type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                <input {...register("email", {required: { value: true, message: "Se debe introducir el email."}})} id="userEmail" type="text"></input>
                 <label htmlFor="userPass">Contraseña</label>
-                <input id="userPass" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                {errors.email?.message && <p>{errors.email.message}</p>}
+                <input {...register("password", {required: { value: true, message: "Se debe introducir la contraseña."}})} id="userPass" type="password"></input>
+                {errors.contraseña?.message && <p>{errors.contraseña.message}</p>}
                 <button type="submit">Iniciar sesion</button>
                 <Link to="/register">Register</Link>
             </form>

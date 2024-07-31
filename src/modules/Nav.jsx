@@ -42,7 +42,7 @@ function Nav() {
     <>
       <nav>
         <h1>Gamer Rest</h1>
-        <Link to="/">Home</Link>
+        <Link to="/">Listado de juegos</Link>
         <div>
           <Login />
           {user.type === "mod" && modUser}

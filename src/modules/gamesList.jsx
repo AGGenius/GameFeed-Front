@@ -201,6 +201,25 @@ const GamesList = () => {
         }
     }
 
+    const generateCreateButton = () => {
+        if (token) {
+            return (
+                <>
+                    <button onClick={() => (createGameEntry())}>Crear entrada de juego</button>
+                </>)
+        } else {
+            return (
+                <>
+                    <button disabled={true}>Crear entrada de juego</button>
+                </>)
+        }
+    }
+
+    const createGameEntry = (game) => {
+        if (!token) { return };
+        navigate(`/addGame`);
+    }
+
     const goToPost = (game) => {
         navigate(`/posts/${game.id}`);
     }
@@ -245,17 +264,18 @@ const GamesList = () => {
     return (
         <>
             <h2>JUEGOS</h2>
+            {generateCreateButton()}
             <p>Filtros</p>
             <label htmlFor="filterGenre">Por genero</label>
             <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
-                {genres && genres.map((genre) => (
-                    <option value={genre}>{genre}</option>
+                {genres && genres.sort().map((genre, i) => (
+                    <option key={i} value={genre}>{genre}</option>
                 ))}
             </select>
             <label htmlFor="orderBy">Ordenar por</label>
             <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                {rows && rows.map((row) => (
-                    <option value={row}>{row}</option>
+                {rows && rows.map((row, i) => (
+                    <option key={i} value={row}>{row}</option>
                 ))}
             </select>
             <div>
@@ -264,7 +284,6 @@ const GamesList = () => {
                 <label htmlFor="option2">Descendente</label>
                 <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
             </div>
-            <button onClick={() => console.log("1")}>Filtrar</button>
             {games && gameNav()}
             {games && <p>Pagina: {page}</p>}
             <input value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>

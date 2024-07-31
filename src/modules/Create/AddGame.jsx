@@ -20,6 +20,7 @@ const AddGame = () => {
         e.preventDefault();
 
         if (tittle && genre && developer && release) {
+
             const payload = {
                 tittle,
                 genre,

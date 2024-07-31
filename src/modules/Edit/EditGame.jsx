@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../context/useUserContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 
 function EditGame() {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            tittle: "", genre: "", developer: "", release: "", user_id: "", state: ""
+        }
+    });
+    const navigate = useNavigate();
+
     //Direct Link
     const { id } = useParams()
     //Search
@@ -19,8 +27,36 @@ function EditGame() {
     const [active, setActive] = useState(false);
 
     const { user } = useUserContext();
-    const navigate = useNavigate();
     const editGameUrl = "http://localhost:3000/api/games/";
+
+    const genres = [
+        "accion",
+        "plataformas",
+        "shooter",
+        "lucha",
+        "beat'em up",
+        "sigilo",
+        "supervivencia",
+        "ritmo",
+        "battle royale",
+        "aventura",
+        "metroidvania",
+        "novela-visual",
+        "puzzles",
+        "jrpg",
+        "rpg",
+        "arpg",
+        "mmorpg",
+        "rts",
+        "estrategia",
+        "simulador de vida",
+        "simulador de conduccion",
+        "simulador",
+        "deportes",
+        "terror",
+        "gacha",
+        "casual"
+    ];
 
     function setGameData() {
         const getFormattedDate = (queryDate) => {
@@ -40,12 +76,16 @@ function EditGame() {
             return month + '-' + day + '-' + year;
         };
 
+        const formatedData = getFormattedDate(game.release);
+
         setTittle(game.tittle);
         setGenre(game.genre);
         setDeveloper(game.developer);
-        setRelease(getFormattedDate(game.release));
+        setRelease(formatedData);
         setUserId(game.user_id)
         setActive(game.active)
+
+        reset({ tittle: game.tittle, genre: game.genre, developer: game.developer, release: formatedData, user_id: game.userId, state: game.active })
     }
 
     useEffect(() => {
@@ -63,23 +103,22 @@ function EditGame() {
     }, [game])
 
     useEffect(() => {
-        if(gameId) {
+        if (gameId) {
             checkGame();
             setGameData();
-        }   
+        }
     }, [gameId])
 
-    const editGame = async (e) => {
-        e.preventDefault();
+    const editGame = async (data) => {
 
-        if (tittle && genre && developer && release && userId) {
+        if (data) {
             const payload = {
-                tittle,
-                genre,
-                developer,
-                release,
-                user_id: userId,
-                active
+                tittle: data.tittle,
+                genre: data.genre,
+                developer: data.developer,
+                release: data.release,
+                user_id: data.user_id,
+                active: data.state
             }
 
             try {
@@ -90,7 +129,7 @@ function EditGame() {
                 console.log(error)
                 setUpadteStatus();
             }
-            
+
         }
     }
 
@@ -105,7 +144,7 @@ function EditGame() {
     }
 
     const checkGame = async (e) => {
-        if(e) { e.preventDefault(); }   
+        if (e) { e.preventDefault(); }
 
         const response = await axios.get(editGameUrl + gameId);
 
@@ -117,6 +156,8 @@ function EditGame() {
             setGame(newGame[0]);
             setUpadteStatus("");
         }
+
+
     }
 
     return (
@@ -130,19 +171,29 @@ function EditGame() {
             </div>
             {game &&
                 <div>
-                    <form onSubmit={editGame}>
+                    <form onSubmit={handleSubmit((data) => editGame(data))}>
                         <label htmlFor="editGameTittle">Titulo</label>
-                        <input id="editGameTittle" type="text" value={tittle ? tittle : ""} onChange={(e) => setTittle(e.target.value)}></input>
+                        <input id="editGameTittle" type="text" {...register("tittle", { required: { value: true, message: "Se debe introducir el titulo." } })} value={tittle ? tittle : ""} onChange={(e) => setTittle(e.target.value)}></input>
+                        {errors.tittle?.message && <p>{errors.tittle?.message}</p>}
                         <label htmlFor="editGameGenre">Genero</label>
-                        <input id="editGameGenre" type="text" value={genre ? genre : ""} onChange={(e) => setGenre(e.target.value)}></input>
+                        <select id="filterGenre" {...register("genre", { required: { value: true, message: "Se debe introducir el genero." } })} value={genre ? genre : ""} onChange={(e) => setGenre(e.target.value)}>
+                            {genres && genres.sort().map((genre, i) => (
+                                <option key={i} value={genre}>{genre}</option>
+                            ))}
+                        </select>
+                        {errors.genre?.message && <p>{errors.genre?.message}</p>}
                         <label htmlFor="editGameDeveloper">Desarrollador</label>
-                        <input id="editGameDeveloper" type="text" value={developer ? developer : ""} onChange={(e) => setDeveloper(e.target.value)}></input>
+                        <input id="editGameDeveloper" type="text" {...register("developer", { required: { value: true, message: "Se debe introducir el desarrollador." } })} value={developer ? developer : ""} onChange={(e) => setDeveloper(e.target.value)}></input>
+                        {errors.developer?.message && <p>{errors.developer?.message}</p>}
                         <label htmlFor="editGameRelease">Fecha de salida</label>
-                        <input id="editGameRelease" type="text" value={release ? release : ""} onChange={(e) => setRelease(e.target.value)}></input>
+                        <input id="editGameRelease" type="text" {...register("release", { required: { value: true, message: "Se debe introducir el la fecha de salida con formato YYYY-MM-DD." } })} value={release ? release : ""} onChange={(e) => setRelease(e.target.value)}></input>
+                        {errors.release?.message && <p>{errors.release?.message}</p>}
                         <label htmlFor="editGameUserId">ID de usuario creador</label>
-                        <input id="editGameUserId" type="text" value={userId ? userId : ""} onChange={(e) => setUserId(e.target.value)}></input>
+                        <input id="editGameUserId" type="text" {...register("user_id", { required: { value: true, message: "Se debe introducir el id del usuario original." } })} value={userId ? userId : ""} onChange={(e) => setUserId(e.target.value)}></input>
+                        {errors.user_id?.message && <p>{errors.user_id?.message}</p>}
                         <label htmlFor="editGameActive">Estado</label>
-                        <input id="editGameActive" type="checkbox" value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
+                        <input id="editGameActive" type="checkbox" {...register("state", { required: { value: true, message: "Se debe introducir el estado del juego." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
+                        {errors.state?.message && <p>{errors.state?.message}</p>}
                         <button type="submit">Guardar cambios del juego</button>
                     </form>
                     <button onClick={deleteGame}>Borrar juego</button>

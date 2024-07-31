@@ -233,17 +233,18 @@ function Posts() {
     return (
         <>
             <h2>POSTS FOR {game[0] && game[0].tittle}</h2>
+            {generateCreateButton()}
             <p>Filtros</p>
             <label htmlFor="filterType">Por tipo</label>
             <select id="filterType" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
-                {postTypes && postTypes.map((type) => (
-                    <option value={type}>{type}</option>
+                {postTypes && postTypes.map((type, i) => (
+                    <option key={i} value={type}>{type}</option>
                 ))}
             </select>
             <label htmlFor="orderBy">Ordenar por</label>
             <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                {rows && rows.map((row) => (
-                    <option value={row}>{row}</option>
+                {rows && rows.map((row, i) => (
+                    <option key={i} value={row}>{row}</option>
                 ))}
             </select>
             <div>
@@ -252,7 +253,6 @@ function Posts() {
                 <label htmlFor="option2">Descendente</label>
                 <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
             </div>
-            {generateCreateButton()}
             {posts && postNav()}
             {posts && <p>Pagina: {page}</p>}
             {posts && posts.map((post) =>
