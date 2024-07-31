@@ -21,6 +21,44 @@ const GamesList = () => {
     const { user } = useUserContext();
     const [likes, setLikes] = useState([]);
     const navigate = useNavigate();
+
+    const genres = [
+        "",
+        "accion",
+        "plataformas",
+        "shooter",
+        "lucha",
+        "beat'em up",
+        "sigilo",
+        "supervivencia",
+        "ritmo",
+        "battle royale",
+        "aventura",
+        "metroidvania",
+        "novela-visual",
+        "puzzles",
+        "jrpg",
+        "rpg",
+        "arpg",
+        "mmorpg",
+        "rts",
+        "estrategia",
+        "simulador de vida",
+        "simulador de conduccion",
+        "simulador",
+        "deportes",
+        "terror",
+        "gacha",
+        "casual"
+    ];
+
+    const rows = [
+        "id",
+        "tittle",
+        "developer",
+        "release"
+    ];
+
     const getGamesUrl = "http://localhost:3000/api/games/";
 
     const getLikes = async () => {
@@ -82,15 +120,14 @@ const GamesList = () => {
     useEffect(() => {
         getGamesFiltered();
     }, [page]);
-    
+
     useEffect(() => {
-        if(page === 1) { getGamesFiltered(); }
+        if (page === 1) { getGamesFiltered(); }
         setPage(1);
     }, [orderFilter, rowFilter, genreFilter]);
 
     useEffect(() => {
         getGamesByTittle();
-        getLikes();
     }, [searchTittle]);
 
     useEffect(() => {
@@ -211,19 +248,15 @@ const GamesList = () => {
             <p>Filtros</p>
             <label htmlFor="filterGenre">Por genero</label>
             <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
-                <option value=""></option>
-                <option value="Aventura">Aventura</option>
-                <option value="JRPG">JRPG</option>
-                <option value="Accion">Accion</option>
-                <option value="Terror">Terror</option>
-                <option value="Plataformas">Plataformas</option>
+                {genres && genres.map((genre) => (
+                    <option value={genre}>{genre}</option>
+                ))}
             </select>
             <label htmlFor="orderBy">Ordenar por</label>
             <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                <option value="id">ID</option>
-                <option value="tittle">Titulo</option>
-                <option value="developer">Desarrolladora</option>
-                <option value="release">Salida</option>
+                {rows && rows.map((row) => (
+                    <option value={row}>{row}</option>
+                ))}
             </select>
             <div>
                 <label htmlFor="option1">Ascendente</label>

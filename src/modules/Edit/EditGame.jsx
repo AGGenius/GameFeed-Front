@@ -82,9 +82,15 @@ function EditGame() {
                 active
             }
 
-            const response = await axios.put(editGameUrl + gameId, payload);
-            setGame("");
-            setUpadteStatus(response.data.estado);
+            try {
+                const response = await axios.put(editGameUrl + gameId, payload);
+                setGame("");
+                setUpadteStatus(response.data.estado);
+            } catch (error) {
+                console.log(error)
+                setUpadteStatus();
+            }
+            
         }
     }
 

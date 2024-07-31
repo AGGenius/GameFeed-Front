@@ -5,7 +5,7 @@ import { useUserContext } from "../context/useUserContext";
 
 function Posts() {
     const { user } = useUserContext();
-    const [ token, setToken ] = useState("");
+    const [token, setToken] = useState("");
     const [posts, setPosts] = useState([]);
     const [likes, setLikes] = useState([]);
     const [game, setGame] = useState({});
@@ -22,28 +22,36 @@ function Posts() {
     const postURL = "http://localhost:3000/api/posts/";
     const getGameUrl = "http://localhost:3000/api/games/";
 
+    const postTypes = [
+        "",
+        "opinion",
+        "analisis",
+        "critica",
+        "spoiler",
+        "teoria"
+    ]
+
+    const rows = [
+        "id",
+        "date"
+    ]
+
     //Igual
     const getLikes = async () => {
-        const likesUrl = `http://localhost:3000/api/likes/`;
-        const response = await axios.get(likesUrl);
-        const data = response.data;
-        setLikes(data);
+        try {
+            const likesUrl = `http://localhost:3000/api/likes/`;
+            const response = await axios.get(likesUrl);
+            const data = response.data;
+            setLikes(data);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getGame = async () => {
         const response = await axios.get(getGameUrl + id);
         const newGame = response.data;
         setGame(newGame);
-    }
-
-    const getPosts = async () => {
-
-        const response = await axios.get(postByGameURL + page + '/'+ id);
-        const newPosts = response.data;
-
-        if(newPosts.length > 0) {
-            setPosts(newPosts);
-        }
     }
 
     const getPostsFiltered = async () => {
@@ -59,8 +67,8 @@ function Posts() {
             const complexUrl = postURL + "filter/";
 
             const response = await axios.post(complexUrl, payload);
-            const newGames = response.data;
-            setPosts(newGames);
+            const newPosts = response.data;
+            setPosts(newPosts);
         } catch (error) {
             console.log(error)
         }
@@ -74,11 +82,10 @@ function Posts() {
 
     useEffect(() => {
         getPostsFiltered()
-        //getLikes();
     }, [page]);
 
     useEffect(() => {
-        if(page === 1) { getPostsFiltered(); }
+        if (page === 1) { getPostsFiltered(); }
         setPage(1);
     }, [orderFilter, rowFilter, typeFilter]);
 
@@ -174,8 +181,7 @@ function Posts() {
     }
 
     const generateCreateButton = () => {
-        if (user.type === "admin") {
-
+        if (token) {
             return (
                 <>
                     <button onClick={() => (createPost(game[0]))}>Crear entrada</button>
@@ -194,21 +200,21 @@ function Posts() {
     }
 
     const nextPage = () => {
-        if(posts.length <= 4) {return;}
+        if (posts.length <= 4) { return; }
 
         const newPage = page + 1;
         setPage(newPage);
     }
 
     const prevPage = () => {
-        if(page - 1 <= 0) { return }
+        if (page - 1 <= 0) { return }
 
         let newPage = page - 1;
         setPage(newPage);
     }
 
     const firstPage = () => {
-        if(page === 1) { return }
+        if (page === 1) { return }
 
         const newPage = 1;
         setPage(newPage);
@@ -221,7 +227,7 @@ function Posts() {
                 <button onClick={() => firstPage()}>Primera</button>
                 <button onClick={() => nextPage()}>Siguiente</button>
             </>
-        )     
+        )
     }
 
     return (
@@ -230,17 +236,15 @@ function Posts() {
             <p>Filtros</p>
             <label htmlFor="filterType">Por tipo</label>
             <select id="filterType" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
-                <option value=""></option>
-                <option value="Opinion">Opinion</option>
-                <option value="Analisis">Analisis</option>
-                <option value="Critica">Critica</option>
-                <option value="Spoiler">Spoiler</option>
-                <option value="Teoria">Teoria</option>
+                {postTypes && postTypes.map((type) => (
+                    <option value={type}>{type}</option>
+                ))}
             </select>
             <label htmlFor="orderBy">Ordenar por</label>
             <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                <option value="id">ID</option>
-                <option value="date">Publicacion</option>
+                {rows && rows.map((row) => (
+                    <option value={row}>{row}</option>
+                ))}
             </select>
             <div>
                 <label htmlFor="option1">Ascendente</label>
