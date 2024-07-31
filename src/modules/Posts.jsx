@@ -56,17 +56,9 @@ function Posts() {
 
     const getPostsFiltered = async () => {
         try {
-            const payload = {
-                id,
-                page,
-                typeFilter,
-                rowFilter,
-                orderFilter
-            }
+            const complexUrl = postURL + `/filter/?id=${id}&page=${page}&typeFilter=${typeFilter}&rowFilter=${rowFilter}&orderFilter=${orderFilter}`;
 
-            const complexUrl = postURL + "filter/";
-
-            const response = await axios.post(complexUrl, payload);
+            const response = await axios.get(complexUrl);
             const newPosts = response.data;
             setPosts(newPosts);
         } catch (error) {

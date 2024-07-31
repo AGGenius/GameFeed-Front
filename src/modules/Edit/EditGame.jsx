@@ -129,7 +129,6 @@ function EditGame() {
                 console.log(error)
                 setUpadteStatus();
             }
-
         }
     }
 
@@ -156,8 +155,6 @@ function EditGame() {
             setGame(newGame[0]);
             setUpadteStatus("");
         }
-
-
     }
 
     return (

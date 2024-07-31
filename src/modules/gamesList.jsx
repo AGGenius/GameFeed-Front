@@ -81,9 +81,9 @@ const GamesList = () => {
                 orderFilter
             }
 
-            const complexUrl = getGamesUrl + "filter/";
+            const complexUrl = getGamesUrl + `/filter?page=${page}&genreFilter=${genreFilter}&rowFilter=${rowFilter}&orderFilter=${orderFilter}`;
 
-            const response = await axios.post(complexUrl, payload);
+            const response = await axios.get(complexUrl);
             const newGames = response.data;
             setGames(newGames);
         } catch (error) {
