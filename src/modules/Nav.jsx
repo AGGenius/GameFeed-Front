@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useUserContext } from "../context/useUserContext";
 import { jwtDecode } from "jwt-decode";
 import Login from "./Login"
+import './Nav.css'
 
 function Nav() {
   const { user, setUser } = useUserContext();

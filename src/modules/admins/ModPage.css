@@ -1,0 +1,30 @@
+.modPage {
+    width: 60%;
+    height: 50px;
+    min-height: 50px;
+    gap: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(158, 158, 241, 0.5);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+
+    margin: .5rem;
+}
+
+.modPage  a {
+    color: rgb(66, 57, 146);
+    border-left: 3px solid gainsboro;
+    padding-left: 1rem;
+}
+
+.modPage  a:hover {
+    color: rgb(217, 215, 236);
+}
+
+.modPage  a:first-child {
+    border-left: none;
+}

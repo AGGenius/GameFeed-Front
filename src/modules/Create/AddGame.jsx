@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import './AddGame.css'
 
 const AddGame = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -76,28 +77,29 @@ const AddGame = () => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit((data) => createGame(data))}>
+        <div className="addGame">
+            <h2 className="addGame--tittle">Crear una nueva entrada de videojuego</h2>
+            <form className="addGame--form" onSubmit={handleSubmit((data) => createGame(data))}>
                 <label htmlFor="createGameTittle">Titulo</label>
                 <input id="createGameTittle" type="text" {...register("tittle", { required: { value: true, message: "Se debe introducir el titulo." } })}></input>
-                {errors.tittle?.message && <p>{errors.tittle?.message}</p>}
+                {errors.tittle?.message && <p className="addGame--formError">{errors.tittle?.message}</p>}
                 <label htmlFor="createGameGenre">Genero</label>
                 <select id="createGameGenre" {...register("genre", { required: { value: true, message: "Se debe introducir el genero." } })}>
                     {genres && genres.sort().map((genre, i) => (
                         <option key={i} value={genre}>{genre}</option>
                     ))}
                 </select>
-                {errors.genre?.message && <p>{errors.genre?.message}</p>}
+                {errors.genre?.message && <p className="addGame--formError">{errors.genre?.message}</p>}
                 <label htmlFor="createGameDevelopa">Desarrollador</label>
                 <input id="createGameDevelopa" type="text" {...register("developer", { required: { value: true, message: "Se debe introducir el desarrollador." } })}></input>
-                {errors.developer?.message && <p>{errors.developer?.message}</p>}
+                {errors.developer?.message && <p className="addGame--formError">{errors.developer?.message}</p>}
                 <label htmlFor="createGameRelease">Fecha de salida</label>
                 <input id="createGameRelease" type="text" defaultValue={"YYYY-MM-DD"} {...register("release", { required: { value: true, message: "Se debe introducir la fecha de salida," }})}></input>
-                {errors.release?.message && <p>{errors.release?.message}</p>}
-                <button type="submit">Crear juego</button>
+                {errors.release?.message && <p className="addGame--formError">{errors.release?.message}</p>}
+                <button className="addGame--formButton" type="submit">Crear juego</button>
             </form>
             {createStatus && <p>{createStatus}</p>}
-        </>
+        </div>
     )
 }
 

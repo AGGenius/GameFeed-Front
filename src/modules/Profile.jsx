@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useUserContext } from "../context/useUserContext";
 import { useNavigate } from "react-router-dom";
+import './Profile.css'
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -10,7 +11,6 @@ const Profile = () => {
         if (!localStorage.getItem("token")) { navigate("/"); }
     }, [])
 
-    //Añadir editar cosas basicas como el Nick, email, contraseña y desactivar cuenta (borrarla?)(tengo el endpoint?)
     return (
     <div className="profile">
         <h2 className="profile--tittle">Te encuentras en tu perfil, {user.name}</h2>

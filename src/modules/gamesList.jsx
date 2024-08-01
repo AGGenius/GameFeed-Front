@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useGamesContext } from '../context/useGamesContext'
 import { useUserContext } from "../context/useUserContext";
+import './gamesList.css'
 
 const GamesList = () => {
     const { games, setGames } = useGamesContext();
@@ -177,13 +178,13 @@ const GamesList = () => {
         if (token) {
             return (
                 <>
-                    {actualLike && <button value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                    {actualLike && <button className="games--gameCardButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
                 </>);
         };
 
         return (
             <>
-                {actualLike && <button disabled={true}>Likes: {actualLike.value} </button>}
+                {actualLike && <button className="games--gameCardButton" disabled={true}>Likes: {actualLike.value} </button>}
             </>);
     };
 
@@ -191,12 +192,12 @@ const GamesList = () => {
         if (user.type === "admin") {
             return (
                 <>
-                    <button key={game.id} onClick={() => navigate(`/adminPage/editGame/${game.id}`)}>Edit</button>
+                    <button className="games--gameCardButton" key={game.id} onClick={() => navigate(`/adminPage/editGame/${game.id}`)}>Edit</button>
                 </>);
         } else if (user.type === "mod") {
             return (
                 <>
-                    <button key={game.id} onClick={() => navigate(`/modPage/editGame/${game.id}`)}>Edit</button>
+                    <button className="games--gameCardButton" key={game.id} onClick={() => navigate(`/modPage/editGame/${game.id}`)}>Edit</button>
                 </>);
         };
     };
@@ -279,7 +280,7 @@ const GamesList = () => {
                 {searchState && <p>{searchState}</p>}
             </div>
             <div className="games--gameCardWrap">
-                {games && games.map((game) =>
+                {games ? games.map((game) =>
                 (
                     <div className="games--gameCard" key={game.id}>
                         <div className="games--gameCardData">
@@ -289,12 +290,14 @@ const GamesList = () => {
                             <p>Fechad de salida: <span>{getFormattedDate(game.release)}</span></p>
                         </div>
                         <div className="games--gameCardButtonsWrap">
-                            <button onClick={() => goToPost(game)}>Ver posts</button>
+                            <button className="games--gameCardButton" onClick={() => goToPost(game)}>Ver posts</button>
                             {likes && generateLikeButton(game)}
                             {generateEditButton(game)}
                         </div>
                     </div>
-                ))}
+                ))
+                    : <p>Cargando datos</p>
+                }
                 {games.length <= 4 && <p>Fin de las entradas de juegos</p>}
             </div>
             <div className="games--pageButtons">

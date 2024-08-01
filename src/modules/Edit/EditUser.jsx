@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/useUserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import './EditUser.css'
 
 function EditUser() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -50,7 +51,9 @@ function EditUser() {
     }, [userEdit]);
 
     useEffect(() => {
-        checkUser();
+        if(userId) {
+            checkUser();
+        }
     }, [userId])
 
     const editUser = async (data) => {
@@ -100,39 +103,40 @@ function EditUser() {
     };
 
     return (
-        <>
-            <div>
-                <form onSubmit={checkUser}>
+        <div className="editUser">
+            <h2 className="editUser--tittle">Pagina de edición de usuarios</h2>
+            <div className="editUser--searchFormWrap">
+                <form className="editUser--searchForm" onSubmit={checkUser}>
                     <label htmlFor="searchUser">ID del usuario</label>
                     <input id="searchUser" type="number"  onChange={(e) => setUserId(e.target.value)}></input>
                     <button type="submit">Traer usuario</button>
                 </form>
             </div>
             {userEdit &&
-                <div>
-                    <form onSubmit={handleSubmit((data) => editUser(data))}>
+                <div className="editUser--editFormWrap">
+                    <form className="editUser--editForm" onSubmit={handleSubmit((data) => editUser(data))}>
                         <label htmlFor="editUserEmail">Correo</label>
                         <input id="editUserEmail" type="text" {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} value={email ? email : ""} onChange={(e) => setEmail(e.target.value)}></input>
-                        {errors.email?.message && <p>{errors.email?.message}</p>}
+                        {errors.email?.message && <p className="editUser--editFormError">{errors.email?.message}</p>}
                         <label htmlFor="editUserName">Nombre</label>
                         <input id="editUserName" type="text" {...register("name", { required: { value: true, message: "Se debe introducir el nombre." } })} value={name ? name : ""} onChange={(e) => setName(e.target.value)}></input>
-                        {errors.name?.message && <p>{errors.name?.message}</p>}
+                        {errors.name?.message && <p className="editUser--editFormError">{errors.name?.message}</p>}
                         <label htmlFor="editUserNick">Nick</label>
                         <input id="editUserNick" type="text" {...register("nick", { required: { value: true, message: "Se debe introducir el nick." } })} value={nick ? nick : ""} onChange={(e) => setNick(e.target.value)}></input>
-                        {errors.nick?.message && <p>{errors.nick?.message}</p>}
+                        {errors.nick?.message && <p className="editUser--editFormError">{errors.nick?.message}</p>}
                         <label htmlFor="editUserType">Tipo</label>
                         <input id="editUserType" type="text" {...register("type", { required: { value: true, message: "Se debe introducir el tipo." } })} value={type ? type : ""} onChange={(e) => setType(e.target.value)}></input>
-                        {errors.type?.message && <p>{errors.type?.message}</p>}
+                        {errors.type?.message && <p className="editUser--editFormError">{errors.type?.message}</p>}
                         <label htmlFor="editUserState">Estado</label>
                         <input id="editUserState" type="checkbox" {...register("active", { required: { value: true, message: "Se debe introducir el estado." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        {errors.active?.message && <p>{errors.active?.message}</p>}
-                        <button type="submit">Guardar cambios del usuario</button>
+                        {errors.active?.message && <p className="editUser--editFormError">{errors.active?.message}</p>}
+                        <button className="addGame--editFormButton" type="submit">Guardar cambios</button>
                     </form>
-                    <button onClick={deleteUser}>Borrar usuario</button>
+                    <button className="editGame--deleteButton" onClick={deleteUser}>Borrar usuario</button>
                 </div>
             }
             {updateStatus && <p>{updateStatus}</p>}
-        </>
+        </div>
     )
 }
 

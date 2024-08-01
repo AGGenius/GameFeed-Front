@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/useUserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import './AddPost.css'
 
 const AddPost = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -40,7 +41,6 @@ const AddPost = () => {
     }, []);
 
     const createPost = async (data) => {
-
         if (data) {
             const payload = {
                 post_type: data.type,
@@ -54,28 +54,28 @@ const AddPost = () => {
                 setCreateStatus(response.data.estado);
             } catch (error) {
                 console.log(error);
-            };            
+            };
         };
     };
 
     return (
-        <>
-            <h2>NEW POST FOR {game[0] && game[0].tittle}</h2>
-            <form onSubmit={handleSubmit((data) => createPost(data))}>
+        <div className="addPost">
+            <h2 className="addPost--tittle">Nueva entrada para {game[0] && game[0].tittle}</h2>
+            <form className="addPost--form" onSubmit={handleSubmit((data) => createPost(data))}>
                 <label htmlFor="newPostType">Tipo</label>
                 <select id="newPostType" {...register("type", { required: { value: true, message: "Se debe introducir el genero." } })}>
                     {postTypes && postTypes.sort().map((type, i) => (
                         <option key={i} value={type}>{type}</option>
                     ))}
                 </select>
-                {errors.genre?.message && <p>{errors.genre?.message}</p>}
+                {errors.type?.message && <p className="addPost--formError">{errors.type?.message}</p>}
                 <label htmlFor="newPostContent">Contenido</label>
                 <textarea id="newPostContent" type="text"  {...register("content", { required: { value: true, message: "Se debe introducir un contenido." } })}></textarea>
-                {errors.genre?.message && <p>{errors.genre?.message}</p>}
-                <button type="submit">Añadir post</button>
+                {errors.content?.message && <p className="addPost--formError">{errors.content?.message}</p>}
+                <button className="addPost--formButton" type="submit">Añadir post</button>
             </form>
             {createStatus && <p>{createStatus}</p>}
-        </>
+        </div>
     )
 }
 

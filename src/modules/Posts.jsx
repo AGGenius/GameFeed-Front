@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/useUserContext";
+import './Posts.css'
 
 function Posts() {
     const { user } = useUserContext();
@@ -130,13 +131,13 @@ function Posts() {
         if (token) {
             return (
                 <>
-                    {actualLike && <button value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
+                    {actualLike && <button className="posts--gameCardButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
                 </>)
         }
 
         return (
             <>
-                {actualLike && <button disabled={true}>Likes: {actualLike.value} </button>}
+                {actualLike && <button className="posts--gameCardButton" disabled={true}>Likes: {actualLike.value} </button>}
             </>)
     }
 
@@ -145,13 +146,13 @@ function Posts() {
         if (user.type === "admin") {
             return (
                 <>
-                    <button key={game.id} onClick={() => navigate(`/adminPage/editPost/${post.id}`)}>Edit</button>
+                    <button className="posts--gameCardButton" key={game.id} onClick={() => navigate(`/adminPage/editPost/${post.id}`)}>Edit</button>
                 </>)
         } else if (user.type === "mod") {
 
             return (
                 <>
-                    <button key={game.id} onClick={() => navigate(`/modPage/editPost/${post.id}`)}>Edit</button>
+                    <button className="posts--gameCardButton" key={game.id} onClick={() => navigate(`/modPage/editPost/${post.id}`)}>Edit</button>
                 </>)
         }
     }
@@ -160,7 +161,7 @@ function Posts() {
         if (user.type === "admin") {
             return (
                 <>
-                    <button key={post.id} onClick={() => navigate(`/adminPage/editUser/${post.user_id}`)}>{post.nick}</button>
+                    <button className="posts--gameCardButton" key={post.id} onClick={() => navigate(`/adminPage/editUser/${post.user_id}`)}>{post.nick}</button>
                 </>)
         } else {
             return (
@@ -254,7 +255,7 @@ function Posts() {
                 {posts && <p>Pagina: {page}</p>}
             </div>
             <div className="posts--postCardWrap">
-                {posts && posts.map((post) =>
+                {posts ? posts.map((post) =>
                 (
                     <div className="posts--postCard" key={post.id}>
                         <div className="posts--postCardData">
@@ -269,6 +270,7 @@ function Posts() {
                         </div>
                     </div>
                 ))
+                    : <p>Cargando datos</p>
                 }
                 {posts.length <= 4 && <p>Fin de las entradas de posts</p>}
             </div>

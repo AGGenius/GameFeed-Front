@@ -1,0 +1,132 @@
+.editPost {
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: rgba(217, 237, 250, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    
+    margin-top: .5rem;
+    margin-bottom: 50px;
+}
+
+.editPost button {
+    width: 150px;
+    height: 35px;
+  
+    color: rgb(238, 242, 255);
+    font-size: 1.1rem;
+  
+    background-color: rgb(150, 158, 223);
+    border: 2px solid rgb(77, 89, 131);
+    border-radius: 5px;
+}
+
+.editPost button:hover {
+    color: rgb(47, 55, 83);
+    background-color: rgb(185, 192, 231);
+    border: 2px solid rgb(65, 75, 110);
+}
+
+
+.editPost--tittle {
+    width: 60%;
+    height: 75px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid rgb(55, 49, 109);
+    border-radius: 15px;
+    color: rgb(87, 80, 116);
+    font-size: 2rem;
+    
+    margin-top: 1rem;
+}
+
+.editPost--searchFormWrap {
+    width: 60%;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.editPost--searchForm {
+    width: 100%;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editPost--editFormWrap {
+    width: 60%;
+    height: 600px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 50px;
+}
+
+.editPost--editForm {
+    width: 100%;
+    height: 80%;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editPost--form label {
+    color: rgb(46, 42, 63);
+}
+
+.editPost--form input, .addGame--form select  {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+}
+
+.editPost--editFormError {
+    font-size: .9rem;
+}
+
+.editPost--formButton {
+  width: 150px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}

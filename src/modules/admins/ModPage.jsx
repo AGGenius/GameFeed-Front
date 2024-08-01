@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate, Outlet } from 'react-router-dom'
 import { useUserContext } from "../../context/useUserContext";
+import './ModPage.css'
 
 function ModPage() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function ModPage() {
 
     return (
         <>
-            <div>
+            <div className="modPage">
                 <Link to="/modPage/editGame">Edit Game</Link>
                 <Link to="/modPage/editPost">Edit Post</Link>
             </div>

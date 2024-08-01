@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import './Register.css'
 
 const Register = () => {
     //Fields
@@ -16,7 +17,7 @@ const Register = () => {
     const [nameState, setNameState] = useState("");
     const [nickState, setNickState] = useState("");
     const [registerState, setRegisterState] = useState("");
-    
+
     const navigate = useNavigate();
     const registerURL = "http://localhost:3000/api/users/register/";
 
@@ -166,53 +167,53 @@ const Register = () => {
     }
 
     return (
-        <>
+        <div className="register">
+            <h2 className="register--tittle">Formulario de registro</h2>
+            <h4 className="register--info">No podras iniciar sesión hasta que la cuenta sea aprobada por un administrador</h4>
             {!registerState ?
-                <form onSubmit={register}>
-                    <label htmlFor="newuserEmail">Email</label>
-                    <input id="newuserEmail" type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                <form className="register--form" onSubmit={register}>
+                    <div className="register--formPair">
+                        <label htmlFor="newuserEmail">Email</label>
+                        <input id="newuserEmail" type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    </div>
                     {emailState &&
                         <ul>
-                            {emailState.map((value, i) =>
-                            (
-                                <li key={i}>{value}</li>
-                            ))}
+                            {emailState.map((value, i) => (<li className="register--formError" key={i}>{value}</li>))}
                         </ul>}
-                    <label htmlFor="newuserPass">Contraseña</label>
-                    <input id="newuserPass" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    <div className="register--formPair">
+                        <label htmlFor="newuserPass">Contraseña</label>
+                        <input id="newuserPass" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
                     {passwordState &&
                         <ul>
-                            {passwordState.map((value, i) =>
-                            (
-                                <li key={i}>{value}</li>
-                            ))}
+                            {passwordState.map((value, i) => (<li className="register--formError" key={i}>{value}</li>))}
                         </ul>}
-                    <label htmlFor="repeatNewUserPass">Repite la contraseña</label>
-                    <input id="repeatNewUserPass" type="password" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
-                    {repeatPasswordState && <p>{repeatPasswordState}</p>}
-                    <label htmlFor="newuserName">Name</label>
-                    <input id="newuserName" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                    <div className="register--formPair">
+                        <label htmlFor="repeatNewUserPass">Repite la contraseña</label>
+                        <input id="repeatNewUserPass" type="password" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
+                    </div>
+                    {repeatPasswordState && <p className="register--formError">{repeatPasswordState}</p>}
+                    <div className="register--formPair">
+                        <label htmlFor="newuserName">Name</label>
+                        <input id="newuserName" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                    </div>
                     {nameState &&
                         <ul>
-                            {nameState.map((value, i) =>
-                            (
-                                <li key={i}>{value}</li>
-                            ))}
+                            {nameState.map((value, i) => (<li className="register--formError" key={i}>{value}</li>))}
                         </ul>}
-                    <label htmlFor="newuserNick">Nick</label>
-                    <input id="newuserNick" type="text" value={nick} onChange={(e) => setNick(e.target.value)}></input>
+                    <div className="register--formPair">
+                        <label htmlFor="newuserNick">Nick</label>
+                        <input id="newuserNick" type="text" value={nick} onChange={(e) => setNick(e.target.value)}></input>
+                    </div>
                     {nickState &&
                         <ul>
-                            {nickState.map((value, i) =>
-                            (
-                                <li key={i}>{value}</li>
-                            ))}
+                            {nickState.map((value, i) => (<li className="register--formError" key={i}>{value}</li>))}
                         </ul>}
-                    <button type="submit">Registrarse</button>
+                    <button className="register--formButton" type="submit">Registrarse</button>
                 </form>
                 :
                 <p>{registerState}</p>}
-        </>
+        </div>
     )
 }
 

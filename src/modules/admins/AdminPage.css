@@ -1,0 +1,31 @@
+.adminPage {
+    width: 60%;
+    height: 50px;
+    min-height: 50px;
+    gap: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(110, 110, 235, 0.5);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.adminPage  a {
+    color: rgb(66, 57, 146);
+    border-left: 3px solid gainsboro;
+    padding-left: 1rem;
+}
+
+.adminPage  a:hover {
+    color: rgb(217, 215, 236);
+}
+
+.adminPage  a:first-child {
+    border-left: none;
+}

@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/useUserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import './EditPost.css'
 
 function EditPost() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -59,7 +60,9 @@ function EditPost() {
     }, [post]);
 
     useEffect(() => {
-        checkPost();
+        if(postId) {
+            checkPost();
+        }
     }, [postId])
 
     const editPost = async (data) => {
@@ -109,43 +112,44 @@ function EditPost() {
     };
 
     return (
-        <>
-            <div>
-                <form onSubmit={checkPost}>
+        <div className="editPost">
+            <h2 className="editPost--tittle">Pagina de edición de posts</h2>
+            <div className="editPost--searchFormWrap">
+                <form className="editPost--searchForm" onSubmit={checkPost}>
                     <label htmlFor="searchPost">ID del post</label>
-                    <input id="searchPost" type="number"  onChange={(e) => setPostId(e.target.value)}></input>
+                    <input id="searchPost" type="number" value={postId} onChange={(e) => setPostId(e.target.value)}></input>
                     <button type="submit">Traer post</button>
                 </form>
             </div>
             {post &&
-                <div>
-                    <form onSubmit={handleSubmit((data) => editPost(data))}>
+                <div className="editPost--editFormWrap">
+                    <form className="editPost--editForm" onSubmit={handleSubmit((data) => editPost(data))}>
                         <label htmlFor="editPostType">Tipo</label>
                         <select id="editPostType" {...register("post_type", { required: { value: true, message: "Se debe introducir el tipo." } })} value={postType ? postType : ""} onChange={(e) => setPostType(e.target.value)}>
                             {postTypes && postTypes.sort().map((type, i) => (
                                 <option key={i} value={type}>{type}</option>
                             ))}
                         </select>
-                        {errors.post_type?.message && <p>{errors.post_type?.message}</p>}
+                        {errors.post_type?.message && <p className="editPost--editFormError">{errors.post_type?.message}</p>}
                         <label htmlFor="editPostContent">Contenido</label>
                         <textarea id="editPostContent" type="text" {...register("content", { required: { value: true, message: "Se debe introducir un contenido." } })} value={content ? content : ""} onChange={(e) => setContent(e.target.value)}></textarea>
-                        {errors.content?.message && <p>{errors.content?.message}</p>}
+                        {errors.content?.message && <p className="editPost--editFormError">{errors.content?.message}</p>}
                         <label htmlFor="editPostGameId">ID del juego</label>
                         <input id="editPostGameId" type="text" {...register("game_id", { required: { value: true, message: "Se debe introducir el id del juego." } })} value={gameId ? gameId : ""} onChange={(e) => setGameId(e.target.value)}></input>
-                        {errors.game_id?.message && <p>{errors.game_id?.message}</p>}
+                        {errors.game_id?.message && <p className="editPost--editFormError">{errors.game_id?.message}</p>}
                         <label htmlFor="editPostUserId">ID del usuario</label>
                         <input id="editPostUserId" type="text" {...register("user_id", { required: { value: true, message: "Se debe introducir el id del usuario." } })} value={userId ? userId : ""} onChange={(e) => setUserId(e.target.value)}></input>
-                        {errors.user_id?.message && <p>{errors.user_id?.message}</p>}
+                        {errors.user_id?.message && <p className="editPost--editFormError">{errors.user_id?.message}</p>}
                         <label htmlFor="editPostState">Estado</label>
                         <input id="editPostState" type="checkbox" {...register("active", { required: { value: true, message: "Se debe introducir el estado." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        {errors.active?.message && <p>{errors.active?.message}</p>}
-                        <button type="submit">Guardar cambios del post</button>
+                        {errors.active?.message && <p className="editPost--editFormError">{errors.active?.message}</p>}
+                        <button className="editPost--editFormButton" type="submit">Guardar cambios</button>
                     </form>
-                    <button onClick={deletePost}>Borrar post</button>
+                    <button className="editPost--deleteButton" onClick={deletePost}>Borrar post</button>
                 </div>
             }
             {updateStatus && <p>{updateStatus}</p>}
-        </>
+        </div>
     )
 }
 
