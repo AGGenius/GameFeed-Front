@@ -12,12 +12,12 @@ const Profile = () => {
 
     //Añadir editar cosas basicas como el Nick, email, contraseña y desactivar cuenta (borrarla?)(tengo el endpoint?)
     return (
-    <>
-        <h2>Estas en tu perfil {user.name}</h2>
-        <p>Nombre: {user.name}</p>
-        <p>Correo: {user.email}</p>
-        <p>Nick: {user.nick}</p>
-    </>)
+    <div className="profile">
+        <h2 className="profile--tittle">Te encuentras en tu perfil, {user.name}</h2>
+        <p className="profile--text profile--name">Nombre: <span>{user.name}</span></p>
+        <p className="profile--text profile--email">Correo: <span>{user.email}</span></p>
+        <p className="profile--text profile--nick">Nick: <span>{user.nick}</span></p>
+    </div>)
 
 }
 

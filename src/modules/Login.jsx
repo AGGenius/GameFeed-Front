@@ -40,44 +40,24 @@ const Login = () => {
         navigate("/");
     }
 
-    const modUser = (
-        <>
-            <Link to="/modPage" >Modo moderador</Link>
-        </>
-    )
-
-    const admin = (
-        <>
-            <Link to="/adminPage" >Modo administrador</Link>
-        </>
-    )
-
     const logPage = (
-        <div className="login--logFormWrap">
+        <>
             <form className="login--logForm" onSubmit={handleSubmit((data) => sendLogin(data))}>
-                <label htmlFor="userEmail">Email</label>
-                <input {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} id="userEmail" type="text"></input>
-                <label htmlFor="userPass">Contraseña</label>
-                {errors.email?.message && <p>{errors.email.message}</p>}
-                <input {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type="password"></input>
-                {errors.password?.message && <p>{errors.password.message}</p>}
+                <div className="login--formInputWrap">
+                    <input {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} id="userEmail" type="text" placeholder={"email"}></input>
+                    {errors.email?.message && <p>{errors.email.message}</p>}
+                    <input {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type="password" placeholder={"contraseña"}></input>
+                    {errors.password?.message && <p>{errors.password.message}</p>}
+                </div>
                 <button type="submit">Iniciar sesion</button>
             </form>
-            <Link to="/register" className="login--registerLink">Registrarse</Link>
             {updateStatus && <p>{updateStatus}</p>}
-        </div>)
+        </>)
 
     const logoutPage = (
-        <div className="login--loged">
-            <div className="login--linksWrap">
-                <Link to="/profile">Perfil</Link>
-                {user.type === "mod" && modUser}
-                {user.type === "admin" && admin}
-            </div>
-            <div className="login--logedData">
-                <p>Bienvenido {user.name}</p>
-                <button onClick={logOut}>Cerrar sesion</button>
-            </div>
+        <div className="login--logedData">
+            <p>Bienvenido {user.name}</p>
+            <button onClick={logOut}>Cerrar sesion</button>
         </div>
     )
 

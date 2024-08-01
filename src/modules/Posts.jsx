@@ -143,7 +143,6 @@ function Posts() {
     //Adaptable con condicional
     const generateEditButton = (post) => {
         if (user.type === "admin") {
-
             return (
                 <>
                     <button key={game.id} onClick={() => navigate(`/adminPage/editPost/${post.id}`)}>Edit</button>
@@ -159,7 +158,6 @@ function Posts() {
 
     const generateUserButton = (post) => {
         if (user.type === "admin") {
-
             return (
                 <>
                     <button key={post.id} onClick={() => navigate(`/adminPage/editUser/${post.user_id}`)}>{post.nick}</button>
@@ -176,12 +174,12 @@ function Posts() {
         if (token) {
             return (
                 <>
-                    <button onClick={() => (createPost(game[0]))}>Crear entrada</button>
+                    <button className="posts--createPost" onClick={() => (createPost(game[0]))}>Crear nueva entrada</button>
                 </>)
         } else {
             return (
                 <>
-                    <button disabled={true}>Crear entrada</button>
+                    <button className="posts--createPost" disabled={true}>Crear nueva entrada</button>
                 </>)
         }
     }
@@ -214,53 +212,71 @@ function Posts() {
 
     const postNav = () => {
         return (
-            <>
-                <button onClick={() => prevPage()}>Atras</button>
-                <button onClick={() => firstPage()}>Primera</button>
-                <button onClick={() => nextPage()}>Siguiente</button>
-            </>
+            <div className="posts--pageButtonsWrap">
+                <button onClick={() => prevPage()}>&lt;</button>
+                <button onClick={() => firstPage()}>pg1</button>
+                <button onClick={() => nextPage()}>&gt;</button>
+            </div>
         )
     }
 
     return (
-        <>
-            <h2>POSTS FOR {game[0] && game[0].tittle}</h2>
+        <div className="posts">
+            <h2 className="posts--tittle">Entrada en {game[0] && game[0].tittle}</h2>
             {generateCreateButton()}
-            <p>Filtros</p>
-            <label htmlFor="filterType">Por tipo</label>
-            <select id="filterType" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
-                {postTypes && postTypes.map((type, i) => (
-                    <option key={i} value={type}>{type}</option>
-                ))}
-            </select>
-            <label htmlFor="orderBy">Ordenar por</label>
-            <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                {rows && rows.map((row, i) => (
-                    <option key={i} value={row}>{row}</option>
-                ))}
-            </select>
-            <div>
-                <label htmlFor="option1">Ascendente</label>
-                <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
-                <label htmlFor="option2">Descendente</label>
-                <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
-            </div>
-            {posts && postNav()}
-            {posts && <p>Pagina: {page}</p>}
-            {posts && posts.map((post) =>
-            (
-                <div key={post.id}>
-                    <p>{post.post_type}</p>
-                    <p>{post.content}</p>
-                    <p>{getFormattedDate(post.date)}</p>
-                    {generateUserButton(post)}
-                    {likes && generateLikeButton(post)}
-                    {generateEditButton(post)}
+            <div className="posts--filters">
+                <h3 className="posts--filtersTittle">Filtros</h3>
+                <div className="posts--filtersWrap">
+                    <p>Filtros</p>
+                    <label htmlFor="filterType">Por tipo</label>
+                    <select id="filterType" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+                        {postTypes && postTypes.map((type, i) => (
+                            <option key={i} value={type}>{type}</option>
+                        ))}
+                    </select>
+                    <label htmlFor="orderBy">Ordenar por</label>
+                    <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
+                        {rows && rows.map((row, i) => (
+                            <option key={i} value={row}>{row}</option>
+                        ))}
+                    </select>
+                    <label htmlFor="orderType">Orden</label>
+                    <div id="orderType" className="posts--filtersSelectors">
+                        <label htmlFor="option1">ASC</label>
+                        <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                        <label htmlFor="option2">DESC</label>
+                        <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                    </div>
                 </div>
-            ))}
-            {posts.length <= 4 && <p>Fin de las entradas de posts</p>}
-            {posts && postNav()}
-        </>)
+            </div>
+            <div className="posts--pageButtons">
+                {posts && postNav()}
+                {posts && <p>Pagina: {page}</p>}
+            </div>
+            <div className="posts--postCardWrap">
+                {posts && posts.map((post) =>
+                (
+                    <div className="posts--postCard" key={post.id}>
+                        <div className="posts--postCardData">
+                            <p className="posts--postCardText">{post.post_type}</p>
+                            <p className={["posts--postCardText", post.post_type === "spoiler" ? "hidden" : ""].join(' ')}>{post.content}</p>
+                            <p className="posts--postCardText">Creado el: {getFormattedDate(post.date)}</p>
+                        </div>
+                        <div className="posts--postCardButtonsWrap">
+                            {generateUserButton(post)}
+                            {likes && generateLikeButton(post)}
+                            {generateEditButton(post)}
+                        </div>
+                    </div>
+                ))
+                }
+                {posts.length <= 4 && <p>Fin de las entradas de posts</p>}
+            </div>
+            <div className="posts--pageButtons">
+                {posts && postNav()}
+                {posts && <p>Pagina: {page}</p>}
+            </div>
+        </div >)
 
 }
 

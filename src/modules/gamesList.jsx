@@ -168,8 +168,8 @@ const GamesList = () => {
             const response = await axios.post(likesUrl, payload);
             const data = response.data;
             setLikes(data)
-        }
-    }
+        };
+    };
 
     const generateLikeButton = (game) => {
         const actualLike = likes.find((like) => like.id === game.id);
@@ -178,53 +178,53 @@ const GamesList = () => {
             return (
                 <>
                     {actualLike && <button value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
-                </>)
-        }
+                </>);
+        };
 
         return (
             <>
                 {actualLike && <button disabled={true}>Likes: {actualLike.value} </button>}
-            </>)
-    }
+            </>);
+    };
 
     const generateEditButton = (game) => {
         if (user.type === "admin") {
             return (
                 <>
                     <button key={game.id} onClick={() => navigate(`/adminPage/editGame/${game.id}`)}>Edit</button>
-                </>)
+                </>);
         } else if (user.type === "mod") {
             return (
                 <>
                     <button key={game.id} onClick={() => navigate(`/modPage/editGame/${game.id}`)}>Edit</button>
-                </>)
-        }
-    }
+                </>);
+        };
+    };
 
     const goToPost = (game) => {
         navigate(`/posts/${game.id}`);
-    }
+    };
 
     const nextPage = () => {
         if (games.length <= 4) { return; }
 
         const newPage = page + 1;
         setPage(newPage);
-    }
+    };
 
     const prevPage = () => {
         if (page - 1 <= 0) { return }
 
         let newPage = page - 1;
         setPage(newPage);
-    }
+    };
 
     const firstPage = () => {
         if (page === 1) { return }
 
         const newPage = 1;
         setPage(newPage);
-    }
+    };
 
     const gameNav = () => {
         return (
@@ -233,20 +233,19 @@ const GamesList = () => {
                 <button onClick={() => firstPage()}>pg1</button>
                 <button onClick={() => nextPage()}>&gt;</button>
             </div>
-        )
-    }
+        );
+    };
 
     const clearSearch = () => {
         setSearchState("");
         setSearchTittle("");
-    }
-
+    };
 
     return (
         <div className="games">
             <h2 className="games--tittle">JUEGOS</h2>
             <div className="games--filters">
-                <p>Filtros</p>
+                <h3 className="games--filtersTittle">Filtros</h3>
                 <div className="games--filtersWrap">
                     <label htmlFor="filterGenre">Por genero</label>
                     <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
@@ -260,7 +259,8 @@ const GamesList = () => {
                             <option key={i} value={row}>{row}</option>
                         ))}
                     </select>
-                    <div>
+                    <label htmlFor="orderType">Orden</label>
+                    <div id="orderType" className="game--filtersSelectors">
                         <label htmlFor="option1">ASC</label>
                         <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
                         <label htmlFor="option2">DESC</label>
@@ -273,7 +273,7 @@ const GamesList = () => {
                 {games && <p>Pagina: {page}</p>}
             </div>
             <div className="games--searchTittleWrap">
-            <label htmlFor="searchByTittle">Buscar por titulo</label>
+                <label htmlFor="searchByTittle">Buscar por titulo</label>
                 <input id="searchByTittle" value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>
                 <button onClick={() => clearSearch()}>Borrar</button>
                 {searchState && <p>{searchState}</p>}
@@ -283,10 +283,10 @@ const GamesList = () => {
                 (
                     <div className="games--gameCard" key={game.id}>
                         <div className="games--gameCardData">
-                            <p>Titulo: {game.tittle}</p>
-                            <p>Genero principal: {game.genre}</p>
-                            <p>Desarrollador: {game.developer}</p>
-                            <p>Fechad de salida: {getFormattedDate(game.release)}</p>
+                            <p>Titulo: <span>{game.tittle}</span></p>
+                            <p>Genero principal: <span>{game.genre}</span></p>
+                            <p>Desarrollador: <span>{game.developer}</span></p>
+                            <p>Fechad de salida: <span>{getFormattedDate(game.release)}</span></p>
                         </div>
                         <div className="games--gameCardButtonsWrap">
                             <button onClick={() => goToPost(game)}>Ver posts</button>

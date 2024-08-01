@@ -2,7 +2,6 @@
   font-family: "Gleegoo", serif;
   font-weight: 600;
   font-style: normal;
-  font-size: 1.1rem;
 }
 
 *,
@@ -12,7 +11,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  color: rgb(20, 20, 20);
+  color: rgb(79, 78, 88);
 }
 
 html,
@@ -34,6 +33,8 @@ body {
   justify-content: flex-start;
   align-items: center;
 
+  font-size: 1.1rem;
+
   background-color: rgb(164, 177, 211);
 
   overflow: auto;
@@ -48,7 +49,7 @@ a:hover {
 /*#region Nav*/
 .nav {
   width: 80%;
-  height: 150px;
+  height: 175px;
 
   display: flex;
   flex-direction: column;
@@ -62,8 +63,12 @@ a:hover {
 }
 
 .nav--webTittle {
-  color: rgb(141, 183, 238);
+  color: rgb(243, 248, 255);
   font-size: 4rem;
+
+  font-weight: bold;
+
+  margin-top: .5rem;
 }
 
 .nav--navWrap {
@@ -71,57 +76,92 @@ a:hover {
   height: 100px;
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 }
 
 .nav--linkWrap {
-  width: 20%;
+  width: 50%;
   height: 100%;
 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: 2rem;
+}
+
+.nav--linkWrap a:first-child {
+  border-left: 0;
+
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.nav--linkWrap a {
+  border-left: 3px solid rgb(207, 207, 226);
+
+  color: rgb(199, 213, 253);
+  padding-left: .5rem;
+  margin-left: .5rem;
+}
+
+.nav--linkWrap a:hover {
+  color: bisque;
+}
+
+.nav--logModule {
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav button {
+  background-color: rgb(195, 201, 231);
+  border: 2px solid rgb(201, 212, 218);
+  border-radius: 10px;
+  color: rgb(46, 43, 66);
+}
+
+nav button:hover {
+  background-color: rgb(218, 222, 241);
+  border: 2px solid rgb(135, 142, 146);
+  color: rgb(103, 97, 141);
+}
+
+/*#endregion */
+
+/*#region Login*/
+
+.login--logForm {
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 2rem;
+}
+
+.login--logForm button {
+  width: 150px;
+  height: 30px;
+}
+
+.login--formInputWrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.nav--homeLink:hover {
-  color: bisque;
-}
-
-.nav--logModule {
-  width: 60%;
-  height: 100%;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.nav--upperUser {
-  border: 2px solid red;
-}
-
-/*#endregion */
-
-/*#region Login*/
-.login--logFormWrap {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.login--logForm {
-  width: 85%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login--formInputWrap p{
+  font-size: .8rem;
 }
 
 .login--registerLink {
@@ -145,12 +185,22 @@ a:hover {
 .login--logedData {
   width: 100%;
   height: 50%;
+  gap: 1rem;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
+  margin-right: 2rem;
+}
+
+.login--logedData p:first-child {
+  color: rgb(219, 213, 245);
+}
+
+.login--logedData button {
+  width: 150px;
+  height: 30px;
 }
 
 .login--linksWrap {
@@ -198,6 +248,10 @@ a:hover {
   border-radius: 10px;
 }
 
+.games--filtersTittle {
+  font-size: 1.5rem;
+}
+
 .games--filtersWrap {
   width: 100%;
   height: auto;
@@ -211,10 +265,17 @@ a:hover {
 .games--tittle {
   color: rgb(86, 112, 146);
   font-size: 3rem;
+
+  margin: 1rem;
 }
+
+.game--filtersSelectors label:last-of-type {
+  padding-left: 1rem;
+}
+
 .games--pageButtons {
-  width: 20%;
-  height: 75px;
+  width: 15%;
+  height: 85px;
   gap: .5rem;
 
   display: flex;
@@ -222,6 +283,7 @@ a:hover {
   justify-content: center;
   align-items: center;
 
+  gap: .5rem;
   background-color: rgba(221, 215, 250, 0.3);
   border-radius: 10px;
 
@@ -230,10 +292,40 @@ a:hover {
 
 .games--pageButtonsWrap {
   width: 100%;
+  gap: .5rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.games--pageButtonsWrap button {
+  width: 25px;
+  height: 35px;
+
+  color: rgb(238, 242, 255);
+  font-size: 1.1rem;
+
+  background-color: rgb(154, 161, 202);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 5px;
+}
+
+.games--pageButtonsWrap button:nth-child(2) {
+  width: 45px;
+}
+
+.games--searchTittleWrap {
+  width: 30%;
+  height: 55px;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(221, 215, 250, 0.3);
+  border-radius: 10px;
 }
 
 .games--gameCardWrap {
@@ -272,6 +364,15 @@ a:hover {
   align-items: flex-start;
 }
 
+.games--gameCardData p {
+  color: rgb(82, 80, 97);
+  font-weight: normal;
+}
+
+.games--gameCardData span {
+  color: rgb(88, 86, 105);
+}
+
 .games--gameCardButtonsWrap {
   width: 60%;
   height: 10%;
@@ -284,4 +385,261 @@ a:hover {
   margin-top: 0.5rem;
 }
 
+.games--gameCardButtonsWrap button {
+  width: 100px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+}
+
+.games--gameCardButtonsWrap button:hover {
+  background-color: rgb(247, 247, 255);
+  border-color: rgb(100, 101, 114);
+}
+
 /*#endregion */
+
+/*#region Posts*/
+
+.posts {
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(199, 208, 226, 0.4);
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+
+  margin-top: 1rem;
+  margin-bottom: 50px;
+}
+
+.posts--tittle {
+  color: rgb(86, 112, 146);
+  font-size: 3rem;
+
+  margin: 1rem;
+}
+
+
+.posts--createPost {
+  width: 300px;
+  height: 50px;
+
+  font-size: 1.2rem;
+  border-radius: 15px;
+  background-color: rgb(193, 199, 230);
+  border: 2px solid rgb(238, 242, 255);
+
+  margin: 1rem;
+}
+
+.posts--createPost:hover {
+  background-color: rgb(215, 219, 238);
+  border: 2px solid rgb(129, 136, 156);
+}
+
+.posts--filters {
+  width: 80%;
+  height: 100px;
+  gap: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(221, 215, 250, 0.3);
+  border-radius: 10px;
+}
+
+.posts--filtersTittle {
+  font-size: 1.5rem;
+}
+
+.posts--filtersWrap {
+  width: 100%;
+  height: auto;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts--filtersSelectors label:last-of-type {
+  padding-left: 1rem;
+}
+
+.posts--pageButtons {
+  width: 15%;
+  height: 85px;
+  gap: .5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: .5rem;
+  background-color: rgba(221, 215, 250, 0.3);
+  border-radius: 10px;
+
+  margin: 1rem 0 1rem 0;
+}
+
+.posts--pageButtonsWrap {
+  width: 100%;
+  gap: .5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts--pageButtonsWrap button {
+  width: 25px;
+  height: 35px;
+
+  color: rgb(238, 242, 255);
+  font-size: 1.1rem;
+
+  background-color: rgb(154, 161, 202);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 5px;
+}
+
+.posts--pageButtonsWrap button:nth-child(2) {
+  width: 45px;
+}
+
+.posts--postCardWrap {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 1rem;
+}
+
+.posts--postCard {
+  width: 35%;
+  height: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+  background-color: rgba(199, 208, 226, 0.8);
+  box-shadow: 5px 8px 10px rgb(126, 135, 156);
+  margin-bottom: 1rem;
+}
+
+.posts--postCardData {
+  width: 80%;
+  height: 70%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.posts--postCardText {
+  color: rgb(82, 80, 97);
+  font-weight: normal;
+}
+
+.posts--postCardText.hidden {
+  color: rgba(199, 208, 226, 0.8);
+}
+
+.posts--postCardText.hidden:hover {
+  color: inherit;
+}
+
+.posts--postCardText:first-child {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.posts--postCardText:last-child {
+  font-size: .9rem;
+}
+
+.posts--postCardData span {
+  color: rgb(88, 86, 105);
+}
+
+.posts--postCardButtonsWrap {
+  width: 60%;
+  height: 10%;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 0.5rem;
+}
+
+.posts--postCardButtonsWrap button {
+  width: 100px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+}
+
+.posts--postCardButtonsWrap button:hover {
+  background-color: rgb(247, 247, 255);
+  border-color: rgb(100, 101, 114);
+}
+
+/*#endregion */
+
+/*#region Profile*/
+
+.profile {
+  width: 60%;
+  height: 50%;
+  gap: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(226, 250, 250, 0.3);
+  border: 4px solid whitesmoke;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgb(137, 133, 153);
+
+  margin-top: 5rem;
+}
+
+.profile--text {
+  color: rgb(82, 80, 97);
+  font-weight: normal;
+}
+
+.profile--text span {
+  color: rgb(88, 86, 105);
+}
+
+.profile--tittle {
+  font-size: 2rem;
+}
+
+/*#endregion */
+

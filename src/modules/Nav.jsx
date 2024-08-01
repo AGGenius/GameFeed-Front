@@ -25,26 +25,22 @@ function Nav() {
       getUserData();
     }
   }, [])
-  
+
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, [user]);
 
-  const generateCreateButton = () => {
-    if (token) {
-        return (
-            <>
-              <Link className={"nav--homeLink"} to="/addGame">Añadir juego</Link>
-            </>)
-    }
-}
   return (
     <nav className={"nav"}>
       <h1 className={"nav--webTittle"}>Gamer Rest</h1>
       <div className={"nav--navWrap"}>
         <div className={"nav--linkWrap"}>
-          <Link className={"nav--homeLink"} to="/">Listado de juegos</Link>
-          {generateCreateButton()}
+          <Link to="/">Listado de juegos</Link>
+          {token && <Link to="/addGame">Añadir juego</Link>}
+          {token && <Link to="/profile">Perfil</Link>}
+          {user.type === "mod" && <Link to="/modPage" >Modo moderador</Link>}
+          {user.type === "admin" && <Link to="/adminPage" >Modo administrador</Link>}
+          {!token && <Link to="/register" >Registrarse</Link>}
         </div>
         <div className={"nav--logModule"}>
           <Login />
