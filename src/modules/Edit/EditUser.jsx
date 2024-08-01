@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../context/useUserContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import axios from 'axios';
 
 function EditUser() {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            userId: 0, email: "", name: "", nick: "", type: "", active: ""
+        }
+    });
     //Direct Link
     const { id } = useParams()
     //Search
@@ -27,46 +33,46 @@ function EditUser() {
         setNick(userEdit.nick)
         setType(userEdit.type)
         setActive(userEdit.active)
+
+        reset({ email: userEdit.email, name: userEdit.name, nick: userEdit.nick, type: userEdit.type, active: userEdit.active });
     }
 
     useEffect(() => {
-        if (id) {
-            setUserId(id);
-        }
+        if (id) { setUserId(id); }
     }, []);
-    
+
     useEffect(() => {
         if (!localStorage.getItem("token") || (Object.keys(user).length !== 0 && user.type !== "admin")) { navigate("/"); }
     }, [user]);
-    
+
     useEffect(() => {
         setUserData();
     }, [userEdit]);
 
     useEffect(() => {
-        if(userId) {
-            checkUser();
-            setUserData();
-        }   
+        checkUser();
     }, [userId])
 
-    const editUser = async (e) => {
-        e.preventDefault();
-
-        if (email && name && nick && type) {
+    const editUser = async (data) => {
+        if (data) {
             const payload = {
-                email,
-                name,
-                nick,
-                type,
-                active
+                email: data.email,
+                name: data.name,
+                nick: data.nick,
+                type: data.type,
+                active: data.active
             }
 
-            const response = await axios.put(editUserUrl + userId, payload);
-            setUserEdit("");
-            setUpadteStatus(response.data.estado);
-        }
-    }
+            try {
+                const response = await axios.put(editUserUrl + userId, payload);
+                setUserEdit("");
+                setUpadteStatus(response.data.estado);
+            } catch (error) {
+                console.log(error);
+                setUpadteStatus("");
+            };
+        };
+    };
 
     const deleteUser = async () => {
         const confirmation = await confirm("Confirma para borrar el usuario");
@@ -75,11 +81,11 @@ function EditUser() {
             const response = await axios.delete(editUserUrl + userId);
             setUserEdit("");
             setUpadteStatus(response.data.estado);
-        }
-    }
+        };
+    };
 
     const checkUser = async (e) => {
-        if(e) {e.preventDefault();}
+        if(e) { e.preventDefault(); };
 
         const response = await axios.get(editUserUrl + userId);
 
@@ -90,31 +96,36 @@ function EditUser() {
             const newUserData = response.data;
             setUserEdit(newUserData);
             setUpadteStatus("");
-        }
-    }
+        };
+    };
 
     return (
         <>
             <div>
                 <form onSubmit={checkUser}>
                     <label htmlFor="searchUser">ID del usuario</label>
-                    <input id="searchUser" type="number" value={userId} onChange={(e) => setUserId(e.target.value)}></input>
+                    <input id="searchUser" type="number"  onChange={(e) => setUserId(e.target.value)}></input>
                     <button type="submit">Traer usuario</button>
                 </form>
             </div>
             {userEdit &&
                 <div>
-                    <form onSubmit={editUser}>
+                    <form onSubmit={handleSubmit((data) => editUser(data))}>
                         <label htmlFor="editUserEmail">Correo</label>
-                        <input id="editUserEmail" type="text" value={email ? email : ""} onChange={(e) => setEmail(e.target.value)}></input>
+                        <input id="editUserEmail" type="text" {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} value={email ? email : ""} onChange={(e) => setEmail(e.target.value)}></input>
+                        {errors.email?.message && <p>{errors.email?.message}</p>}
                         <label htmlFor="editUserName">Nombre</label>
-                        <input id="editUserName" type="text" value={name ? name : ""} onChange={(e) => setName(e.target.value)}></input>
+                        <input id="editUserName" type="text" {...register("name", { required: { value: true, message: "Se debe introducir el nombre." } })} value={name ? name : ""} onChange={(e) => setName(e.target.value)}></input>
+                        {errors.name?.message && <p>{errors.name?.message}</p>}
                         <label htmlFor="editUserNick">Nick</label>
-                        <input id="editUserNick" type="text" value={nick ? nick : ""} onChange={(e) => setNick(e.target.value)}></input>
+                        <input id="editUserNick" type="text" {...register("nick", { required: { value: true, message: "Se debe introducir el nick." } })} value={nick ? nick : ""} onChange={(e) => setNick(e.target.value)}></input>
+                        {errors.nick?.message && <p>{errors.nick?.message}</p>}
                         <label htmlFor="editUserType">Tipo</label>
-                        <input id="editUserType" type="text" value={type ? type : ""} onChange={(e) => setType(e.target.value)}></input>
+                        <input id="editUserType" type="text" {...register("type", { required: { value: true, message: "Se debe introducir el tipo." } })} value={type ? type : ""} onChange={(e) => setType(e.target.value)}></input>
+                        {errors.type?.message && <p>{errors.type?.message}</p>}
                         <label htmlFor="editUserState">Estado</label>
-                        <input id="editUserState" type="checkbox" value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
+                        <input id="editUserState" type="checkbox" {...register("active", { required: { value: true, message: "Se debe introducir el estado." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
+                        {errors.active?.message && <p>{errors.active?.message}</p>}
                         <button type="submit">Guardar cambios del usuario</button>
                     </form>
                     <button onClick={deleteUser}>Borrar usuario</button>

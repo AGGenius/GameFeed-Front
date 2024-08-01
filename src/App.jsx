@@ -16,6 +16,7 @@ import ModPage from './modules/admins/ModPage';
 //Context
 import { GamesProvider } from './context/useGamesContext';
 import { UserProvider } from "./context/useUserContext";
+import './App.css';
 
 function App() {
   return (

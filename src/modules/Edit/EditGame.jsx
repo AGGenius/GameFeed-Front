@@ -7,7 +7,7 @@ import axios from 'axios';
 function EditGame() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
-            tittle: "", genre: "", developer: "", release: "", user_id: "", state: ""
+            gameId: 0, tittle: "", genre: "", developer: "", release: "", user_id: "", state: ""
         }
     });
     const navigate = useNavigate();
@@ -103,14 +103,10 @@ function EditGame() {
     }, [game])
 
     useEffect(() => {
-        if (gameId) {
-            checkGame();
-            setGameData();
-        }
+        checkGame();
     }, [gameId])
 
     const editGame = async (data) => {
-
         if (data) {
             const payload = {
                 tittle: data.tittle,
@@ -127,7 +123,7 @@ function EditGame() {
                 setUpadteStatus(response.data.estado);
             } catch (error) {
                 console.log(error)
-                setUpadteStatus();
+                setUpadteStatus("");
             }
         }
     }
@@ -139,11 +135,11 @@ function EditGame() {
             const response = await axios.delete(editGameUrl + gameId);
             setGame("");
             setUpadteStatus(response.data.estado);
-        }
-    }
+        };
+    };
 
     const checkGame = async (e) => {
-        if (e) { e.preventDefault(); }
+        if(e) { e.preventDefault(); };
 
         const response = await axios.get(editGameUrl + gameId);
 
@@ -154,8 +150,8 @@ function EditGame() {
             const newGame = response.data;
             setGame(newGame[0]);
             setUpadteStatus("");
-        }
-    }
+        };
+    };
 
     return (
         <>

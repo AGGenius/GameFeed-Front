@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"
 import { useUserContext } from "../context/useUserContext";
@@ -7,10 +7,12 @@ import Login from "./Login"
 
 function Nav() {
   const { user, setUser } = useUserContext();
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
+      setToken(token);
 
       const userId = jwtDecode(token).id;
 
@@ -23,33 +25,32 @@ function Nav() {
       getUserData();
     }
   }, [])
-
-  const modUser = (
-    <>
-      <Link to="/modPage"><p>Modo moderador</p></Link>
-    </>
-  )
-
-  const admin = (
-    <>
-      <Link to="/adminPage"><p>Modo administrador</p></Link>
-    </>
-  )
-
   
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, [user]);
 
+  const generateCreateButton = () => {
+    if (token) {
+        return (
+            <>
+              <Link className={"nav--homeLink"} to="/addGame">Añadir juego</Link>
+            </>)
+    }
+}
   return (
-    <>
-      <nav>
-        <h1>Gamer Rest</h1>
-        <Link to="/">Listado de juegos</Link>
-        <div>
-          <Login />
-          {user.type === "mod" && modUser}
-          {user.type === "admin" && admin}
+    <nav className={"nav"}>
+      <h1 className={"nav--webTittle"}>Gamer Rest</h1>
+      <div className={"nav--navWrap"}>
+        <div className={"nav--linkWrap"}>
+          <Link className={"nav--homeLink"} to="/">Listado de juegos</Link>
+          {generateCreateButton()}
         </div>
-      </nav>
-    </>
+        <div className={"nav--logModule"}>
+          <Login />
+        </div>
+      </div>
+    </nav>
   )
 }
 

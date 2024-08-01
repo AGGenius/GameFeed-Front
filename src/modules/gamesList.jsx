@@ -109,8 +109,8 @@ const GamesList = () => {
             }
         } catch (error) {
             console.log(error)
-        }
-    }
+        };
+    };
 
     useEffect(() => {
         getGamesFiltered();
@@ -201,25 +201,6 @@ const GamesList = () => {
         }
     }
 
-    const generateCreateButton = () => {
-        if (token) {
-            return (
-                <>
-                    <button onClick={() => (createGameEntry())}>Crear entrada de juego</button>
-                </>)
-        } else {
-            return (
-                <>
-                    <button disabled={true}>Crear entrada de juego</button>
-                </>)
-        }
-    }
-
-    const createGameEntry = (game) => {
-        if (!token) { return };
-        navigate(`/addGame`);
-    }
-
     const goToPost = (game) => {
         navigate(`/posts/${game.id}`);
     }
@@ -247,11 +228,11 @@ const GamesList = () => {
 
     const gameNav = () => {
         return (
-            <>
-                <button onClick={() => prevPage()}>Atras</button>
-                <button onClick={() => firstPage()}>Primera</button>
-                <button onClick={() => nextPage()}>Siguiente</button>
-            </>
+            <div className="games--pageButtonsWrap">
+                <button onClick={() => prevPage()}>&lt;</button>
+                <button onClick={() => firstPage()}>pg1</button>
+                <button onClick={() => nextPage()}>&gt;</button>
+            </div>
         )
     }
 
@@ -262,48 +243,65 @@ const GamesList = () => {
 
 
     return (
-        <>
-            <h2>JUEGOS</h2>
-            {generateCreateButton()}
-            <p>Filtros</p>
-            <label htmlFor="filterGenre">Por genero</label>
-            <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
-                {genres && genres.sort().map((genre, i) => (
-                    <option key={i} value={genre}>{genre}</option>
-                ))}
-            </select>
-            <label htmlFor="orderBy">Ordenar por</label>
-            <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
-                {rows && rows.map((row, i) => (
-                    <option key={i} value={row}>{row}</option>
-                ))}
-            </select>
-            <div>
-                <label htmlFor="option1">Ascendente</label>
-                <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
-                <label htmlFor="option2">Descendente</label>
-                <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
-            </div>
-            {games && gameNav()}
-            {games && <p>Pagina: {page}</p>}
-            <input value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>
-            <button onClick={() => clearSearch()}>Borrar</button>
-            {searchState && <p>{searchState}</p>}
-            {games && games.map((game) =>
-            (
-                <div key={game.id}>
-                    <p>{game.tittle}</p>
-                    <p>{game.genre}</p>
-                    <p>{game.developer}</p>
-                    <p>{getFormattedDate(game.release)}</p>
-                    <button onClick={() => goToPost(game)}>Ver posts</button>
-                    {likes && generateLikeButton(game)}
-                    {generateEditButton(game)}
+        <div className="games">
+            <h2 className="games--tittle">JUEGOS</h2>
+            <div className="games--filters">
+                <p>Filtros</p>
+                <div className="games--filtersWrap">
+                    <label htmlFor="filterGenre">Por genero</label>
+                    <select id="filterGenre" value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
+                        {genres && genres.sort().map((genre, i) => (
+                            <option key={i} value={genre}>{genre}</option>
+                        ))}
+                    </select>
+                    <label htmlFor="orderBy">Ordenar por</label>
+                    <select id="orderBy" value={rowFilter} onChange={(e) => setRowFilter(e.target.value)}>
+                        {rows && rows.map((row, i) => (
+                            <option key={i} value={row}>{row}</option>
+                        ))}
+                    </select>
+                    <div>
+                        <label htmlFor="option1">ASC</label>
+                        <input id="option1" type="radio" value="ASC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                        <label htmlFor="option2">DESC</label>
+                        <input id="option2" type="radio" value="DESC" name="order" onChange={(e) => setOrderFilter(e.target.value)} />
+                    </div>
                 </div>
-            ))}
-            {games.length <= 4 && <p>Fin de las entradas de juegos</p>}
-            {games && gameNav()}
-        </>)
+            </div>
+            <div className="games--pageButtons">
+                {games && gameNav()}
+                {games && <p>Pagina: {page}</p>}
+            </div>
+            <div className="games--searchTittleWrap">
+            <label htmlFor="searchByTittle">Buscar por titulo</label>
+                <input id="searchByTittle" value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>
+                <button onClick={() => clearSearch()}>Borrar</button>
+                {searchState && <p>{searchState}</p>}
+            </div>
+            <div className="games--gameCardWrap">
+                {games && games.map((game) =>
+                (
+                    <div className="games--gameCard" key={game.id}>
+                        <div className="games--gameCardData">
+                            <p>Titulo: {game.tittle}</p>
+                            <p>Genero principal: {game.genre}</p>
+                            <p>Desarrollador: {game.developer}</p>
+                            <p>Fechad de salida: {getFormattedDate(game.release)}</p>
+                        </div>
+                        <div className="games--gameCardButtonsWrap">
+                            <button onClick={() => goToPost(game)}>Ver posts</button>
+                            {likes && generateLikeButton(game)}
+                            {generateEditButton(game)}
+                        </div>
+                    </div>
+                ))}
+                {games.length <= 4 && <p>Fin de las entradas de juegos</p>}
+            </div>
+            <div className="games--pageButtons">
+                {games && <p>Pagina: {page}</p>}
+                {games && gameNav()}
+            </div>
+        </div>)
 
 }
 
