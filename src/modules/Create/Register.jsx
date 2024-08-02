@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './Register.css'
 
+//Module to control the registration of a new user. Uses custom validators to show the end user wich data is not valid and why.
 const Register = () => {
     //Fields
     const [email, setEmail] = useState("");
@@ -25,21 +26,23 @@ const Register = () => {
         if (localStorage.getItem("token")) {
             navigate("/");
         }
-    }, [])
+    }, []);
 
+    //Function to check the correlation on the passwords. As simple as it gets. Outputs a message if not valid.
     const checkPasswords = () => {
         if (password !== repeatPassword) {
             setRepeatPasswordState("No coinciden las contraseñas");
         } else {
             setRepeatPasswordState("");
-        }
-    }
+        };
+    };
 
+    //Function to check the email input. Uses array of error messages and regex validators to check and reply on each case.
     const checkEmailFormat = () => {
         const emailCheckList = [
             "Tiene que tener al menos 6 caracteres",
             "No es un formato correcto de email"
-        ]
+        ];
 
         const validationRegex = [
             { regex: /.{6,}/ },
@@ -60,6 +63,7 @@ const Register = () => {
         setEmailState(actualCheckList);
     };
 
+    //Function to check the password strength. Uses array of error messages and regex validators to check and reply on each case.
     const checkPassSecurity = () => {
         const passwordChecklist = [
             "Tiene que tener al menos 6 caracteres",
@@ -91,6 +95,7 @@ const Register = () => {
         setPasswordState(actualCheckList);
     };
 
+    //Function to check the name input. Uses array of error messages and regex validators to check and reply on each case.
     const checkNameFormat = () => {
         const nameCheckList = [
             "Tiene que tener al menos 3 caracteres",
@@ -116,6 +121,7 @@ const Register = () => {
         setNameState(actualCheckList);
     }
 
+    //Function to check the nick input. Uses array of error messages and regex validators to check and reply on each case.
     const checkNickFormat = () => {
         const nickCheckList = [
             "El campo no puede estar vacio"
@@ -139,6 +145,7 @@ const Register = () => {
         setNickState(actualCheckList);
     };
 
+    //Function to send the form data to the back-end if all inputs are validated. Gives a custom response from the back-end on successful or unsuccessful events.
     const register = async (e) => {
         e.preventDefault();
         setEmailState([]);

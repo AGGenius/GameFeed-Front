@@ -32,6 +32,10 @@
     margin-top: 4rem;
 }
 
+.addGame--info {
+    margin-top: 1rem;
+}
+
 .addGame--form {
     width: 60%;
     height: 65%;
@@ -46,7 +50,7 @@
     border: 2px solid whitesmoke;
     border-radius: 30px;
 
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .addGame--form label {

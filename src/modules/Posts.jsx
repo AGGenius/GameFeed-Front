@@ -4,6 +4,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/useUserContext";
 import './Posts.css'
 
+//Module to generate a paged list of post for a given game. The content can be filtered. 
+//Custom buttons are generated in each post card to access the interact with links and edit the post or user that created it.
 function Posts() {
     const { user } = useUserContext();
     const [token, setToken] = useState("");
@@ -30,14 +32,13 @@ function Posts() {
         "critica",
         "spoiler",
         "teoria"
-    ]
+    ];
 
     const rows = [
         "id",
         "date"
-    ]
+    ];
 
-    //Igual
     const getLikes = async () => {
         try {
             const likesUrl = `https://gamefeed-back.onrender.com/api/likes/`;
@@ -45,15 +46,15 @@ function Posts() {
             const data = response.data;
             setLikes(data);
         } catch (error) {
-            console.log(error)
-        }
-    }
+            console.log(error);
+        };
+    };
 
     const getGame = async () => {
         const response = await axios.get(getGameUrl + id);
         const newGame = response.data;
         setGame(newGame);
-    }
+    };
 
     const getPostsFiltered = async () => {
         try {
@@ -63,9 +64,9 @@ function Posts() {
             const newPosts = response.data;
             setPosts(newPosts);
         } catch (error) {
-            console.log(error)
-        }
-    }
+            console.log(error);
+        };
+    };
 
     useEffect(() => {
         getGame();
@@ -86,25 +87,23 @@ function Posts() {
         setToken(localStorage.getItem("token"));
     }, [user]);
 
-    //Igual
     const getFormattedDate = (queryDate) => {
         const date = new Date(queryDate);
         const year = date.getFullYear();
 
         function twoDigitsDate(string) {
             return string = string.length > 1 ? string : '0' + string;
-        }
+        };
 
         let month = (1 + date.getMonth()).toString();
-        month = twoDigitsDate(month)
+        month = twoDigitsDate(month);
 
         let day = date.getDate().toString();
-        day = twoDigitsDate(day)
+        day = twoDigitsDate(day);
 
         return month + '-' + day + '-' + year;
     };
 
-    //Igual
     const sendLike = async (e) => {
         if (!user.id) { return };
 
@@ -116,15 +115,14 @@ function Posts() {
             const payload = {
                 user_id,
                 likes_id,
-            }
+            };
 
             const response = await axios.post(likesUrl, payload);
             const data = response.data;
-            setLikes(data)
-        }
-    }
+            setLikes(data);
+        };
+    };
 
-    //Adaptable con condicional
     const generateLikeButton = (post) => {
         const actualLike = likes.find((like) => like.post_id === post.id);
 
@@ -132,84 +130,83 @@ function Posts() {
             return (
                 <>
                     {actualLike && <button className="posts--gameCardButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Likes: {actualLike.value} </button>}
-                </>)
+                </>);
         }
 
         return (
             <>
                 {actualLike && <button className="posts--gameCardButton" disabled={true}>Likes: {actualLike.value} </button>}
-            </>)
-    }
+            </>);
+    };
 
-    //Adaptable con condicional
     const generateEditButton = (post) => {
         if (user.type === "admin") {
             return (
                 <>
                     <button className="posts--gameCardButton" key={game.id} onClick={() => navigate(`/adminPage/editPost/${post.id}`)}>Edit</button>
-                </>)
+                </>);
         } else if (user.type === "mod") {
 
             return (
                 <>
                     <button className="posts--gameCardButton" key={game.id} onClick={() => navigate(`/modPage/editPost/${post.id}`)}>Edit</button>
-                </>)
-        }
-    }
+                </>);
+        };
+    };
 
     const generateUserButton = (post) => {
         if (user.type === "admin") {
             return (
                 <>
                     <button className="posts--gameCardButton" key={post.id} onClick={() => navigate(`/adminPage/editUser/${post.user_id}`)}>{post.nick}</button>
-                </>)
+                </>);
         } else {
             return (
                 <>
                     <p>Por: {post.nick}</p>
-                </>)
-        }
-    }
+                </>);
+        };
+    };
 
     const generateCreateButton = () => {
         if (token) {
             return (
                 <>
                     <button className="posts--createPost" onClick={() => (createPost(game[0]))}>Crear nueva entrada</button>
-                </>)
+                </>);
         } else {
             return (
                 <>
                     <button className="posts--createPost" disabled={true}>Crear nueva entrada</button>
-                </>)
-        }
-    }
+                </>);
+        };
+    };
 
     const createPost = (game) => {
         if (!token) { return };
         navigate(`/addPost/${game.id}`);
-    }
+    };
 
     const nextPage = () => {
-        if (posts.length <= 4) { return; }
+        if (posts.length <= 4) { return; };
 
         const newPage = page + 1;
         setPage(newPage);
-    }
+    };
 
     const prevPage = () => {
-        if (page - 1 <= 0) { return }
+        if (page - 1 <= 0) { return };
 
         let newPage = page - 1;
         setPage(newPage);
-    }
+    };
 
     const firstPage = () => {
-        if (page === 1) { return }
+        if (page === 1) { return };
 
         const newPage = 1;
         setPage(newPage);
-    }
+    };
 
     const postNav = () => {
         return (
@@ -218,8 +215,8 @@ function Posts() {
                 <button onClick={() => firstPage()}>pg1</button>
                 <button onClick={() => nextPage()}>&gt;</button>
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <div className="posts">
@@ -278,8 +275,8 @@ function Posts() {
                 {posts && postNav()}
                 {posts && <p>Pagina: {page}</p>}
             </div>
-        </div >)
+        </div >);
 
-}
+};
 
 export default Posts;

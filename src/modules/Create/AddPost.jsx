@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './AddPost.css'
 
+//Module to control the creation of entries for a given game.
 const AddPost = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -40,6 +41,7 @@ const AddPost = () => {
         getGame();
     }, []);
 
+    //Function to send the form data to the back-end if all inputs are validated. Gives a custom response from the back-end on successful or unsuccessful events.
     const createPost = async (data) => {
         if (data) {
             const payload = {

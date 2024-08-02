@@ -18,6 +18,7 @@ import { GamesProvider } from './context/useGamesContext';
 import { UserProvider } from "./context/useUserContext";
 import './App.css';
 
+//Base module with all the main routes logics.
 function App() {
   return (
     <>
@@ -51,7 +52,7 @@ function App() {
         </GamesProvider>
       </Router>
     </>
-  )
-}
+  );
+};
 
 export default App

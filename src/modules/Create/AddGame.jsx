@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './AddGame.css'
 
+//Module to control the creation of new games.
 const AddGame = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -50,6 +51,7 @@ const AddGame = () => {
         if (!localStorage.getItem("token")) { navigate("/"); }
     }, []);
 
+    //Function to send the form data to the back-end if all inputs are validated. Gives a custom response from the back-end on successful or unsuccessful events.
     const createGame = async (data) => {
         if (data) {
             const payload = {
@@ -79,6 +81,7 @@ const AddGame = () => {
     return (
         <div className="addGame">
             <h2 className="addGame--tittle">Crear una nueva entrada de videojuego</h2>
+            <h4 className="addGame--info">El juego no se visualizara hasta ser aprobado por un administrador</h4>
             <form className="addGame--form" onSubmit={handleSubmit((data) => createGame(data))}>
                 <label htmlFor="createGameTittle">Titulo</label>
                 <input id="createGameTittle" type="text" {...register("tittle", { required: { value: true, message: "Se debe introducir el titulo." } })}></input>

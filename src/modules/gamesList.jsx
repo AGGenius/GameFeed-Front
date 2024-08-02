@@ -5,6 +5,8 @@ import { useGamesContext } from '../context/useGamesContext'
 import { useUserContext } from "../context/useUserContext";
 import './gamesList.css'
 
+//Module to generate a paged list of games. The content can be filtered and you can search for any given tittle in the data base. 
+//Custom buttons are generated in each game card to access the game posts, interact with links and edit the game.
 const GamesList = () => {
     const { games, setGames } = useGamesContext();
     const [token, setToken] = useState("");
@@ -69,9 +71,9 @@ const GamesList = () => {
             const data = response.data;
             setLikes(data);
         } catch (error) {
-            console.log(error)
-        }
-    }
+            console.log(error);
+        };
+    };
 
     const getGamesFiltered = async () => {
         try {
@@ -80,7 +82,7 @@ const GamesList = () => {
                 genreFilter,
                 rowFilter,
                 orderFilter
-            }
+            };
 
             const complexUrl = getGamesUrl + `/filter?page=${page}&genreFilter=${genreFilter}&rowFilter=${rowFilter}&orderFilter=${orderFilter}`;
 
@@ -88,9 +90,9 @@ const GamesList = () => {
             const newGames = response.data;
             setGames(newGames);
         } catch (error) {
-            console.log(error)
-        }
-    }
+            console.log(error);
+        };
+    };
 
     const getGamesByTittle = async () => {
         try {
@@ -104,12 +106,12 @@ const GamesList = () => {
                 } else {
                     setSearchState("Sin resultados");
                     setGames([]);
-                }
+                };
             } else if (searchTittle.length === 0) {
                 getGamesFiltered();
-            }
+            };
         } catch (error) {
-            console.log(error)
+            console.log(error);
         };
     };
 
@@ -145,10 +147,10 @@ const GamesList = () => {
         }
 
         let month = (1 + date.getMonth()).toString();
-        month = twoDigitsDate(month)
+        month = twoDigitsDate(month);
 
         let day = date.getDate().toString();
-        day = twoDigitsDate(day)
+        day = twoDigitsDate(day);
 
         return month + '-' + day + '-' + year;
     };
@@ -168,7 +170,7 @@ const GamesList = () => {
 
             const response = await axios.post(likesUrl, payload);
             const data = response.data;
-            setLikes(data)
+            setLikes(data);
         };
     };
 
@@ -221,7 +223,7 @@ const GamesList = () => {
     };
 
     const firstPage = () => {
-        if (page === 1) { return }
+        if (page === 1) { return };
 
         const newPage = 1;
         setPage(newPage);

@@ -3,6 +3,7 @@ import { Link, useNavigate, Outlet } from 'react-router-dom'
 import { useUserContext } from "../../context/useUserContext";
 import './ModPage.css'
 
+//Mod module to be shown only when an admin user is logged. If accessed directly when no user is logged or not a valid type of user, redirects to the home page.
 function ModPage() {
     const navigate = useNavigate();
     const { user } = useUserContext();

@@ -5,12 +5,15 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './EditUser.css'
 
+//Module to control the edition of users data. Uses form validation to check that none are empty. Populates the fields with the user data to edit to make it easier for admin/mod.
 function EditUser() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             userId: 0, email: "", name: "", nick: "", type: "", active: ""
         }
     });
+    const navigate = useNavigate();
+
     //Direct Link
     const { id } = useParams()
     //Search
@@ -25,21 +28,22 @@ function EditUser() {
     const [active, setActive] = useState(false);
 
     const { user } = useUserContext();
-    const navigate = useNavigate();
     const editUserUrl = "https://gamefeed-back.onrender.com/api/users/";
 
+    //Function to populate the fields with the actual data on the element to edit.
     function setUserData() {
         setEmail(userEdit.email);
         setName(userEdit.name);
-        setNick(userEdit.nick)
-        setType(userEdit.type)
-        setActive(userEdit.active)
+        setNick(userEdit.nick);
+        setType(userEdit.type);
+        setActive(userEdit.active);
 
         reset({ email: userEdit.email, name: userEdit.name, nick: userEdit.nick, type: userEdit.type, active: userEdit.active });
-    }
+    };
 
+    //Basic re-render on direct link access to populate the form with the item data.
     useEffect(() => {
-        if (id) { setUserId(id); }
+        if (id) { setUserId(id); };
     }, []);
 
     useEffect(() => {
@@ -51,11 +55,10 @@ function EditUser() {
     }, [userEdit]);
 
     useEffect(() => {
-        if(userId) {
-            checkUser();
-        }
-    }, [userId])
+        if(userId) { checkUser(); };
+    }, [userId]);
 
+    //Function to send the data once is validatd to the back-end.
     const editUser = async (data) => {
         if (data) {
             const payload = {
@@ -77,6 +80,7 @@ function EditUser() {
         };
     };
 
+    //Function to delete the user. It has a confirmation window that is necessary to accept to finally delete the element.
     const deleteUser = async () => {
         const confirmation = await confirm("Confirma para borrar el usuario");
 
@@ -87,6 +91,7 @@ function EditUser() {
         };
     };
 
+    //Function search for the selected item.
     const checkUser = async (e) => {
         if(e) { e.preventDefault(); };
 

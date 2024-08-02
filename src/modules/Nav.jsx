@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import Login from "./Login"
 import './Nav.css'
 
+//Module to generate the navigation for the webpage. This changes if for logged users as for the type of user that is logged.
 function Nav() {
   const { user, setUser } = useUserContext();
   const [token, setToken] = useState("");
@@ -25,7 +26,7 @@ function Nav() {
 
       getUserData();
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -48,7 +49,7 @@ function Nav() {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Nav

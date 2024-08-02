@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './EditPost.css'
 
+//Module to control the edition of post data. Uses form validation to check that none are empty. Populates the fields with the post to edit to make it easier for admin/mod.
+
 function EditPost() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -37,6 +39,7 @@ function EditPost() {
         "teoria"
     ];
 
+    //Function to populate the fields with the actual data on the element to edit.
     const setPostData = () => {
         setPostType(post.post_type);
         setContent(post.content);
@@ -47,6 +50,7 @@ function EditPost() {
         reset({ post_type: post.post_type, content: post.content, game_id: post.game_id, user_id: post.user_id, active: post.active });
     };
 
+    //Basic re-render on direct link access to populate the form with the item data.
     useEffect(() => {
         if (id) { setPostId(id); }
     }, []);
@@ -63,8 +67,9 @@ function EditPost() {
         if(postId) {
             checkPost();
         }
-    }, [postId])
+    }, [postId]);
 
+    //Function to send the data once is validated to the back-end.
     const editPost = async (data) => {
         if (data) {
             const payload = {
@@ -86,6 +91,7 @@ function EditPost() {
         };
     };
 
+    //Function to delete the post. It has a confirmation window that is necessary to accept to finally delete the element.
     const deletePost = async () => {
         const confirmation = await confirm("Confirma para borrar la entrada");
 
@@ -96,6 +102,7 @@ function EditPost() {
         };
     };
 
+    //Function search for the selected item.
     const checkPost = async (e) => {
         if(e) { e.preventDefault(); };
 

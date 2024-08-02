@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import './EditGame.css'
 
+//Module to control the edition of game data. Uses form validation to check that none are empty. Populates the fields with the game to edit to make it easier for admin/mod.
 function EditGame() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -59,6 +60,7 @@ function EditGame() {
         "casual"
     ];
 
+    //Function to populate the fields with the actual data on the element to edit.
     function setGameData() {
         const getFormattedDate = (queryDate) => {
             const date = new Date(queryDate);
@@ -89,26 +91,26 @@ function EditGame() {
         reset({ tittle: game.tittle, genre: game.genre, developer: game.developer, release: formatedData, user_id: game.userId, state: game.active })
     }
 
+    //Basic re-render on direct link access to populate the form with the item data.
     useEffect(() => {
-        if (id) {
-            setGameId(id);
-        }
-    }, [])
+        if (id) { setGameId(id); };
+    }, []);
 
     useEffect(() => {
         if (!localStorage.getItem("token") || (user.type !== "admin" && user.type !== "mod")) { navigate("/"); }
-    }, [user])
+    }, [user]);
 
     useEffect(() => {
         setGameData();
-    }, [game])
+    }, [game]);
 
     useEffect(() => {
         if(gameId) {
             checkGame();
         }
-    }, [gameId])
+    }, [gameId]);
 
+    //Function to send the data once is validated to the back-end.
     const editGame = async (data) => {
         if (data) {
             const payload = {
@@ -131,6 +133,8 @@ function EditGame() {
         }
     }
 
+    
+    //Function to delete the game. It has a confirmation window that is necessary to accept to finally delete the element.
     const deleteGame = async () => {
         const confirmation = await confirm("Confirma para borrar la entrada del juego");
 
@@ -141,6 +145,7 @@ function EditGame() {
         };
     };
 
+    //Function search for the selected item.
     const checkGame = async (e) => {
         if(e) { e.preventDefault(); };
 
