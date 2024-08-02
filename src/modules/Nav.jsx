@@ -18,7 +18,7 @@ function Nav() {
       const userId = jwtDecode(token).id;
 
       const getUserData = async () => {
-        const userResponse = await axios.get(`http://localhost:3000/api/users/${userId}/`);
+        const userResponse = await axios.get(`https://gamefeed-back.onrender.com/api/users/${userId}/`);
         const newUser = userResponse.data;
         setUser(newUser);
       };

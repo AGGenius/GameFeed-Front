@@ -17,8 +17,8 @@ const AddPost = () => {
     const [game, setGame] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    const getGameUrl = "http://localhost:3000/api/games/";
-    const addPostUrl = "http://localhost:3000/api/posts/create/";
+    const getGameUrl = "https://gamefeed-back.onrender.com/api/games/";
+    const addPostUrl = "https://gamefeed-back.onrender.com/api/posts/create/";
 
     const postTypes = [
         "opinion",

@@ -26,7 +26,7 @@ function EditUser() {
 
     const { user } = useUserContext();
     const navigate = useNavigate();
-    const editUserUrl = "http://localhost:3000/api/users/";
+    const editUserUrl = "https://gamefeed-back.onrender.com/api/users/";
 
     function setUserData() {
         setEmail(userEdit.email);
@@ -128,8 +128,7 @@ function EditUser() {
                         <input id="editUserType" type="text" {...register("type", { required: { value: true, message: "Se debe introducir el tipo." } })} value={type ? type : ""} onChange={(e) => setType(e.target.value)}></input>
                         {errors.type?.message && <p className="editUser--editFormError">{errors.type?.message}</p>}
                         <label htmlFor="editUserState">Estado</label>
-                        <input id="editUserState" type="checkbox" {...register("active", { required: { value: true, message: "Se debe introducir el estado." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        {errors.active?.message && <p className="editUser--editFormError">{errors.active?.message}</p>}
+                        <input id="editUserState" type="checkbox" {...register("active")} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
                         <button className="addGame--editFormButton" type="submit">Guardar cambios</button>
                     </form>
                     <button className="editGame--deleteButton" onClick={deleteUser}>Borrar usuario</button>

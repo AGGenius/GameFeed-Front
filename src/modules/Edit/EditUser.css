@@ -42,7 +42,8 @@
     justify-content: center;
     align-items: center;
 
-    border: 2px solid rgb(55, 49, 109);
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
     border-radius: 15px;
     color: rgb(87, 80, 116);
     font-size: 2rem;
@@ -61,6 +62,7 @@
     align-items: center;
 
     background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
     border-radius: 30px;
 
     margin-top: 1rem;
@@ -77,6 +79,10 @@
     align-items: center;
 }
 
+.editUser--searchForm input {
+    text-align: center;
+}
+
 .editUser--editFormWrap {
     width: 60%;
     height: 600px;
@@ -88,6 +94,7 @@
     align-items: center;
 
     background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
     border-radius: 30px;
 
     margin-top: 1rem;
@@ -105,14 +112,16 @@
     align-items: center;
 }
 
-.editUser--form label {
+.editUser--editForm label {
     color: rgb(46, 42, 63);
 }
 
-.editUser--form input, .addGame--form select  {
+.editUser--editForm input {
     width: 40%;
     max-width: 350px;
     min-width: 200px;
+
+        text-align: center;
 }
 
 .editUser--editFormError {

@@ -25,6 +25,7 @@
     align-items: center;
   
     background-color: rgba(221, 215, 250, 0.3);
+    border: 2px solid rgb(238, 242, 255);
     border-radius: 10px;
   }
   
@@ -65,6 +66,7 @@
   
     gap: .5rem;
     background-color: rgba(221, 215, 250, 0.3);
+    border: 2px solid rgb(238, 242, 255);
     border-radius: 10px;
   
     margin: 1rem 0 1rem 0;
@@ -90,6 +92,11 @@
     border: 2px solid rgb(238, 242, 255);
     border-radius: 5px;
   }
+
+  .games--pageButtonsWrap button:hover {
+    background-color: rgb(181, 186, 214);
+    border: 2px solid rgb(98, 101, 112);
+  }
   
   .games--pageButtonsWrap button:nth-child(2) {
     width: 45px;
@@ -105,6 +112,7 @@
     align-items: center;
   
     background-color: rgba(221, 215, 250, 0.3);
+    border: 2px solid rgb(238, 242, 255);
     border-radius: 10px;
   }
   
@@ -130,8 +138,14 @@
   
     border-radius: 15px;
     background-color: rgba(199, 208, 226, 0.8);
+    border: 2px solid rgb(238, 242, 255);
     box-shadow: 5px 8px 10px rgb(126, 135, 156);
-    margin-bottom: 1rem;
+
+    margin-bottom: 2rem;
+  }
+
+  .games--gameCard:hover {  
+    box-shadow: 5px 8px 10px rgb(84, 90, 104);
   }
   
   .games--gameCardData {

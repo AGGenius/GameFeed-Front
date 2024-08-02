@@ -20,8 +20,8 @@ function Posts() {
 
     const navigate = useNavigate();
     const { id } = useParams();
-    const postURL = "http://localhost:3000/api/posts/";
-    const getGameUrl = "http://localhost:3000/api/games/";
+    const postURL = "https://gamefeed-back.onrender.com/api/posts/";
+    const getGameUrl = "https://gamefeed-back.onrender.com/api/games/";
 
     const postTypes = [
         "",
@@ -40,7 +40,7 @@ function Posts() {
     //Igual
     const getLikes = async () => {
         try {
-            const likesUrl = `http://localhost:3000/api/likes/`;
+            const likesUrl = `https://gamefeed-back.onrender.com/api/likes/`;
             const response = await axios.get(likesUrl);
             const data = response.data;
             setLikes(data);
@@ -110,7 +110,7 @@ function Posts() {
 
         const user_id = user.id;
         const likes_id = e.target.value;
-        const likesUrl = `http://localhost:3000/api/likes/`;
+        const likesUrl = `https://gamefeed-back.onrender.com/api/likes/`;
 
         if (user_id && likes_id) {
             const payload = {
@@ -260,7 +260,7 @@ function Posts() {
                     <div className="posts--postCard" key={post.id}>
                         <div className="posts--postCardData">
                             <p className="posts--postCardText">{post.post_type}</p>
-                            <p className={["posts--postCardText", post.post_type === "spoiler" ? "hidden" : ""].join(' ')}>{post.content}</p>
+                            <p className={["posts--postCardText posts--multiline", post.post_type === "spoiler" ? "hidden" : ""].join(' ')}>{post.content}</p>
                             <p className="posts--postCardText">Creado el: {getFormattedDate(post.date)}</p>
                         </div>
                         <div className="posts--postCardButtonsWrap">

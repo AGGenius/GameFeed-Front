@@ -28,7 +28,7 @@ function EditGame() {
     const [active, setActive] = useState(false);
 
     const { user } = useUserContext();
-    const editGameUrl = "http://localhost:3000/api/games/";
+    const editGameUrl = "https://gamefeed-back.onrender.com/api/games/";
 
     const genres = [
         "accion",
@@ -74,7 +74,7 @@ function EditGame() {
             let day = date.getDate().toString();
             day = twoDigitsDate(day)
 
-            return month + '-' + day + '-' + year;
+            return year + '-' + month + '-' + day;
         };
 
         const formatedData = getFormattedDate(game.release);
@@ -183,14 +183,13 @@ function EditGame() {
                         <input id="editGameDeveloper" type="text" {...register("developer", { required: { value: true, message: "Se debe introducir el desarrollador." } })} value={developer ? developer : ""} onChange={(e) => setDeveloper(e.target.value)}></input>
                         {errors.developer?.message && <p className="editGame--editFormError">{errors.developer?.message}</p>}
                         <label htmlFor="editGameRelease">Fecha de salida</label>
-                        <input id="editGameRelease" type="text" {...register("release", { required: { value: true, message: "Se debe introducir el la fecha de salida con formato YYYY-MM-DD." } })} value={release ? release : ""} onChange={(e) => setRelease(e.target.value)}></input>
+                        <input id="editGameRelease" type="date" {...register("release", { required: { value: true, message: "Se debe introducir el la fecha de salida con formato YYYY-MM-DD." } })} value={release ? release : ""} onChange={(e) => setRelease(e.target.value)}></input>
                         {errors.release?.message && <p className="editGame--editFormError">{errors.release?.message}</p>}
                         <label htmlFor="editGameUserId">ID de usuario creador</label>
                         <input id="editGameUserId" type="text" {...register("user_id", { required: { value: true, message: "Se debe introducir el id del usuario original." } })} value={userId ? userId : ""} onChange={(e) => setUserId(e.target.value)}></input>
                         {errors.user_id?.message && <p className="editGame--editFormError">{errors.user_id?.message}</p>}
                         <label htmlFor="editGameActive">Estado</label>
-                        <input id="editGameActive" type="checkbox" {...register("state", { required: { value: true, message: "Se debe introducir el estado del juego." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        {errors.state?.message && <p className="editGame--editFormError">{errors.state?.message}</p>}
+                        <input id="editGameActive" type="checkbox" {...register("state")} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
                         <button className="addGame--editFormButton" type="submit">Guardar cambios</button>
                     </form>
                     <button className="editGame--deleteButton" onClick={deleteGame}>Borrar juego</button>

@@ -10,7 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     const [updateStatus, setUpadteStatus] = useState("");
-    const loginURL = "http://localhost:3000/api/users/login/"
+    const loginURL = "https://gamefeed-back.onrender.com/api/users/login/"
 
     const sendLogin = async (data) => {
         if (data) {
@@ -25,7 +25,7 @@ const Login = () => {
 
                 localStorage.setItem("token", userData.token);
 
-                const userResponse = await axios.get(`http://localhost:3000/api/users/${userData.userId}/`);
+                const userResponse = await axios.get(`https://gamefeed-back.onrender.com/api/users/${userData.userId}/`);
                 const newUser = userResponse.data;
                 setUser(newUser);
                 navigate("/");

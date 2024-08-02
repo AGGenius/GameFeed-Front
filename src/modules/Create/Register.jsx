@@ -19,7 +19,7 @@ const Register = () => {
     const [registerState, setRegisterState] = useState("");
 
     const navigate = useNavigate();
-    const registerURL = "http://localhost:3000/api/users/register/";
+    const registerURL = "https://gamefeed-back.onrender.com/api/users/register/";
 
     useEffect(() => {
         if (localStorage.getItem("token")) {

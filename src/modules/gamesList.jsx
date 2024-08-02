@@ -60,11 +60,11 @@ const GamesList = () => {
         "release"
     ];
 
-    const getGamesUrl = "http://localhost:3000/api/games/";
+    const getGamesUrl = "https://gamefeed-back.onrender.com/api/games/";
 
     const getLikes = async () => {
         try {
-            const likesUrl = `http://localhost:3000/api/likes/`;
+            const likesUrl = `https://gamefeed-back.onrender.com/api/likes/`;
             const response = await axios.get(likesUrl);
             const data = response.data;
             setLikes(data);
@@ -158,7 +158,7 @@ const GamesList = () => {
 
         const user_id = user.id;
         const likes_id = e.target.value;
-        const likesUrl = `http://localhost:3000/api/likes/`;
+        const likesUrl = `https://gamefeed-back.onrender.com/api/likes/`;
 
         if (user_id && likes_id) {
             const payload = {

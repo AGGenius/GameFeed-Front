@@ -27,7 +27,7 @@ function EditPost() {
 
     const { user } = useUserContext();
     const navigate = useNavigate();
-    const editPostUrl = "http://localhost:3000/api/posts/";
+    const editPostUrl = "https://gamefeed-back.onrender.com/api/posts/";
 
     const postTypes = [
         "opinion",
@@ -141,8 +141,7 @@ function EditPost() {
                         <input id="editPostUserId" type="text" {...register("user_id", { required: { value: true, message: "Se debe introducir el id del usuario." } })} value={userId ? userId : ""} onChange={(e) => setUserId(e.target.value)}></input>
                         {errors.user_id?.message && <p className="editPost--editFormError">{errors.user_id?.message}</p>}
                         <label htmlFor="editPostState">Estado</label>
-                        <input id="editPostState" type="checkbox" {...register("active", { required: { value: true, message: "Se debe introducir el estado." } })} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        {errors.active?.message && <p className="editPost--editFormError">{errors.active?.message}</p>}
+                        <input id="editPostState" type="checkbox" {...register("active")} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
                         <button className="editPost--editFormButton" type="submit">Guardar cambios</button>
                     </form>
                     <button className="editPost--deleteButton" onClick={deletePost}>Borrar post</button>

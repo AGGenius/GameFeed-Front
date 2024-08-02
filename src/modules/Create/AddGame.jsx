@@ -15,7 +15,7 @@ const AddGame = () => {
     const [createStatus, setCreateStatus] = useState("");
     const { user } = useUserContext();
     const navigate = useNavigate();
-    const addGameURL = "http://localhost:3000/api/games/create/";
+    const addGameURL = "https://gamefeed-back.onrender.com/api/games/create/";
 
     const genres = [
         "accion",
@@ -94,7 +94,7 @@ const AddGame = () => {
                 <input id="createGameDevelopa" type="text" {...register("developer", { required: { value: true, message: "Se debe introducir el desarrollador." } })}></input>
                 {errors.developer?.message && <p className="addGame--formError">{errors.developer?.message}</p>}
                 <label htmlFor="createGameRelease">Fecha de salida</label>
-                <input id="createGameRelease" type="text" defaultValue={"YYYY-MM-DD"} {...register("release", { required: { value: true, message: "Se debe introducir la fecha de salida," }})}></input>
+                <input id="createGameRelease" type="date" defaultValue={"YYYY-MM-DD"} {...register("release", { required: { value: true, message: "Se debe introducir la fecha de salida," }})}></input>
                 {errors.release?.message && <p className="addGame--formError">{errors.release?.message}</p>}
                 <button className="addGame--formButton" type="submit">Crear juego</button>
             </form>
