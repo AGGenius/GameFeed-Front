@@ -77,13 +77,6 @@ const GamesList = () => {
 
     const getGamesFiltered = async () => {
         try {
-            const payload = {
-                page,
-                genreFilter,
-                rowFilter,
-                orderFilter
-            };
-
             const complexUrl = getGamesUrl + `/filter?page=${page}&genreFilter=${genreFilter}&rowFilter=${rowFilter}&orderFilter=${orderFilter}`;
 
             const response = await axios.get(complexUrl);
