@@ -82,13 +82,15 @@
   margin-top: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .addPost {
         width: 100%;
     }
 
     .addPost--tittle {
         width: 90%;
+        
+        font-size: 1.5rem;
         
         margin-top: 2rem;
     }
@@ -98,9 +100,9 @@
     }
 
     .addPost--form textarea, .addPost--form select  {
-        width: 40%;
+        width: 60%;
         max-width: 450px;
-        min-width: 350px;
+        min-width: 200px;
     }
     
     .addPost--formButton {

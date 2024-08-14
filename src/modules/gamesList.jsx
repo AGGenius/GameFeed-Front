@@ -271,7 +271,7 @@ const GamesList = () => {
             <div className="games--searchTittleWrap">
                 <label htmlFor="searchByTittle">Buscar por titulo</label>
                 <input id="searchByTittle" value={searchTittle} onChange={(e) => setSearchTittle(e.target.value)}></input>
-                <button onClick={() => clearSearch()}>Borrar</button>
+                <button className="games--searchTittleErase" onClick={() => clearSearch()}>Borrar</button>
                 {searchState && <p>{searchState}</p>}
             </div>
             <div className="games--gameCardWrap">

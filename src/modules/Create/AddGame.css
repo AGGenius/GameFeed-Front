@@ -79,7 +79,7 @@
   margin-top: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .addGame {
         width: 100%;
     }
@@ -87,7 +87,13 @@
     .addGame--tittle {
         width: 90%;
         
+        font-size: 1.5rem;
+        
         margin-top: 2rem;
+    }
+
+    .addGame--info {
+        font-size: .8rem;
     }
 
     .addGame--form {
@@ -95,9 +101,9 @@
     }
 
     .addGame--form input, .addGame--form select  {
-        width: 40%;
+        width: 60%;
         max-width: 450px;
-        min-width: 350px;
+        min-width: 200px;
     }
     
     .addGame--formButton {

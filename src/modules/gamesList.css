@@ -16,6 +16,7 @@
 
 .games--filters {
   width: 80%;
+  min-width: 750px;
   height: 100px;
   gap: 1rem;
 
@@ -56,6 +57,7 @@
 
 .games--pageButtons {
   width: 15%;
+  min-width: 150px;
   height: 85px;
   gap: .5rem;
 
@@ -104,6 +106,7 @@
 
 .games--searchTittleWrap {
   width: 30%;
+  min-width: 500px;
   height: 55px;
   gap: 1rem;
 
@@ -114,6 +117,18 @@
   background-color: rgba(221, 215, 250, 0.3);
   border: 2px solid rgb(238, 242, 255);
   border-radius: 10px;
+}
+
+.games--searchTittleErase {
+  width: 100px;
+  height: 35px;
+
+  color: rgb(238, 242, 255);
+  font-size: 1.1rem;
+
+  background-color: rgb(154, 161, 202);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 5px;
 }
 
 .games--gameCardWrap {
@@ -129,6 +144,7 @@
 
 .games--gameCard {
   width: 35%;
+  min-width: 400px;
   height: 200px;
 
   display: flex;
@@ -194,13 +210,14 @@
   border-color: rgb(100, 101, 114);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .games {
     width: 100%;
   }
 
   .games--filters {
     height: 250px;
+    min-width: 100px;
     gap: 0.5rem;
   }
 
@@ -212,10 +229,12 @@
 
   .games--pageButtons {
     width: 40%;
+    min-width: 100px;
   }
 
   .games--searchTittleWrap {
     width: 80%;
+    min-width: 100px;
     height: 100px;
     gap: 0.5rem;
 
@@ -224,6 +243,7 @@
 
   .games--gameCard {
     width: 80%;
+    min-width: 100px;
     height: 200px;
   }
 
