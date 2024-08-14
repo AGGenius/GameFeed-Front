@@ -14,6 +14,13 @@
 .login--logedData button {
   width: 150px;
   height: 30px;
+
+  color: rgb(78, 91, 133);
+  font-size: 1.1rem;
+
+  background-color: rgb(191, 196, 224);
+  border: 2px solid rgb(38, 54, 105);
+  border-radius: 5px;
 }
 
 .login--formInputWrap {
@@ -71,7 +78,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .login--logForm {
     width: 100%;
     height: 80px;
@@ -92,8 +99,8 @@
 
   .login--logForm button,
   .login--logedData button {
-    width: 100px;
-    height: 20px;
+    width: 150px;
+    height: 30px;
   }
 
   .login--formInputWrap input {

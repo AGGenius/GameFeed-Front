@@ -29,9 +29,9 @@
     border-left: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .modPage {
         width: 100%;
-        gap: 2rem;
+        gap: 1rem;
     }
 }

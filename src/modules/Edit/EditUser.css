@@ -1,5 +1,6 @@
 .editUser {
     width: 60%;
+    min-width: 800px;
 
     display: flex;
     flex-direction: column;
@@ -35,6 +36,7 @@
 
 .editUser--tittle {
     width: 60%;
+    min-width: 650px;
     height: 75px;
 
     display: flex;
@@ -53,6 +55,7 @@
 
 .editUser--searchFormWrap {
     width: 60%;
+    min-width: 650px;
     height: 50px;
     gap: .5rem;
 
@@ -85,6 +88,7 @@
 
 .editUser--editFormWrap {
     width: 60%;
+    min-width: 650px;
     height: 600px;
     gap: .5rem;
 
@@ -144,17 +148,27 @@
     background-color: rgb(238, 162, 191);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .editUser {
         width: 100%;
+        min-width: 250px;
     }
 
     .editUser--tittle {
         width: 80%;
+        min-width: 200px;
+        
+        font-size: 1.5rem;
     }
 
     .editUser--searchFormWrap {
         width: 80%;
+        min-width: 200px;
+        height: 100px;
+    }
+
+    .editUser--searchForm {
+        flex-direction: column;
     }
 
     .editUser--searchFormButton, .editUser--editFormButton, .editUser--deleteButton {
@@ -164,14 +178,15 @@
 
     .editUser--editFormWrap {
         width: 90%;
+        min-width: 200px;
     }
 
     .editUser--editForm textarea,
     .editUser--editForm input,
     .editUser--editForm select {
-        width: 40%;
+        width: 60%;
         max-width: 450px;
-        min-width: 350px;
+        min-width: 200px;
     }
 
     .editUser--editFormButton, .editUser--deleteButton {

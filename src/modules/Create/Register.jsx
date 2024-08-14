@@ -160,13 +160,15 @@ const Register = () => {
         checkNickFormat();
         checkPasswords();
 
-        if (emailState.length === 0 && passwordState.length === 0 && repeatPasswordState.length === 0 && nameState.length === 0 && nickState.length === 0) {
+        if (emailState.length === 0 && passwordState.length === 0 && repeatPasswordState.length === 0 && nameState.length === 0 && nickState.length === 0
+            && email && password && name && nick) {
             const payload = {
                 email,
                 password,
                 name,
                 nick
             }
+            console.log(1)
 
             try {
                 const response = await axios.post(registerURL, payload);

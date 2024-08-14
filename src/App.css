@@ -45,3 +45,10 @@ body {
 a:hover {
   color: antiquewhite;
 }
+
+@media screen and (max-width: 1000px) {
+  #root {
+    font-size: 1rem;
+  }
+  
+}
