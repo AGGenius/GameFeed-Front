@@ -125,7 +125,7 @@ function EditPost() {
                 <form className="editPost--searchForm" onSubmit={checkPost}>
                     <label htmlFor="searchPost">ID del post</label>
                     <input id="searchPost" type="number" value={postId} onChange={(e) => setPostId(e.target.value)}></input>
-                    <button type="submit">Traer post</button>
+                    <button className="editPost--searchFormButton" type="submit">Traer post</button>
                 </form>
             </div>
             {post &&

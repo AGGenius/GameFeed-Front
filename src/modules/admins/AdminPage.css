@@ -16,16 +16,23 @@
     margin-bottom: .5rem;
 }
 
-.adminPage  a {
+.adminPage a {
     color: rgb(66, 57, 146);
     border-left: 3px solid gainsboro;
     padding-left: 1rem;
 }
 
-.adminPage  a:hover {
+.adminPage a:hover {
     color: rgb(217, 215, 236);
 }
 
-.adminPage  a:first-child {
+.adminPage a:first-child {
     border-left: none;
+}
+
+@media screen and (max-width: 600px) {
+    .adminPage {
+        width: 100%;
+        gap: 2rem;
+    }
 }

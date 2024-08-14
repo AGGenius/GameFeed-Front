@@ -14,7 +14,7 @@
     margin-bottom: 50px;
 }
 
-.editPost button {
+.editPost--searchFormButton, .editPost--editFormButton, .editPost--deleteButton {
     width: 150px;
     height: 35px;
   
@@ -26,12 +26,11 @@
     border-radius: 5px;
 }
 
-.editPost button:hover {
+.editPost--searchFormButton:hover, .editPost--editFormButton:hover, .editPost--deleteButton:hover {
     color: rgb(47, 55, 83);
     background-color: rgb(185, 192, 231);
     border: 2px solid rgb(65, 75, 110);
 }
-
 
 .editPost--tittle {
     width: 60%;
@@ -147,4 +146,44 @@
 
   font-size: 1.1rem;
   margin-top: 1.5rem;
+}
+
+.editPost--deleteButton {
+    background-color: rgb(238, 162, 191);
+}
+
+@media screen and (max-width: 600px) {
+    .editPost {
+        width: 100%;
+    }
+
+    .editPost--tittle {
+        width: 80%;
+    }
+
+    .editPost--searchFormWrap {
+        width: 80%;
+    }
+
+    .editPost--searchFormButton, .editPost--editFormButton, .editPost--deleteButton {
+        width: 125px;
+        height: 30px;
+    }
+
+    .editPost--editFormWrap {
+        width: 90%;
+    }
+
+    .editPost--editForm textarea,
+    .editPost--editForm input,
+    .editPost--editForm select {
+        width: 40%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+
+    .editPost--editFormButton, .editPost--deleteButton {
+        width: 200px;
+        height: 35px;
+    }
 }

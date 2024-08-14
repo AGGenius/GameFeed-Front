@@ -81,3 +81,30 @@
   font-size: 1.1rem;
   margin-top: 1.5rem;
 }
+
+@media screen and (max-width: 600px) {
+    .addPost {
+        width: 100%;
+    }
+
+    .addPost--tittle {
+        width: 90%;
+        
+        margin-top: 2rem;
+    }
+
+    .addPost--form {
+        width: 90%;
+    }
+
+    .addPost--form textarea, .addPost--form select  {
+        width: 40%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+    
+    .addPost--formButton {
+      width: 200px;
+      height: 40px;
+    }
+}

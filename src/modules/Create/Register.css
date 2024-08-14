@@ -88,3 +88,21 @@
   font-size: 1.1rem;
   margin-top: 1.5rem;
 }
+
+@media screen and (max-width: 600px) { 
+    .register {
+        width: 100%;
+    }
+
+    .register--tittle {
+        width: 90%;
+
+        margin-top: 2rem;
+    }
+
+    .register--form {
+        width: 90%;
+        height: 65%;
+        gap: .5rem;
+    }
+}

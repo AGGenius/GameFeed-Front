@@ -31,17 +31,16 @@ function Nav() {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-    console.log(token)
   }, [user]);
 
   const responsiveMenu = () => {
     return (
       <ul className="nav--colapsedMenuWrap">
-        {token && <li><Link to="/addGame">Añadir juego</Link></li>}
-        {token && <li><Link to="/profile">Perfil</Link></li>}
-        {user.type === "mod" && <li><Link to="/modPage" >Modo moderador</Link></li>}
-        {user.type === "admin" && <li><Link to="/adminPage" >Modo administrador</Link></li>}
-        {!token && <li><Link to="/register" >Registrarse</Link></li>}
+        {token && <li><Link to="/addGame" onClick={() => setColapseMenu(false)}>Añadir juego</Link></li>}
+        {token && <li><Link to="/profile" onClick={() => setColapseMenu(false)}>Perfil</Link></li>}
+        {user.type === "mod" && <li><Link to="/modPage" onClick={() => setColapseMenu(false)}>Modo moderador</Link></li>}
+        {user.type === "admin" && <li><Link to="/adminPage" onClick={() => setColapseMenu(false)}>Modo administrador</Link></li>}
+        {!token && <li><Link to="/register" onClick={() => setColapseMenu(false)}>Registrarse</Link></li>}
       </ul>
     )
   }
@@ -52,12 +51,16 @@ function Nav() {
       <div className={"nav--navWrap"}>
         <ul className={"nav--linkWrap"}>
           <li><Link to="/">Home</Link></li>
-          {token && <li><Link to="/addGame">Añadir juego</Link></li>}
-          {token && <li><Link to="/profile">Perfil</Link></li>}
-          {user.type === "mod" && <li><Link to="/modPage" >Modo moderador</Link></li>}
-          {user.type === "admin" && <li><Link to="/adminPage" >Modo administrador</Link></li>}
-          {!token && <li><Link to="/register" >Registrarse</Link></li>}
-          <li className="nav--colapsedMenuButton"><button onClick={() => { setColapseMenu(!colapseMenu) }}>M</button></li>
+          {token && <li><Link to="/addGame" onClick={() => setColapseMenu(false)}>Añadir juego</Link></li>}
+          {token && <li><Link to="/profile" onClick={() => setColapseMenu(false)}>Perfil</Link></li>}
+          {user.type === "mod" && <li><Link to="/modPage" onClick={() => setColapseMenu(false)}>Modo moderador</Link></li>}
+          {user.type === "admin" && <li><Link to="/adminPage" onClick={() => setColapseMenu(false)}>Modo administrador</Link></li>}
+          {!token && <li><Link to="/register" onClick={() => setColapseMenu(false)}>Registrarse</Link></li>}
+          <li className="nav--colapsedMenuButton"><button onClick={() => { setColapseMenu(!colapseMenu) }}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </button></li>
         </ul>
         <div className={"nav--logModule"}>
           <Login />

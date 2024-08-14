@@ -114,7 +114,7 @@ function EditUser() {
                 <form className="editUser--searchForm" onSubmit={checkUser}>
                     <label htmlFor="searchUser">ID del usuario</label>
                     <input id="searchUser" type="number"  onChange={(e) => setUserId(e.target.value)}></input>
-                    <button type="submit">Traer usuario</button>
+                    <button className="editUser--searchFormButton" type="submit">Traer usuario</button>
                 </form>
             </div>
             {userEdit &&
@@ -134,9 +134,9 @@ function EditUser() {
                         {errors.type?.message && <p className="editUser--editFormError">{errors.type?.message}</p>}
                         <label htmlFor="editUserState">Estado</label>
                         <input id="editUserState" type="checkbox" {...register("active")} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        <button className="addGame--editFormButton" type="submit">Guardar cambios</button>
+                        <button className="editUser--editFormButton" type="submit">Guardar cambios</button>
                     </form>
-                    <button className="editGame--deleteButton" onClick={deleteUser}>Borrar usuario</button>
+                    <button className="editUser--deleteButton" onClick={deleteUser}>Borrar usuario</button>
                 </div>
             }
             {updateStatus && <p>{updateStatus}</p>}

@@ -71,7 +71,7 @@ const GamesList = () => {
             const data = response.data;
             setLikes(data);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
@@ -83,7 +83,7 @@ const GamesList = () => {
             const newGames = response.data;
             setGames(newGames);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
@@ -104,7 +104,7 @@ const GamesList = () => {
                 getGamesFiltered();
             };
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
