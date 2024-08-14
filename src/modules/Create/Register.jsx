@@ -148,6 +148,7 @@ const Register = () => {
     //Function to send the form data to the back-end if all inputs are validated. Gives a custom response from the back-end on successful or unsuccessful events.
     const register = async (e) => {
         e.preventDefault();
+
         setEmailState([]);
         setPasswordState([]);
         setNameState([]);
@@ -167,9 +168,12 @@ const Register = () => {
                 nick
             }
 
-            const response = await axios.post(registerURL, payload);
-            const registerStatus = response.data.estado;
-            setRegisterState(registerStatus);
+            try {
+                const response = await axios.post(registerURL, payload);
+                const registerStatus = response.data.estado;
+                setRegisterState(registerStatus);
+            } catch (error) {
+            }
         }
     }
 

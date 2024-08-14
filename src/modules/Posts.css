@@ -1,231 +1,272 @@
 .posts {
-    width: 80%;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    background-color: rgba(199, 208, 226, 0.4);
-    border: 2px solid whitesmoke;
-    border-radius: 15px;
-  
-    margin-top: 1rem;
-    margin-bottom: 50px;
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(199, 208, 226, 0.4);
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+
+  margin-top: 1rem;
+  margin-bottom: 50px;
+}
+
+.posts--tittle {
+  color: rgb(86, 112, 146);
+  font-size: 3rem;
+
+  margin: 1rem;
+}
+
+
+.posts--createPost {
+  width: 300px;
+  height: 50px;
+
+  font-size: 1.2rem;
+  border-radius: 15px;
+  background-color: rgb(193, 199, 230);
+  border: 2px solid rgb(238, 242, 255);
+
+  margin: 1rem;
+}
+
+.posts--createPost:hover {
+  background-color: rgb(215, 219, 238);
+  border: 2px solid rgb(129, 136, 156);
+}
+
+.posts--filters {
+  width: 80%;
+  height: 100px;
+  gap: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(221, 215, 250, 0.3);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+}
+
+.posts--filtersTittle {
+  font-size: 1.5rem;
+}
+
+.posts--filtersWrap {
+  width: 100%;
+  height: auto;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts--filtersSelectors label:last-of-type {
+  padding-left: 1rem;
+}
+
+.posts--pageButtons {
+  width: 15%;
+  height: 85px;
+  gap: .5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: .5rem;
+  background-color: rgba(221, 215, 250, 0.3);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+  margin: 1rem 0 1rem 0;
+}
+
+.posts--pageButtonsWrap {
+  width: 100%;
+  gap: .5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts--pageButtonsWrap button {
+  width: 25px;
+  height: 35px;
+
+  color: rgb(238, 242, 255);
+  font-size: 1.1rem;
+
+  background-color: rgb(154, 161, 202);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 5px;
+}
+
+.posts--pageButtonsWrap button:hover {
+  background-color: rgb(181, 186, 214);
+  border: 2px solid rgb(98, 101, 112);
+}
+
+.posts--pageButtonsWrap button:nth-child(2) {
+  width: 45px;
+}
+
+.posts--postCardWrap {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 1rem;
+}
+
+.posts--postCard {
+  width: 45%;
+  height: 275px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+  background-color: rgba(199, 208, 226, 0.8);
+  border: 2px solid rgb(238, 242, 255);
+  box-shadow: 5px 8px 10px rgb(126, 135, 156);
+
+  margin-bottom: 2rem;
+}
+
+.posts--postCard:hover {
+  box-shadow: 5px 8px 10px rgb(84, 90, 104);
+}
+
+.posts--postCardData {
+  width: 80%;
+  height: 70%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-top: .5rem;
+}
+
+.posts--postCardText {
+  color: rgb(82, 80, 97);
+  font-weight: normal;
+}
+
+.posts--multiline {
+  width: 100%;
+  height: 125px;
+
+  text-align: start;
+  word-wrap: break-word;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  border: 2px solid whitesmoke;
+  padding: 5px;
+}
+
+.posts--postCardText.hidden {
+  color: rgba(199, 208, 226, 0.8);
+}
+
+.posts--postCardText.hidden:hover {
+  color: inherit;
+}
+
+.posts--postCardText:first-child {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.posts--postCardText:last-child {
+  font-size: .9rem;
+}
+
+.posts--postCardData span {
+  color: rgb(88, 86, 105);
+}
+
+.posts--postCardButtonsWrap {
+  width: 60%;
+  height: 20%;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: .5rem;
+}
+
+.posts--gameCardButton {
+  width: 100px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+}
+
+.posts--gameCardButton:hover {
+  background-color: rgb(247, 247, 255);
+  border-color: rgb(100, 101, 114);
+}
+
+@media screen and (max-width: 600px) {
+  .posts {
+    width: 100%;
   }
-  
-  .posts--tittle {
-    color: rgb(86, 112, 146);
-    font-size: 3rem;
-  
-    margin: 1rem;
-  }
-  
-  
-  .posts--createPost {
-    width: 300px;
-    height: 50px;
-  
-    font-size: 1.2rem;
-    border-radius: 15px;
-    background-color: rgb(193, 199, 230);
-    border: 2px solid rgb(238, 242, 255);
-  
-    margin: 1rem;
-  }
-  
-  .posts--createPost:hover {
-    background-color: rgb(215, 219, 238);
-    border: 2px solid rgb(129, 136, 156);
-  }
-  
+
   .posts--filters {
     width: 80%;
-    height: 100px;
-    gap: 1rem;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    background-color: rgba(221, 215, 250, 0.3);
-    border: 2px solid rgb(238, 242, 255);
-    border-radius: 10px;
+    height: 250px;
+    gap: 0.5rem;
   }
-  
-  .posts--filtersTittle {
-    font-size: 1.5rem;
-  }
-  
+
   .posts--filtersWrap {
-    width: 100%;
-    height: auto;
-    gap: 1rem;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 0.5rem;
+
+    flex-direction: column;
   }
-  
-  .posts--filtersSelectors label:last-of-type {
-    padding-left: 1rem;
-  }
-  
+
   .posts--pageButtons {
-    width: 15%;
-    height: 85px;
-    gap: .5rem;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    gap: .5rem;
-    background-color: rgba(221, 215, 250, 0.3);
-    border: 2px solid rgb(238, 242, 255);
-    border-radius: 10px;
-  
-    margin: 1rem 0 1rem 0;
-  }
-  
-  .posts--pageButtonsWrap {
-    width: 100%;
-    gap: .5rem;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .posts--pageButtonsWrap button {
-    width: 25px;
-    height: 35px;
-  
-    color: rgb(238, 242, 255);
-    font-size: 1.1rem;
-  
-    background-color: rgb(154, 161, 202);
-    border: 2px solid rgb(238, 242, 255);
-    border-radius: 5px;
+    width: 40%;
   }
 
-  .posts--pageButtonsWrap button:hover {
-    background-color: rgb(181, 186, 214);
-    border: 2px solid rgb(98, 101, 112);
-  }
-  
-  .posts--pageButtonsWrap button:nth-child(2) {
-    width: 45px;
-  }
-  
-  .posts--postCardWrap {
-    width: 100%;
-  
-    display: flex;
+  .posts--searchTittleWrap {
+    width: 80%;
+    height: 100px;
+    gap: 0.5rem;
+
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    margin-top: 1rem;
   }
-  
+
   .posts--postCard {
-    width: 45%;
-    height: 275px;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    border-radius: 15px;
-    background-color: rgba(199, 208, 226, 0.8);
-    border: 2px solid rgb(238, 242, 255);
-    box-shadow: 5px 8px 10px rgb(126, 135, 156);
-
-    margin-bottom: 2rem;
-  }
-
-  .posts--postCard:hover {  
-    box-shadow: 5px 8px 10px rgb(84, 90, 104);
+    width: 80%;
+    height: 250px;
   }
 
   .posts--postCardData {
-    width: 80%;
+    width: 90%;
     height: 70%;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-  
-    margin-top: .5rem;
+    gap: .5rem;
   }
-  
-  .posts--postCardText {
-    color: rgb(82, 80, 97);
-    font-weight: normal;
-  }
-
-  .posts--multiline {
-    width: 100%;
-    height: 125px;
-
-    text-align: start;
-    word-wrap: break-word;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    border: 2px solid whitesmoke;
-    padding: 5px;
-  }
-  
-  .posts--postCardText.hidden {
-    color: rgba(199, 208, 226, 0.8);
-  }
-  
-  .posts--postCardText.hidden:hover {
-    color: inherit;
-  }
-  
-  .posts--postCardText:first-child {
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-  
-  .posts--postCardText:last-child {
-    font-size: .9rem;
-  }
-  
-  .posts--postCardData span {
-    color: rgb(88, 86, 105);
-  }
-  
-  .posts--postCardButtonsWrap {
-    width: 60%;
-    height: 20%;
-    gap: 1rem;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    margin-top: .5rem;
-  }
-  
-  .posts--gameCardButton {
-    width: 100px;
-    height: 35px;
-  
-    background-color: rgb(211, 214, 243);
-    border: 2px solid rgb(238, 242, 255);
-    border-radius: 10px;
-  }
-  
-  .posts--gameCardButton:hover {
-    background-color: rgb(247, 247, 255);
-    border-color: rgb(100, 101, 114);
-  }
+}

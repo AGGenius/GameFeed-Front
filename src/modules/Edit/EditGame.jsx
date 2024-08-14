@@ -195,7 +195,7 @@ function EditGame() {
                         {errors.user_id?.message && <p className="editGame--editFormError">{errors.user_id?.message}</p>}
                         <label htmlFor="editGameActive">Estado</label>
                         <input id="editGameActive" type="checkbox" {...register("state")} value={active ? active : false} checked={active ? active : false} onChange={(e) => setActive(e.target.checked)}></input>
-                        <button className="addGame--editFormButton" type="submit">Guardar cambios</button>
+                        <button className="editGame--editFormButton" type="submit">Guardar cambios</button>
                     </form>
                     <button className="editGame--deleteButton" onClick={deleteGame}>Borrar juego</button>
                 </div>

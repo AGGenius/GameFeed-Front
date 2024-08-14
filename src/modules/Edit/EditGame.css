@@ -9,29 +9,28 @@
     background-color: rgba(217, 237, 250, 0.3);
     border: 2px solid whitesmoke;
     border-radius: 15px;
-    
+
     margin-top: .5rem;
     margin-bottom: 50px;
 }
 
-.editGame button {
+.editGame--searchFormButton, .editGame--editFormButton, .editGame--deleteButton {
     width: 150px;
     height: 35px;
-  
+
     color: rgb(238, 242, 255);
     font-size: 1.1rem;
-  
+
     background-color: rgb(150, 158, 223);
     border: 2px solid rgb(77, 89, 131);
     border-radius: 5px;
 }
 
-.editGame button:hover {
+.editGame--searchFormButton:hover, .editGame--editFormButton:hover, .editGame--deleteButton:hover {
     color: rgb(47, 55, 83);
     background-color: rgb(185, 192, 231);
     border: 2px solid rgb(65, 75, 110);
 }
-
 
 .editGame--tittle {
     width: 60%;
@@ -47,7 +46,7 @@
     border-radius: 15px;
     color: rgb(87, 80, 116);
     font-size: 2rem;
-    
+
     margin-top: 1rem;
 }
 
@@ -116,7 +115,8 @@
     color: rgb(46, 42, 63);
 }
 
-.editGame--editForm input, .editGame--editForm select  {
+.editGame--editForm input,
+.editGame--editForm select {
     width: 40%;
     max-width: 350px;
     min-width: 200px;
@@ -128,14 +128,41 @@
     font-size: .9rem;
 }
 
-.editGame--editFormButton {
-  width: 150px;
-  height: 35px;
+.editGame--deleteButton {
+    background-color: rgb(238, 162, 191);
+}
 
-  background-color: rgb(211, 214, 243);
-  border: 2px solid rgb(238, 242, 255);
-  border-radius: 10px;
+@media screen and (max-width: 600px) {
+    .editGame {
+        width: 100%;
+    }
 
-  font-size: 1.1rem;
-  margin-top: 1.5rem;
+    .editGame--tittle {
+        width: 80%;
+    }
+
+    .editGame--searchFormWrap {
+        width: 80%;
+    }
+
+    .editGame--searchFormButton, .editGame--editFormButton, .editGame--deleteButton {
+        width: 125px;
+        height: 30px;
+    }
+
+    .editGame--editFormWrap {
+        width: 90%;
+    }
+
+    .editGame--editForm input,
+    .editGame--editForm select {
+        width: 40%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+
+    .editGame--editFormButton, .editGame--deleteButton {
+        width: 200px;
+        height: 35px;
+    }
 }

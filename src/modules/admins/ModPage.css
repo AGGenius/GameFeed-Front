@@ -15,16 +15,23 @@
     margin: .5rem;
 }
 
-.modPage  a {
+.modPage a {
     color: rgb(66, 57, 146);
     border-left: 3px solid gainsboro;
     padding-left: 1rem;
 }
 
-.modPage  a:hover {
+.modPage a:hover {
     color: rgb(217, 215, 236);
 }
 
-.modPage  a:first-child {
+.modPage a:first-child {
     border-left: none;
+}
+
+@media screen and (max-width: 600px) {
+    .modPage {
+        width: 100%;
+        gap: 2rem;
+    }
 }

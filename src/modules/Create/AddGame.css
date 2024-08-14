@@ -78,3 +78,30 @@
   font-size: 1.1rem;
   margin-top: 1.5rem;
 }
+
+@media screen and (max-width: 600px) {
+    .addGame {
+        width: 100%;
+    }
+
+    .addGame--tittle {
+        width: 90%;
+        
+        margin-top: 2rem;
+    }
+
+    .addGame--form {
+        width: 90%;
+    }
+
+    .addGame--form input, .addGame--form select  {
+        width: 40%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+    
+    .addGame--formButton {
+      width: 200px;
+      height: 40px;
+    }
+}

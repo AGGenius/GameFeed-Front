@@ -11,9 +11,9 @@ const Login = () => {
     const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     const [updateStatus, setUpadteStatus] = useState("");
-    const loginURL = "https://gamefeed-back.onrender.com/api/users/login/"
+    const loginURL = "https://gamefeed-back.onrender.com/api/users/login"
 
-    const sendLogin = async (data) => {
+    const sendLogin = async (data) => {4
         if (data) {
             const payload = {
                 email: data.email,
@@ -21,7 +21,7 @@ const Login = () => {
             };
 
             try {
-                const response = await axios.get(loginURL, payload);
+                const response = await axios.post(loginURL, payload);
                 const userData = response.data;
 
                 localStorage.setItem("token", userData.token);

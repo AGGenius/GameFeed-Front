@@ -14,7 +14,7 @@
     margin-bottom: 50px;
 }
 
-.editUser button {
+.editUser--searchFormButton, .editUser--editFormButton, .editUser--deleteButton {
     width: 150px;
     height: 35px;
   
@@ -26,7 +26,7 @@
     border-radius: 5px;
 }
 
-.editUser button:hover {
+.editUser--searchFormButton:hover, .editUser--editFormButton:hover, .editUser--deleteButton:hover {
     color: rgb(47, 55, 83);
     background-color: rgb(185, 192, 231);
     border: 2px solid rgb(65, 75, 110);
@@ -138,4 +138,44 @@
 
   font-size: 1.1rem;
   margin-top: 1.5rem;
+}
+
+.editUser--deleteButton {
+    background-color: rgb(238, 162, 191);
+}
+
+@media screen and (max-width: 600px) {
+    .editUser {
+        width: 100%;
+    }
+
+    .editUser--tittle {
+        width: 80%;
+    }
+
+    .editUser--searchFormWrap {
+        width: 80%;
+    }
+
+    .editUser--searchFormButton, .editUser--editFormButton, .editUser--deleteButton {
+        width: 125px;
+        height: 30px;
+    }
+
+    .editUser--editFormWrap {
+        width: 90%;
+    }
+
+    .editUser--editForm textarea,
+    .editUser--editForm input,
+    .editUser--editForm select {
+        width: 40%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+
+    .editUser--editFormButton, .editUser--deleteButton {
+        width: 200px;
+        height: 35px;
+    }
 }
