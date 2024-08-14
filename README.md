@@ -53,7 +53,7 @@ El rol de administrador puede editar también los usuarios, para concederles acc
 ## Future
 
 Mi intención es seguir mejorando esta web para añadir más funcionalidades:
-- Control responsive de los elementos al usuario.
+- Control responsive de la web.(Completado el 14/08/2024)
 - Ver los post y juegos a los que el usuario da Like en su perfil.
 - Modificar los datos del usuario por parte del propio usuario en su perfil (Nombre, Nick, Contraseña, Email) así como desactivar temporalmente la cuenta o borrarla.
 - Asignar varios géneros a un juego.

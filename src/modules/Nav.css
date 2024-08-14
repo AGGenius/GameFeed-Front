@@ -96,6 +96,10 @@
     height: 175px;
   }
 
+  .nav--webTittle {
+    font-size: 3.5rem;
+  }
+
   .nav--linkWrap {
     gap: 1rem;
 

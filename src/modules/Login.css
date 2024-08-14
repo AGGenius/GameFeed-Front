@@ -1,96 +1,105 @@
 .login--logForm {
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 2rem;
+}
+
+.login--logForm button,
+.login--logedData button {
+  width: 150px;
+  height: 30px;
+}
+
+.login--formInputWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login--formInputWrap p {
+  font-size: .8rem;
+}
+
+.login--registerLink {
+  width: 15%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login--loged {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login--logedData {
+  width: 100%;
+  height: 50%;
+  gap: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 2rem;
+}
+
+.login--logedData p:first-child {
+  color: rgb(219, 213, 245);
+}
+
+.login--linksWrap {
+  width: 100%;
+  height: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .login--logForm {
     width: 100%;
-    height: 100%;
-    gap: 1rem;
-  
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  
-    margin-right: 2rem;
-  }
-  
-  .login--logForm button, .login--logedData button {
-    width: 150px;
-    height: 30px;
-  }
-  
-  .login--formInputWrap {
-    display: flex;
+    height: 80px;
+    gap: .2rem;
+
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
-  
-  .login--formInputWrap p{
-    font-size: .8rem;
-  }
-  
-  .login--registerLink {
-    width: 15%;
-    height: 100%;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .login--loged {
-    width: 100%;
-    height: 100%;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+
   .login--logedData {
     width: 100%;
-    height: 50%;
-    gap: 1rem;
-  
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  
-    margin-right: 2rem;
-  }
-  
-  .login--logedData p:first-child {
-    color: rgb(219, 213, 245);
-  }
-  
-  .login--linksWrap {
-    width: 100%;
-    height: 50%;
-  
-    display: flex;
+    height: 80px;
+    gap: .2rem;
+
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 
-  @media screen and (max-width: 600px) {
-    .login--logForm {
-      width: 100%;
-      height: 80px;
-      gap: .2rem;
-
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .login--logedData {
-      width: 100%;
-      height: 80px;
-      gap: .2rem;
-
-      flex-direction: column;
-      justify-content: center;
-    }
-    
-    .login--logForm button, .login--logedData button {
-      width: 100px;
-      height: 20px;
-    }
+  .login--logForm button,
+  .login--logedData button {
+    width: 100px;
+    height: 20px;
   }
+
+  .login--formInputWrap input {
+    width: 100%;
+    max-width: 150px;
+    min-width: 100px;
+    height: 20px;
+  }
+}
