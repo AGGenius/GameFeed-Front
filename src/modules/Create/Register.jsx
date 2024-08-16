@@ -11,6 +11,8 @@ const Register = () => {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [name, setName] = useState("");
     const [nick, setNick] = useState("");
+    const [passwordType, setPassworodType] = useState("password");
+    const [repeatPasswordType, setRepeatPassworodType] = useState("password");
     //Fields State
     const [emailState, setEmailState] = useState("");
     const [passwordState, setPasswordState] = useState([]);
@@ -179,6 +181,30 @@ const Register = () => {
         }
     }
 
+    const managePasswordType = () => {
+        let newType = "";
+
+        if (passwordType === "password") {
+            newType = "text";
+            setPassworodType(newType);
+        } else {
+            newType = "password";
+            setPassworodType(newType);
+        }
+    }
+
+    const manageRepeatPasswordType = () => {
+        let newType = "";
+
+        if (repeatPasswordType === "password") {
+            newType = "text";
+            setRepeatPassworodType(newType);
+        } else {
+            newType = "password";
+            setRepeatPassworodType(newType);
+        }
+    }
+
     return (
         <div className="register">
             <h2 className="register--tittle">Formulario de registro</h2>
@@ -195,7 +221,12 @@ const Register = () => {
                         </ul>}
                     <div className="register--formPair">
                         <label htmlFor="newuserPass">Contraseña</label>
-                        <input id="newuserPass" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        <div className="register--passwordWrap">
+                            <input id="newuserPass" type={passwordType} value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            <span className="register--eyeWrap">
+                                <i className={passwordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => managePasswordType()} />
+                            </span>
+                        </div>
                     </div>
                     {passwordState &&
                         <ul>
@@ -203,7 +234,12 @@ const Register = () => {
                         </ul>}
                     <div className="register--formPair">
                         <label htmlFor="repeatNewUserPass">Repite la contraseña</label>
-                        <input id="repeatNewUserPass" type="password" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
+                        <div className="register--passwordWrap">
+                            <input id="repeatNewUserPass" type={repeatPasswordType} value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
+                            <span className="register--eyeWrap">
+                                <i className={repeatPasswordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => manageRepeatPasswordType()} />
+                            </span>
+                        </div>
                     </div>
                     {repeatPasswordState && <p className="register--formError">{repeatPasswordState}</p>}
                     <div className="register--formPair">
