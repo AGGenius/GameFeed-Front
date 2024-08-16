@@ -11,9 +11,11 @@ const Login = () => {
     const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     const [updateStatus, setUpadteStatus] = useState("");
+    const [passwordType, setPassworodType] = useState("password");
     const loginURL = "https://gamefeed-back.onrender.com/api/users/login"
 
-    const sendLogin = async (data) => {4
+    const sendLogin = async (data) => {
+        4
         if (data) {
             const payload = {
                 email: data.email,
@@ -42,13 +44,30 @@ const Login = () => {
         navigate("/");
     };
 
+    const managePasswordType = () => {
+        let newType = "";
+
+        if (passwordType === "password") {
+            newType = "text";
+            setPassworodType(newType);
+        } else {
+            newType = "password";
+            setPassworodType(newType);
+        }
+    }
+
     const logPage = (
         <>
             <form className="login--logForm" onSubmit={handleSubmit((data) => sendLogin(data))}>
                 <div className="login--formInputWrap">
                     <input {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} id="userEmail" type="text" placeholder={"email"}></input>
                     {errors.email?.message && <p>{errors.email.message}</p>}
-                    <input {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type="password" placeholder={"contraseña"}></input>
+                    <div className="login--passwordWrap">
+                        <input {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type={passwordType} placeholder={"contraseña"}></input>
+                        <span className="login--eyeWrap">
+                            <i className={passwordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}  onClick={() => managePasswordType()} />
+                        </span>
+                    </div>
                     {errors.password?.message && <p>{errors.password.message}</p>}
                 </div>
                 <button type="submit">Iniciar sesion</button>
