@@ -33,7 +33,11 @@ function Nav() {
     setToken(localStorage.getItem("token"));
   }, [user]);
 
-  const responsiveMenu = () => {
+  const handleScroll = () => {
+    console.log(1);
+  }
+
+  const responsiveMenu = (e) => {
     return (
       <ul className="nav--colapsedMenuWrap">
         {token && <li><Link to="/addGame" onClick={() => setColapseMenu(false)}>Añadir juego</Link></li>}
@@ -46,7 +50,7 @@ function Nav() {
   }
 
   return (
-    <nav className={"nav"}>
+    <nav className={"nav"} onScroll={() => handleScroll()}>
       <h1 className={"nav--webTittle"}>Gamer Rest</h1>
       <div className={"nav--navWrap"}>
         <ul className={"nav--linkWrap"}>

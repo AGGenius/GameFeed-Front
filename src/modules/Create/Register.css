@@ -65,6 +65,28 @@
     align-items: center;
 }
 
+.register--passwordWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register--eyeWrap {
+    position: relative;
+    right: 15px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fa-eye, .fa-eye-slash {
+    position: absolute;
+  
+    font-size: 1rem;
+    color: #29263d;
+  }
+
 .register--form label {
     color: rgb(46, 42, 63);
 }
