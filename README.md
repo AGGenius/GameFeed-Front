@@ -10,7 +10,7 @@ El objetivo ha sido crear una web en la que los usuarios puedan crear entradas c
   - [Valoración de contenido](#valoración_de_contenido)
   - [Base de Datos](#base_de_datos)
   - [Back](#back)
-  - [Future](#future)
+  - [Mejoras](#mejoras)
 
 ## Funcionamiento
 
@@ -50,7 +50,7 @@ El rol de administrador puede editar también los usuarios, para concederles acc
 
 - Todas las peticiones se manejan con solicitudes del front end al back end, que actuara de forma correspondiente a las necesidades de la petición, accediendo este a la base de datos si es el caso.
 
-## Future
+## Mejoras
 
 Mi intención es seguir mejorando esta web para añadir más funcionalidades:
 - Control responsive de la web.(Completado el 14/08/2024)
