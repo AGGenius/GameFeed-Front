@@ -1,6 +1,5 @@
 .profile {
   width: 60%;
-  height: 50%;
   gap: 2rem;
 
   display: flex;
@@ -14,6 +13,23 @@
   box-shadow: 5px 5px 10px rgb(137, 133, 153);
 
   margin-top: 5rem;
+  margin-bottom: 50px;
+  padding: 2rem;
+}
+
+.profile--userData {
+  width: 60%;
+  height: 200px;
+  gap: 1rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(238, 237, 253, 0.8);
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
 }
 
 .profile--text {
@@ -29,8 +45,125 @@
   font-size: 2rem;
 }
 
+.profile--userStats {
+  width: 60%;
+  height: 200px;
+  gap: 1rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(211, 224, 243, 0.8);
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+}
+
+.profile--userGames {
+  width: 60%;
+  height: 200px;
+  gap: 1.5rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+
+  background-color: rgba(191, 212, 243, 0.8);
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+
+  padding: 2rem 0;
+}
+
+.profile--gameCard {
+  width: 100%;
+  gap: .5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile--userPosts {
+  width: 60%;
+  height: 200px;
+  gap: 1.5rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+
+  background-color: rgba(173, 191, 229, 0.8);
+  border: 2px solid whitesmoke;
+  border-radius: 15px; 
+  
+  padding: 2rem 0;
+}
+
+.profile--postCard {
+  width: 100%;
+  gap: .5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile--removeLikeButton {
+  width: 100px;
+  height: 25px;
+
+  background-color: rgb(213, 242, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+}
+
 @media screen and (max-width: 1000px) {
   .profile {
     width: 100%;
+  }
+
+  .profile--userData {
+    width: 90%;
+  }
+
+  .profile--userStats {
+    width: 90%;
+  }
+  
+  .profile--userGames {
+    width: 90%;
+
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding: .5rem;
+  }
+
+  .profile--gameCard {
+    width: 100%;
+    gap: .5rem;
+    
+    flex-direction: column;
+  }
+
+  .profile--userPosts {
+    width: 90%;
+
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding: .5rem;
+  }
+
+  .profile--postCard {
+    width: 100%;
+    gap: .5rem;
+    
+    flex-direction: column;
   }
 }
