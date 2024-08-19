@@ -106,15 +106,13 @@ const Profile = () => {
             actualLike = likes.find((like) => like.post_id === element.id);
         }
 
-        if (actualLike.id === userLikes.likes_id) {
-            console.log("hola")
-        }
-
-        userLikes.forEach(like => {
-            if (actualLike.id === like.likes_id && like.user_id === user.id) {
-                button = <button className="profile--removeLikeButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Remove Like</button>;
-            }
-        })
+        if (actualLike) {
+            userLikes.forEach(like => {
+                if (actualLike.id === like.likes_id && like.user_id === user.id) {
+                    button = <button className="profile--removeLikeButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Remove Like</button>;
+                }
+            });
+        };
 
         if (token) {
             return (
