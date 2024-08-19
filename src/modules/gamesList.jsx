@@ -275,7 +275,7 @@ const GamesList = () => {
                 {searchState && <p>{searchState}</p>}
             </div>
             <div className="games--gameCardWrap">
-                {games ? games.map((game) =>
+                {games.length > 0 ? games.map((game) =>
                 (
                     <div className="games--gameCard" key={game.id}>
                         <div className="games--gameCardData">
@@ -291,7 +291,7 @@ const GamesList = () => {
                         </div>
                     </div>
                 ))
-                    : <p>Cargando datos</p>
+                    : <p>Cargando datos...</p>
                 }
                 {games.length <= 4 && <p>Fin de las entradas de juegos</p>}
             </div>
