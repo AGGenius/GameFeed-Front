@@ -58,6 +58,7 @@ Mi intención es seguir mejorando esta web para añadir más funcionalidades:
 - Ver estadisticas de post, juegos, y likes en el perfil. (Completado el 19/08/2024)
 - Ver los post y juegos que el usuario crea en su perfil. (Completado el 19/08/2024)
 - Poder quitar el like dado en la información de juegos/posts en el perfil. (Completado el 19/08/2024)
+- Pie de pagina con enlaces a "sobre mi" y información de contacto. (Completado el 21/08/2024)
 - Modificar los datos del usuario por parte del propio usuario en su perfil (Nombre, Nick, Contraseña, Email) así como desactivar temporalmente la cuenta o borrarla.
 - Asignar varios géneros a un juego.
 - Asignar plataformas a un juego.
