@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"
-import { useUserContext } from "../context/useUserContext";
+import { useUserContext } from "../../context/useUserContext";
 import { jwtDecode } from "jwt-decode";
 import Login from "./Login"
 import './Nav.css'

@@ -1,0 +1,31 @@
+.footer {
+    width: 80%;
+    min-height: 75px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: auto;
+
+    background-color: rgb(116, 131, 199);
+    border: 2px solid whitesmoke;
+    border-bottom: 0;
+    border-radius: 15px 15px 0 0;
+}
+
+.footer--nav {
+    width: 100%;
+  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer--navLink {
+    color: rgb(199, 213, 253);
+}
+
+@media screen and (max-width: 1200px) { 
+
+}
