@@ -1,0 +1,145 @@
+.register {
+    width: 60%;
+    min-width: 600px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: rgba(217, 237, 250, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.register--tittle {
+    width: 60%;
+    height: 75px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: rgb(87, 80, 116);
+    font-size: 2rem;
+    
+    margin-top: 4rem;
+}
+
+.register--info {
+    margin-top: 1rem;
+}
+
+.register--form {
+    width: 60%;
+    min-width: 450px;
+    height: 65%;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+.register--formPair {
+    width: 100%;
+    gap: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register--passwordWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register--eyeWrap {
+    position: relative;
+    right: 15px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fa-eye, .fa-eye-slash {
+    position: absolute;
+  
+    font-size: 1rem;
+    color: #29263d;
+  }
+
+.register--form label {
+    color: rgb(46, 42, 63);
+}
+
+.register--form input, .register--form select  {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+}
+
+.register--formError {
+    font-size: .8rem;
+    list-style-type: none;
+}
+
+.register--formButton {
+  width: 150px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 800px) { 
+    .register {
+        width: 100%;
+        min-width: 250px;
+    }
+
+    .register--tittle {
+        width: 90%;
+
+        margin-top: 2rem;
+    }
+
+    .register--info {
+        font-size: .8rem;
+    }
+
+    .register--form {
+        width: 90%;
+        min-width: 200px;
+        height: 100%;
+        gap: .5rem;
+
+        padding: 1rem 0;
+    }
+
+    .register--formPair {
+        flex-direction: column;
+    }
+}

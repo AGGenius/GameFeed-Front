@@ -1,0 +1,196 @@
+.editUser {
+    width: 60%;
+    min-width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: rgba(217, 237, 250, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    
+    margin-top: .5rem;
+    margin-bottom: 50px;
+}
+
+.editUser--searchFormButton, .editUser--editFormButton, .editUser--deleteButton {
+    width: 150px;
+    height: 35px;
+  
+    color: rgb(238, 242, 255);
+    font-size: 1.1rem;
+  
+    background-color: rgb(150, 158, 223);
+    border: 2px solid rgb(77, 89, 131);
+    border-radius: 5px;
+}
+
+.editUser--searchFormButton:hover, .editUser--editFormButton:hover, .editUser--deleteButton:hover {
+    color: rgb(47, 55, 83);
+    background-color: rgb(185, 192, 231);
+    border: 2px solid rgb(65, 75, 110);
+}
+
+
+.editUser--tittle {
+    width: 60%;
+    min-width: 650px;
+    height: 75px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: rgb(87, 80, 116);
+    font-size: 2rem;
+    
+    margin-top: 1rem;
+}
+
+.editUser--searchFormWrap {
+    width: 60%;
+    min-width: 650px;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.editUser--searchForm {
+    width: 100%;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editUser--searchForm input {
+    text-align: center;
+}
+
+.editUser--editFormWrap {
+    width: 60%;
+    min-width: 650px;
+    height: 600px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 50px;
+}
+
+.editUser--editForm {
+    width: 100%;
+    height: 80%;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editUser--editForm label {
+    color: rgb(46, 42, 63);
+}
+
+.editUser--editForm input {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+
+        text-align: center;
+}
+
+.editUser--editFormError {
+    font-size: .9rem;
+}
+
+.editUser--formButton {
+  width: 150px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.editUser--deleteButton {
+    background-color: rgb(238, 162, 191);
+}
+
+@media screen and (max-width: 1000px) {
+    .editUser {
+        width: 100%;
+        min-width: 250px;
+    }
+
+    .editUser--tittle {
+        width: 80%;
+        min-width: 200px;
+        
+        font-size: 1.5rem;
+    }
+
+    .editUser--searchFormWrap {
+        width: 80%;
+        min-width: 200px;
+        height: 100px;
+    }
+
+    .editUser--searchForm {
+        flex-direction: column;
+    }
+
+    .editUser--searchFormButton, .editUser--editFormButton, .editUser--deleteButton {
+        width: 125px;
+        height: 30px;
+    }
+
+    .editUser--editFormWrap {
+        width: 90%;
+        min-width: 200px;
+    }
+
+    .editUser--editForm textarea,
+    .editUser--editForm input,
+    .editUser--editForm select {
+        width: 60%;
+        max-width: 450px;
+        min-width: 200px;
+    }
+
+    .editUser--editFormButton, .editUser--deleteButton {
+        width: 200px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,183 @@
+.editGame {
+    width: 60%;
+    min-width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: rgba(217, 237, 250, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+
+    margin-top: .5rem;
+    margin-bottom: 50px;
+}
+
+.editGame--searchFormButton, .editGame--editFormButton, .editGame--deleteButton {
+    width: 150px;
+    height: 35px;
+
+    color: rgb(238, 242, 255);
+    font-size: 1.1rem;
+
+    background-color: rgb(150, 158, 223);
+    border: 2px solid rgb(77, 89, 131);
+    border-radius: 5px;
+}
+
+.editGame--searchFormButton:hover, .editGame--editFormButton:hover, .editGame--deleteButton:hover {
+    color: rgb(47, 55, 83);
+    background-color: rgb(185, 192, 231);
+    border: 2px solid rgb(65, 75, 110);
+}
+
+.editGame--tittle {
+    width: 60%;
+    min-width: 650px;
+    height: 75px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: rgb(87, 80, 116);
+    font-size: 2rem;
+
+    margin-top: 1rem;
+}
+
+.editGame--searchFormWrap {
+    width: 60%;
+    min-width: 650px;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.editGame--searchForm {
+    width: 100%;
+    height: 50px;
+    gap: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editGame--searchForm input {
+    text-align: center;
+}
+
+.editGame--editFormWrap {
+    width: 60%;
+    min-width: 650px;
+    height: 600px;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 1rem;
+    margin-bottom: 50px;
+}
+
+.editGame--editForm {
+    width: 100%;
+    height: 80%;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editGame--editForm label {
+    color: rgb(46, 42, 63);
+}
+
+.editGame--editForm input,
+.editGame--editForm select {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+
+    text-align: center;
+}
+
+.editGame--editFormError {
+    font-size: .9rem;
+}
+
+.editGame--deleteButton {
+    background-color: rgb(238, 162, 191);
+}
+
+@media screen and (max-width: 1000px) {
+    .editGame {
+        width: 100%;
+        min-width: 250px;
+    }
+
+    .editGame--tittle {
+        width: 80%;
+        min-width: 200px;
+        
+        font-size: 1.5rem;
+    }
+
+    .editGame--searchFormWrap {
+        width: 80%;
+        min-width: 200px;
+        height: 100px;
+    }
+
+    .editGame--searchForm {
+        flex-direction: column;
+    }
+
+    .editGame--searchFormButton, .editGame--editFormButton, .editGame--deleteButton {
+        width: 125px;
+        height: 30px;
+    }
+
+    .editGame--editFormWrap {
+        width: 90%;
+        min-width: 200px;
+    }
+
+    .editGame--editForm input,
+    .editGame--editForm select {
+        width: 60%;
+        max-width: 450px;
+        min-width: 200px;
+    }
+
+    .editGame--editFormButton, .editGame--deleteButton {
+        width: 200px;
+        height: 35px;
+    }
+}

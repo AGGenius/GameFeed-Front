@@ -1,0 +1,114 @@
+.addPost {
+    width: 60%;
+    min-height: 700px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: rgba(217, 237, 250, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 50px;
+}
+
+.addPost--tittle {
+    width: 60%;
+    height: 75px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid rgb(55, 49, 109);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: rgb(87, 80, 116);
+    font-size: 2rem;
+    
+    margin-top: 4rem;
+}
+
+.addPost--form {
+    width: 60%;
+    height: 65%;
+    gap: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(223, 233, 255, 0.3);
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+
+    margin-top: 4rem;
+}
+
+.addPost--form label {
+    color: rgb(46, 42, 63);
+}
+
+.addPost--form select  {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+}
+
+.addPost--form textarea  {
+    width: 40%;
+    max-width: 350px;
+    min-width: 200px;
+    height: 150px;
+}
+
+.addPost--formError {
+    font-size: .9rem;
+}
+
+.addPost--formButton {
+  width: 150px;
+  height: 35px;
+
+  background-color: rgb(211, 214, 243);
+  border: 2px solid rgb(238, 242, 255);
+  border-radius: 10px;
+
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .addPost {
+        width: 100%;
+    }
+
+    .addPost--tittle {
+        width: 90%;
+        
+        font-size: 1.5rem;
+        
+        margin-top: 2rem;
+    }
+
+    .addPost--form {
+        width: 90%;
+    }
+
+    .addPost--form textarea, .addPost--form select  {
+        width: 60%;
+        max-width: 450px;
+        min-width: 200px;
+    }
+    
+    .addPost--formButton {
+      width: 200px;
+      height: 40px;
+    }
+}
