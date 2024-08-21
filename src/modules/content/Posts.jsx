@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/useUserContext";
+import { useUserContext } from "../../context/useUserContext";
 import './Posts.css'
 
 //Module to generate a paged list of post for a given game. The content can be filtered. 

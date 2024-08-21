@@ -1,6 +1,6 @@
 .addGame {
     width: 60%;
-    height: 650px;
+    min-height: 700px;
 
     display: flex;
     flex-direction: column;
@@ -11,7 +11,10 @@
     border: 2px solid whitesmoke;
     border-radius: 15px;
     
+    
+    padding-bottom: 1rem;
     margin-top: 2rem;
+    margin-bottom: 50px;
 }
 
 .addGame--tittle {

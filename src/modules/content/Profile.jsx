@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useUserContext } from "../context/useUserContext";
+import { useUserContext } from "../../context/useUserContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './Profile.css'
@@ -25,6 +25,7 @@ const Profile = () => {
 
     useEffect(() => {
         setToken(localStorage.getItem("token"));
+        if (!localStorage.getItem("token")) { navigate("/"); }
         getUserGames();
         getUserPosts();
         getUserLikes();
@@ -104,24 +105,22 @@ const Profile = () => {
             actualLike = likes.find((like) => like.id === element.id);
         } else if (type === "post") {
             actualLike = likes.find((like) => like.post_id === element.id);
-        }
+        };
 
-        if (actualLike.id === userLikes.likes_id) {
-            console.log("hola")
-        }
-
-        userLikes.forEach(like => {
-            if (actualLike.id === like.likes_id && like.user_id === user.id) {
-                button = <button className="profile--removeLikeButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Remove Like</button>;
-            }
-        })
+        if (actualLike) {
+            userLikes.forEach(like => {
+                if (actualLike.id === like.likes_id && like.user_id === user.id) {
+                    button = <button className="profile--removeLikeButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Remove Like</button>;
+                };
+            });
+        };
 
         if (token) {
             return (
                 <>
                     {button}
                 </>);
-        }
+        };
     };
 
     return (

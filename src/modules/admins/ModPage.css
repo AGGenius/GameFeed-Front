@@ -12,7 +12,8 @@
     border: 2px solid whitesmoke;
     border-radius: 15px;
 
-    margin: .5rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
 }
 
 .modPage a {
