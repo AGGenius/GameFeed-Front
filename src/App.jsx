@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GamesList from "./modules/content/GamesList";
-import Nav from './modules/nav/Nav';
-import Register from './modules/create/Register';
-import AddGame from './modules/create/AddGame';
-import Profile from './modules/content/Profile';
-import Posts from './modules/content/Posts';
-import AddPost from './modules/create/AddPost';
-import Footer from './modules/footer/Footer';
-import About from './modules/content/About';
-import Contact from './modules/content/Contact';
+import GamesList from './modules/content/GamesList.jsx';
+import Nav from './modules/nav/Nav.jsx';
+import Register from './modules/create/Register.jsx';
+import AddGame from './modules/create/AddGame.jsx';
+import Profile from './modules/content/Profile.jsx';
+import Posts from './modules/content/Posts.jsx';
+import AddPost from './modules/create/AddPost.jsx';
+import Footer from './modules/footer/Footer.jsx';
+import About from './modules/content/About.jsx';
+import Contact from './modules/content/Contact.jsx';
 //Admin & Mod
-import AdminPage from './modules/admins/AdminPage';
-import EditGame from './modules/edit/EditGame';
-import EditPost from './modules/edit/EditPost';
-import EditUser from './modules/edit/EditUser';
+import AdminPage from './modules/admins/AdminPage.jsx';
+import EditGame from './modules/edit/EditGame.jsx';
+import EditPost from './modules/edit/EditPost.jsx';
+import EditUser from './modules/edit/EditUser.jsx';
 //Mod
-import ModPage from './modules/admins/ModPage';
+import ModPage from './modules/admins/ModPage.jsx';
 //Context
 import { GamesProvider } from './context/useGamesContext';
-import { UserProvider } from "./context/useUserContext";
+import { UserProvider } from './context/useUserContext';
 import './App.css';
 
 //Base module with all the main routes logics.
