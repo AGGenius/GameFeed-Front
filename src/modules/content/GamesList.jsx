@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useGamesContext } from '../context/useGamesContext'
-import { useUserContext } from "../context/useUserContext";
-import './gamesList.css'
+import { useGamesContext } from '../../context/useGamesContext'
+import { useUserContext } from "../../context/useUserContext";
+import './GamesList.css'
 
 //Module to generate a paged list of games. The content can be filtered and you can search for any given tittle in the data base. 
 //Custom buttons are generated in each game card to access the game posts, interact with links and edit the game.

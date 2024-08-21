@@ -1,16 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GamesList from "./modules/gamesList";
-import Nav from './modules/Nav';
-import Register from './modules/Create/Register';
-import AddGame from './modules/Create/AddGame';
-import Profile from './modules/Profile';
-import Posts from './modules/Posts';
-import AddPost from './modules/Create/AddPost';
+import GamesList from "./modules/content/GamesList";
+import Nav from './modules/nav/Nav';
+import Register from './modules/create/Register';
+import AddGame from './modules/create/AddGame';
+import Profile from './modules/content/Profile';
+import Posts from './modules/content/Posts';
+import AddPost from './modules/create/AddPost';
+import Footer from './modules/footer/Footer';
+import About from './modules/content/About';
+import Contact from './modules/content/Contact';
 //Admin & Mod
 import AdminPage from './modules/admins/AdminPage';
-import EditGame from './modules/Edit/EditGame';
-import EditPost from './modules/Edit/EditPost';
-import EditUser from './modules/Edit/EditUser';
+import EditGame from './modules/edit/EditGame';
+import EditPost from './modules/edit/EditPost';
+import EditUser from './modules/edit/EditUser';
 //Mod
 import ModPage from './modules/admins/ModPage';
 //Context
@@ -31,6 +34,8 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/addGame' element={<AddGame />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
               <Route path='/posts/:id' element={<Posts />} />
               <Route path='/addPost/:id' element={<AddPost />} />
               <Route path='/adminPage' element={<AdminPage />} >
@@ -48,6 +53,7 @@ function App() {
                 <Route path='/modPage/editPost/:id' element={<EditPost />} />
               </Route>
             </Routes>
+            {<Footer />}
           </UserProvider>
         </GamesProvider>
       </Router>

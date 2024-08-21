@@ -107,12 +107,12 @@ const Profile = () => {
         }
 
         if (actualLike) {
-            userLikes.forEach(like => {
+            { } userLikes.forEach(like => {
                 if (actualLike.id === like.likes_id && like.user_id === user.id) {
                     button = <button className="profile--removeLikeButton" value={actualLike.id} onClick={(e) => sendLike(e)}>Remove Like</button>;
                 }
-            });
-        };
+            })
+        }
 
         if (token) {
             return (
