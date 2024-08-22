@@ -170,7 +170,6 @@ const Register = () => {
                 name,
                 nick
             }
-            console.log(1)
 
             try {
                 const response = await axios.post(registerURL, payload);
@@ -222,7 +221,7 @@ const Register = () => {
                     <div className="register--formPair">
                         <label htmlFor="newuserPass">Contraseña</label>
                         <div className="register--passwordWrap">
-                            <input id="newuserPass" type={passwordType} value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                            <input id="newuserPass" autocomplete="new-password" type={passwordType} value={password} onChange={(e) => setPassword(e.target.value)}></input>
                             <span className="register--eyeWrap">
                                 <i className={passwordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => managePasswordType()} />
                             </span>
@@ -235,7 +234,7 @@ const Register = () => {
                     <div className="register--formPair">
                         <label htmlFor="repeatNewUserPass">Repite la contraseña</label>
                         <div className="register--passwordWrap">
-                            <input id="repeatNewUserPass" type={repeatPasswordType} value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
+                            <input id="repeatNewUserPass" autocomplete="new-password" type={repeatPasswordType} value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}></input>
                             <span className="register--eyeWrap">
                                 <i className={repeatPasswordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => manageRepeatPasswordType()} />
                             </span>
