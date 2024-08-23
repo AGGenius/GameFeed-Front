@@ -52,7 +52,7 @@
   color: #29263d;
 }
 
-.login--formInputWrap p {
+.login--errorMessage {
   font-size: .8rem;
 }
 
@@ -100,6 +100,25 @@
   align-items: center;
 }
 
+.login--statusMessage {
+  width: 30%;
+  height: 25px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(218, 240, 255);
+  border: 2px solid rgb(34, 18, 92);
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0 0 0 10px;
+}
+
 @media screen and (max-width: 1000px) {
   .login--logForm {
     width: 100%;
@@ -130,5 +149,16 @@
     max-width: 150px;
     min-width: 100px;
     height: 20px;
+  }
+
+  .login--errorMessage {
+    font-size: .6rem;
+  }
+
+  .login--statusMessage {
+    width: 60%;
+    height: 20px;
+
+    font-size: .9rem;
   }
 }
