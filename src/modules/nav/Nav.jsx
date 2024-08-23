@@ -33,13 +33,10 @@ function Nav() {
     setToken(localStorage.getItem("token"));
   }, [user]);
 
-  const handleScroll = () => {
-    console.log(1);
-  }
-
   const responsiveMenu = (e) => {
     return (
       <ul className="nav--colapsedMenuWrap">
+        <p>MENU</p>
         {token && <li><Link to="/addGame" onClick={() => setColapseMenu(false)}>Añadir juego</Link></li>}
         {token && <li><Link to="/profile" onClick={() => setColapseMenu(false)}>Perfil</Link></li>}
         {user.type === "mod" && <li><Link to="/modPage" onClick={() => setColapseMenu(false)}>Modo moderador</Link></li>}
@@ -50,7 +47,8 @@ function Nav() {
   }
 
   return (
-    <nav className={"nav"} onScroll={() => handleScroll()}>
+    <nav className={"nav"}>
+      {colapseMenu && <div className="nav--responsiveMenuWrap" onClick={() => setColapseMenu(false)}>{responsiveMenu()}</div>}
       <h1 className={"nav--webTittle"}>Gamer Rest</h1>
       <div className={"nav--navWrap"}>
         <ul className={"nav--linkWrap"}>
@@ -70,7 +68,6 @@ function Nav() {
           <Login />
         </div>
       </div>
-      {colapseMenu && responsiveMenu()}
     </nav>
   );
 };

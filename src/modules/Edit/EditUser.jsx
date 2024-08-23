@@ -74,7 +74,7 @@ function EditUser() {
                 setUserEdit("");
                 setUpadteStatus(response.data.estado);
             } catch (error) {
-                console.log(error);
+                //console.log(error);
                 setUpadteStatus("");
             };
         };

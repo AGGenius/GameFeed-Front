@@ -55,7 +55,7 @@ const AddPost = () => {
                 const response = await axios.post(addPostUrl, payload);
                 setCreateStatus(response.data.estado);
             } catch (error) {
-                console.log(error);
+                //console.log(error);
             };
         };
     };

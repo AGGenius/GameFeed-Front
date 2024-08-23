@@ -46,7 +46,7 @@ function Posts() {
             const data = response.data;
             setLikes(data);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
@@ -64,7 +64,7 @@ function Posts() {
             const newPosts = response.data;
             setPosts(newPosts);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
