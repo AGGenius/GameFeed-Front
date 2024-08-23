@@ -63,7 +63,7 @@ const Login = () => {
                     <input {...register("email", { required: { value: true, message: "Se debe introducir el email." } })} id="userEmail" type="text" placeholder={"email"}></input>
                     {errors.email?.message && <p>{errors.email.message}</p>}
                     <div className="login--passwordWrap">
-                        <input autocomplete="new-password" {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type={passwordType} placeholder={"contraseña"}></input>
+                        <input autoComplete="new-password" {...register("password", { required: { value: true, message: "Se debe introducir la contraseña." } })} id="userPass" type={passwordType} placeholder={"contraseña"}></input>
                         <span className="login--eyeWrap">
                             <i className={passwordType === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}  onClick={() => managePasswordType()} />
                         </span>
