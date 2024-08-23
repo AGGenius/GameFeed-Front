@@ -23,37 +23,38 @@ import './App.css';
 
 //Base module with all the main routes logics.
 function App() {
+
   return (
     <>
       <Router>
         <GamesProvider>
           <UserProvider>
-            {<Nav />}
-            <Routes>
-              <Route path='/' element={<GamesList />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/addGame' element={<AddGame />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/posts/:id' element={<Posts />} />
-              <Route path='/addPost/:id' element={<AddPost />} />
-              <Route path='/adminPage' element={<AdminPage />} >
-                <Route path='/adminPage/editGame' element={<EditGame />} />
-                <Route path='/adminPage/editGame/:id' element={<EditGame />} />
-                <Route path='/adminPage/editPost' element={<EditPost />} />
-                <Route path='/adminPage/editPost/:id' element={<EditPost />} />
-                <Route path='/adminPage/editUser' element={<EditUser />} />
-                <Route path='/adminPage/editUser/:id' element={<EditUser />} />
-              </Route>
-              <Route path='/modPage' element={<ModPage />} >
-                <Route path='/modPage/editGame' element={<EditGame />} />
-                <Route path='/modPage/editGame/:id' element={<EditGame />} />
-                <Route path='/modPage/editPost' element={<EditPost />} />
-                <Route path='/modPage/editPost/:id' element={<EditPost />} />
-              </Route>
-            </Routes>
-            {<Footer />}
+              {<Nav />}
+              <Routes>
+                <Route path='/' element={<GamesList />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/addGame' element={<AddGame />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/posts/:id' element={<Posts />} />
+                <Route path='/addPost/:id' element={<AddPost />} />
+                <Route path='/adminPage' element={<AdminPage />} >
+                  <Route path='/adminPage/editGame' element={<EditGame />} />
+                  <Route path='/adminPage/editGame/:id' element={<EditGame />} />
+                  <Route path='/adminPage/editPost' element={<EditPost />} />
+                  <Route path='/adminPage/editPost/:id' element={<EditPost />} />
+                  <Route path='/adminPage/editUser' element={<EditUser />} />
+                  <Route path='/adminPage/editUser/:id' element={<EditUser />} />
+                </Route>
+                <Route path='/modPage' element={<ModPage />} >
+                  <Route path='/modPage/editGame' element={<EditGame />} />
+                  <Route path='/modPage/editGame/:id' element={<EditGame />} />
+                  <Route path='/modPage/editPost' element={<EditPost />} />
+                  <Route path='/modPage/editPost/:id' element={<EditPost />} />
+                </Route>
+              </Routes>
+              {<Footer />}
           </UserProvider>
         </GamesProvider>
       </Router>

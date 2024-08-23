@@ -179,10 +179,6 @@
   align-items: center;
 }
 
-.profile--confirmChangesWrap {
-  padding: 2rem;
-}
-
 .profile--editForm  input{
   width: 250px;
 }
@@ -228,6 +224,7 @@
 }
 
 .profile--editFormError {
+  color: rgb(64, 88, 165);
   font-size: .9rem;
 }
 
@@ -272,5 +269,34 @@
     gap: .5rem;
     
     flex-direction: column;
+  }
+
+  .profile--editFormWrap {
+    width: 90%;
+    height: auto;
+    min-height: 550px;
+
+    padding: .2rem;
+  }
+
+  .profile--passwordLabel {
+    margin-top: .5rem;
+  }
+  
+  .profile--editForm {
+    gap: .2rem;
+  }
+
+  .profile--editFormButton {
+    margin-bottom: .5rem;
+  }
+  
+  .profile--cancelButton {
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .profile--editFormError {
+    font-size: .8rem;
   }
 }

@@ -96,7 +96,7 @@ const Profile = () => {
             const data = response.data;
             setLikes(data);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     };
 
@@ -182,6 +182,13 @@ const Profile = () => {
 
     const manageEditFormState = () => {
         const state = editFormState;
+
+        if (!state) {
+            setPass1("");
+            setPass2("");
+            setConfirmationPass("");
+            reset({ pass1: "", pass2: "", password: ""});
+        }
 
         setEditFormState(!state);
     }
@@ -327,7 +334,7 @@ const Profile = () => {
 
                             <label htmlFor="editUserPass1">Nueva contraseña</label>
                             <div className="profile--passwordWrap">
-                                <input id="editUserPass1" autocomplete="new-password" type={pass1Type} {...register("pass1", { required: { value: false } })} value={pass1 ? pass1 : ""} onChange={(e) => setPass1(e.target.value)}></input>
+                                <input id="editUserPass1" autoComplete="new-password" type={pass1Type} {...register("pass1", { required: { value: false } })} value={pass1 ? pass1 : ""} onChange={(e) => setPass1(e.target.value)}></input>
                                 <span className="profile--eyeWrap">
                                     <i className={pass1Type === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => managePass1Type()} />
                                 </span>
@@ -336,7 +343,7 @@ const Profile = () => {
 
                             <label htmlFor="editUserPass2">Repite la contraseña</label>
                             <div className="profile--passwordWrap">
-                                <input id="editUserPass2" autocomplete="new-password" type={pass2Type} {...register("pass2", { required: { value: false } })} value={pass2 ? pass2 : ""} onChange={(e) => setPass2(e.target.value)}></input>
+                                <input id="editUserPass2" autoComplete="new-password" type={pass2Type} {...register("pass2", { required: { value: false } })} value={pass2 ? pass2 : ""} onChange={(e) => setPass2(e.target.value)}></input>
                                 <span className="profile--eyeWrap">
                                     <i className={pass2Type === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => managePass2Type()} />
                                 </span>
