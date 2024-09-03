@@ -15,6 +15,7 @@ function Footer() {
                 <Link className="footer--navLink" to="/about" >Sobre mi</Link>
                 <Link className="footer--navLink" to="/contact" >Contacto</Link>
             </nav>
+            <p className="footer--sign">© 2024 by Adrian Giner Gimenez</p>
         </footer>
     );
 };
